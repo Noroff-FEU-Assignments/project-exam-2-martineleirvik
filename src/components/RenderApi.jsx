@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { baseUrl } from "../constants/api";
+import BookingInfo from "./BookingInfo";
+import Loader from "./layout/Loader";
+import styled from "styled-components";
 
-const bookingsUrl = baseUrl + "bookings";
+const popularUrl = baseUrl + "bookings?filters[popular][$eq]=true";
 
 function RenderApi() {
   const [bookings, setBookings] = useState([]);
@@ -12,35 +15,49 @@ function RenderApi() {
   useEffect(function () {
     async function fetchData() {
       try {
-        const response = await fetch(bookingsUrl);
-        const json = await response.json();
-        console.log(json);
+        const response = await fetch(popularUrl);
 
         if (response.ok) {
-          setBookings(json);
+          const json = await response.json();
+          console.log(json);
+          setBookings(json.data);
+        } else {
+          setError("An error occured");
         }
       } catch (error) {
         setError(error.toString());
+      } finally {
+        setLoading(false);
       }
     }
+    fetchData();
   }, []);
 
+  if (loading) {
+    return <Loader />;
+  }
+  if (error) {
+    return <div>ERROR: {error}</div>;
+  }
+
   return (
-    <div className="card">
-      <img src="#" alt="" />
-      <h3>Hotel Fantasia</h3>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua
-      </p>
-      <div className="popular-buttons">
-        <button>
-          <Link to="/inqury">Book now</Link>
-        </button>
-        <Link to="/booking/:id">Read more</Link>
-      </div>
-    </div>
+    <SyledCardContainer>
+      {bookings.map(function (booking) {
+        const { id, name, price, description, popular, image } =
+          booking.attributes;
+        return (
+          <div>
+            <BookingInfo key={id} name={name} />
+          </div>
+        );
+      })}
+    </SyledCardContainer>
   );
 }
 
 export default RenderApi;
+
+// Styled components
+const SyledCardContainer = styled.div`
+  display: flex;
+`;

@@ -1,4 +1,5 @@
 import Heading from "../layout/Heading";
+import WhyBergenInfo from "../../constants/whyBergen";
 
 function BergenInfo() {
   return (

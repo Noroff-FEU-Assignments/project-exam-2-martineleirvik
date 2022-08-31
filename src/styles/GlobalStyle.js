@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
 body {
   font-family: 'Inter', sans-serif;
   font-weight: light;
+  background-color: #ebebeb;
 }
 h1 {
   font-family: 'Merriweather', serif;

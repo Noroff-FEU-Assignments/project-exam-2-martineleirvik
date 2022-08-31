@@ -38,6 +38,7 @@ const StyledNav = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
+  margin: auto;
   a {
     color: white;
     text-decoration: none;
