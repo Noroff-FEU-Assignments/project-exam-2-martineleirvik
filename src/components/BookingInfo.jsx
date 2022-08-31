@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-function BookingInfo({ id, name, price, description, popular, image }) {
+function BookingInfo({ id, name, description, image }) {
   return (
     <SyledCard>
       <img src={image} alt="" />
@@ -9,7 +9,9 @@ function BookingInfo({ id, name, price, description, popular, image }) {
       <p>{description}</p>
       <div className="popular-buttons">
         <button>
-          <Link to="/inqury">Book now</Link>
+          <Link to="/enquiry" key={id}>
+            Book now
+          </Link>
         </button>
         <Link to={`/booking/${id}`}>Read more</Link>
       </div>

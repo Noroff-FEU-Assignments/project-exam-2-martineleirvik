@@ -5,7 +5,7 @@ import BookingInfo from "./BookingInfo";
 import Loader from "./layout/Loader";
 import styled from "styled-components";
 
-const popularUrl = baseUrl + "bookings?filters[popular][$eq]=true";
+const popularUrl = baseUrl + "bookings?populate=*&filters[popular][$eq]=true";
 
 function RenderApi() {
   const [bookings, setBookings] = useState([]);
@@ -43,12 +43,20 @@ function RenderApi() {
   return (
     <SyledCardContainer>
       {bookings.map(function (booking) {
-        const { id, name, price, description, popular, image } =
-          booking.attributes;
+        const { id } = booking;
+        const { name, description } = booking.attributes;
+        const { image } = booking.attributes.image.data[0].attributes.url;
+        console.log(image);
         return (
-          <div>
-            <BookingInfo key={id} name={name} />
-          </div>
+          <>
+            <BookingInfo
+              key={id}
+              id={id}
+              name={name}
+              description={description}
+              image={image}
+            />
+          </>
         );
       })}
     </SyledCardContainer>
