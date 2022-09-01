@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-function BookingInfo({ id, name, description, image }) {
+function PopularBookingInfo({ id, name, description, image }) {
   return (
     <SyledCard>
-      <img src={image} alt="" />
+      <img src={image} alt={name} />
       <h3>{name}</h3>
       <p>{description}</p>
       <div className="popular-buttons">
@@ -19,7 +19,7 @@ function BookingInfo({ id, name, description, image }) {
   );
 }
 
-export default BookingInfo;
+export default PopularBookingInfo;
 
 // Styled components
 

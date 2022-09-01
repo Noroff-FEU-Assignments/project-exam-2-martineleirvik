@@ -1,11 +1,9 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { baseUrl } from "../constants/api";
+import { useEffect, useState } from "react";
+import { baseUrl } from "../../constants/api";
+import Loader from "../layout/Loader";
 import BookingInfo from "./BookingInfo";
-import Loader from "./layout/Loader";
-import styled from "styled-components";
 
-const popularUrl = baseUrl + "bookings?populate=*&filters[popular][$eq]=true";
+const url = baseUrl + "bookings?populate=*";
 
 function RenderApi() {
   const [bookings, setBookings] = useState([]);
@@ -15,11 +13,11 @@ function RenderApi() {
   useEffect(function () {
     async function fetchData() {
       try {
-        const response = await fetch(popularUrl);
+        const response = await fetch(url);
 
         if (response.ok) {
           const json = await response.json();
-          console.log(json);
+          console.log(json.data);
           setBookings(json.data);
         } else {
           setError("An error occured");
@@ -41,30 +39,25 @@ function RenderApi() {
   }
 
   return (
-    <SyledCardContainer>
+    <div className="bookingcontainer">
       {bookings.map(function (booking) {
         const { id } = booking;
-        const { name, description } = booking.attributes;
-        const { image } =
-          booking.attributes.image.data[0].attributes.formats.thumbnail.url;
-        console.log(id);
+        const { name, description, price, popular, stars } = booking.attributes;
+        console.log(stars);
         return (
           <BookingInfo
             key={id}
             id={id}
             name={name}
             description={description}
-            image={image}
+            price={price}
+            popular={popular}
+            stars={stars}
           />
         );
       })}
-    </SyledCardContainer>
+    </div>
   );
 }
 
 export default RenderApi;
-
-// Styled components
-const SyledCardContainer = styled.div`
-  display: flex;
-`;

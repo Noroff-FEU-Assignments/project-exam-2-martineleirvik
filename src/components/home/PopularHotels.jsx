@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 //components
 import Heading from "../layout/Heading";
-import RenderApi from "../RenderApi";
+import RenderApi from "./RenderPopularApi";
 //styles
 
 function PopularHotels() {

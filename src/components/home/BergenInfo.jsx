@@ -9,8 +9,8 @@ function BergenInfo() {
         const { heading, text } = data;
         return (
           <div className="data">
-            <h1>{data.heading}</h1>
-            <p>{data.text}</p>
+            <h1>{heading}</h1>
+            <p>{text}</p>
           </div>
         );
       })}
