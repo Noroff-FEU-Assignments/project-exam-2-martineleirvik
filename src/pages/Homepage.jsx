@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 // imagery
 import frontpageImage from "../images/bergen-homepage-image.jpeg";
 import bergenVideo from "../images/bergen.mp4";
@@ -23,7 +24,9 @@ function Homepage() {
             Book hotels, B&B's or guesthouses to your next trip to beautiful
             Bergen.
           </p>
-          <button>View hotels etc...</button>
+          <button>
+            <Link to="/booking">View hotels etc...</Link>
+          </button>
         </StyledVisitBergen>
         <PopularHotels />
         <video src={bergenVideo} autoPlay loop muted />

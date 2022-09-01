@@ -45,18 +45,17 @@ function RenderApi() {
       {bookings.map(function (booking) {
         const { id } = booking;
         const { name, description } = booking.attributes;
-        const { image } = booking.attributes.image.data[0].attributes.url;
-        console.log(image);
+        const { image } =
+          booking.attributes.image.data[0].attributes.formats.thumbnail.url;
+        console.log(id);
         return (
-          <>
-            <BookingInfo
-              key={id}
-              id={id}
-              name={name}
-              description={description}
-              image={image}
-            />
-          </>
+          <BookingInfo
+            key={id}
+            id={id}
+            name={name}
+            description={description}
+            image={image}
+          />
         );
       })}
     </SyledCardContainer>
