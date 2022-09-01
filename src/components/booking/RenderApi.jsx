@@ -43,12 +43,14 @@ function RenderApi() {
       {bookings.map(function (booking) {
         const { id } = booking;
         const { name, description, price, popular, stars } = booking.attributes;
-        console.log(stars);
+        const image = booking.attributes.image.data[0].attributes.url;
+        console.log(image);
         return (
           <BookingInfo
             key={id}
             id={id}
             name={name}
+            image={image}
             description={description}
             price={price}
             popular={popular}

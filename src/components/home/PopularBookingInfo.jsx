@@ -31,4 +31,7 @@ const SyledCard = styled.div`
   border-radius: 15px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   min-width: 200px;
+  img {
+    max-width: 100%;
+  }
 `;

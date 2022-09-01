@@ -44,7 +44,7 @@ function RenderApi() {
       {bookings.map(function (booking) {
         const { id } = booking;
         const { name, description } = booking.attributes;
-        const { image } = booking.attributes.image.data[0].attributes.url;
+        const image = booking.attributes.image.data[0].attributes.url;
         console.log(image);
         return (
           <PopularBookingInfo
