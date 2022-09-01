@@ -1,5 +1,12 @@
+// components
+import Heading from "../components/layout/Heading";
+
 function Contact() {
-  return <div>Contact</div>;
+  return (
+    <>
+      <Heading heading="Contact us" />
+    </>
+  );
 }
 
 export default Contact;

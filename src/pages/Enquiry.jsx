@@ -1,5 +1,12 @@
+// components
+import Heading from "../components/layout/Heading";
+
 function Enquiry() {
-  return <div>Enquiry</div>;
+  return (
+    <>
+      <Heading heading="Enquiry" />
+    </>
+  );
 }
 
 export default Enquiry;

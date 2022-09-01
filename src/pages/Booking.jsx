@@ -1,5 +1,12 @@
+// components
+import Heading from "../components/layout/Heading";
+
 function Booking() {
-  return <div>Booking</div>;
+  return (
+    <>
+      <Heading heading="Booking" />
+    </>
+  );
 }
 
 export default Booking;
