@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { baseUrl } from "../../constants/api";
 import Loader from "../layout/Loader";
-import BookingInfo from "./BookingInfo";
-import FilterButtons from "./FilterButtons";
+import HotelInfo from "./HotelInfo";
 
-const url = baseUrl + "bookings?populate=*";
+const url = baseUrl + "categories/1?fields=name&populate=bookings";
 
-function RenderApi() {
-  const [bookings, setBookings] = useState([]);
+function Hotels() {
+  const [hotels, setHotels] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -19,7 +18,7 @@ function RenderApi() {
         if (response.ok) {
           const json = await response.json();
           console.log(json.data);
-          setBookings(json.data);
+          setHotels(json.data);
         } else {
           setError("An error occured");
         }
@@ -40,22 +39,19 @@ function RenderApi() {
   }
 
   return (
-    <div className="bookingcontainer">
-      {bookings.map(function (booking) {
-        const { id } = booking;
-        const { name, description, price, popular, stars } = booking.attributes;
-        const image = booking.attributes.image.data[0].attributes.url;
-        const category = booking.attributes.category.data.attributes.name;
+    <div className="hotels-container">
+      {hotels.map(function (hotel) {
+        const { id } = hotel.attributes.bookings.data[0];
+        const { name, description } = hotel.attributes.bookings.data.attributes;
+        const image = hotel;
+        console.log(id);
         return (
-          <BookingInfo
+          <HotelInfo
             key={id}
             id={id}
             name={name}
-            image={image}
             description={description}
-            price={price}
-            popular={popular}
-            stars={stars}
+            image={image}
           />
         );
       })}
@@ -63,4 +59,4 @@ function RenderApi() {
   );
 }
 
-export default RenderApi;
+export default Hotels;

@@ -1,33 +1,34 @@
 import { createGlobalStyle } from "styled-components";
+import theme from "./theme";
 
 const GlobalStyle = createGlobalStyle`
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    color: #5B5B5B;
+    color: ${(props) => props.theme.fontColor};
 }
 body {
   font-family: 'Inter', sans-serif;
   font-weight: light;
-  background-color: #ebebeb;
+  background-color: ${(props) => props.theme.backgroundColor};
 }
 h1 {
   font-family: 'Merriweather', serif;
 }
 button {
-  background-color: #EB8C6A;
+  background-color: ${(props) => props.theme.secondaryColor};
   border: none;
   padding: 5px 15px;
   border-radius: 8px;
-  color: white;
+  color: ${(props) => props.theme.white};
   a {
-    color: white;
+    color: ${(props) => props.theme.white};
     text-decoration: none;
   }
 }
 a {
-  color: black;
+  color: ${(props) => props.theme.black};
 }
 
 `;

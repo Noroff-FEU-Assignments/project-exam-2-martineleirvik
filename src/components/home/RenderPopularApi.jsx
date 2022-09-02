@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
+// components
 import { baseUrl } from "../../constants/api";
 import PopularBookingInfo from "./PopularBookingInfo";
+// styles
 import Loader from "../layout/Loader";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleRight, faCircleLeft } from "@fortawesome/free-solid-svg-icons";
 
 const popularUrl = baseUrl + "bookings?populate=*&filters[popular][$eq]=true";
 
-function RenderApi() {
+function RenderPopularApi() {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -45,7 +49,6 @@ function RenderApi() {
         const { id } = booking;
         const { name, description } = booking.attributes;
         const image = booking.attributes.image.data[0].attributes.url;
-        console.log(image);
         return (
           <PopularBookingInfo
             key={id}
@@ -60,7 +63,7 @@ function RenderApi() {
   );
 }
 
-export default RenderApi;
+export default RenderPopularApi;
 
 // Styled components
 const SyledCardContainer = styled.div`
