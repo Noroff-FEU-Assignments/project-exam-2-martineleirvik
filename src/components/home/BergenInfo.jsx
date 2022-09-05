@@ -13,7 +13,7 @@ function BergenInfo() {
     <StyledBergenInfo>
       <Heading heading="Why Bergen?" />
       {dataBergen.map((data) => {
-        const { heading, text } = data;
+        const { heading, text, id } = data;
         return (
           <StyledData>
             <div className="original-text">
