@@ -17,13 +17,13 @@ function BergenInfo() {
         return (
           <StyledData>
             <div className="original-text">
-              <p id="data-heading">{heading}</p>
+              <h2 id="data-heading">{heading}</h2>
               <p onClick={() => setShow(!show)}>
                 <FontAwesomeIcon icon={faChevronDown} />
               </p>
             </div>
 
-            {show ? <p>{text}</p> : null}
+            {show ? <p id="data">{text}</p> : null}
           </StyledData>
         );
       })}
@@ -39,9 +39,13 @@ const StyledData = styled.div`
   .original-text {
     display: flex;
     justify-content: space-between;
-    #data-heading {
-      font-size: 1.4rem;
+    h2 {
+      font-size: 1.2rem;
+      font-weight: normal;
       margin: 10px 0;
     }
+  }
+  #data {
+    font-size: 0.8rem;
   }
 `;
