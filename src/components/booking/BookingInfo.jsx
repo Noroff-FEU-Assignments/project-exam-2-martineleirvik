@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
-function BookingInfo({ id, name, description, price, popular, stars, image }) {
+function BookingInfo({ id, name, price, stars, image }) {
   if (stars === "five") {
     <FontAwesomeIcon icon={faStar} />;
   }
