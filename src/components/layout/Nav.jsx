@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import Search from "./search/Search";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 function Nav() {
   return (
@@ -10,6 +13,9 @@ function Nav() {
         </Link>
       </h1>
       <ul>
+        <li>
+          <Search />
+        </li>
         <li>
           <Link to="/">Home</Link>
         </li>

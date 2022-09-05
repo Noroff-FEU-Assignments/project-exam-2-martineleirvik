@@ -7,6 +7,11 @@ import Loader from "../layout/Loader";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleRight, faCircleLeft } from "@fortawesome/free-solid-svg-icons";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Pagination, Navigation } from "swiper";
 
 const popularUrl = baseUrl + "bookings?populate=*&filters[popular][$eq]=true";
 
@@ -44,22 +49,56 @@ function RenderPopularApi() {
   }
 
   return (
-    <SyledCardContainer>
-      {bookings.map(function (booking) {
-        const { id } = booking;
-        const { name, description } = booking.attributes;
-        const image = booking.attributes.image.data[0].attributes.url;
-        return (
-          <PopularBookingInfo
-            key={id}
-            id={id}
-            name={name}
-            description={description}
-            image={image}
-          />
-        );
-      })}
-    </SyledCardContainer>
+    <Swiper
+      spaceBetween={40}
+      slidesPerView={3}
+      navigation={{ clickable: true }}
+      modules={{ Pagination, Navigation }}
+      onSlideChange={() => console.log("slide change")}
+      onSwiper={(swiper) => console.log(swiper)}
+      breakpoints={{
+        0: {
+          slidesPerView: 1,
+          spaceBetween: 10,
+        },
+        480: {
+          slidesPerView: 2,
+          spaceBetween: 10,
+        },
+        768: {
+          slidesPerView: 3,
+          spaceBetween: 15,
+        },
+        1024: {
+          slidesPerView: 4,
+          spaceBetween: 15,
+        },
+        1280: {
+          slidesPerView: 5,
+          spaceBetween: 30,
+        },
+      }}
+    >
+      <SyledCardContainer>
+        {bookings.map(function (booking) {
+          const { id } = booking;
+          const { name, shortdescription } = booking.attributes;
+          const image = booking.attributes.image.data[0].attributes.url;
+          return (
+            <SwiperSlide>
+              <PopularBookingInfo
+                key={id}
+                id={id}
+                name={name}
+                shortdescription={shortdescription}
+                image={image}
+              />
+            </SwiperSlide>
+          );
+        })}
+      </SyledCardContainer>
+      ...
+    </Swiper>
   );
 }
 
