@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 //components
 import Heading from "../layout/Heading";
@@ -7,11 +8,15 @@ import RenderPopularApi from "./RenderPopularApi";
 
 function PopularHotels() {
   return (
-    <div className="popular-container">
+    <StyledPopularContainer>
       <Heading heading="Popular Hotels" />
       <RenderPopularApi />
-    </div>
+    </StyledPopularContainer>
   );
 }
 
 export default PopularHotels;
+
+const StyledPopularContainer = styled.div`
+  margin: 10px 40px;
+`;

@@ -9,9 +9,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleRight, faCircleLeft } from "@fortawesome/free-solid-svg-icons";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Pagination, Navigation } from "swiper";
+import SwiperCore, { Navigation } from "swiper";
+
+SwiperCore.use([Navigation]);
 
 const popularUrl = baseUrl + "bookings?populate=*&filters[popular][$eq]=true";
 
@@ -49,13 +50,17 @@ function RenderPopularApi() {
   }
 
   return (
-    <Swiper
+    <StyledSwiper
       spaceBetween={40}
       slidesPerView={3}
-      navigation={{ clickable: true }}
-      modules={{ Pagination, Navigation }}
-      onSlideChange={() => console.log("slide change")}
-      onSwiper={(swiper) => console.log(swiper)}
+      className="popular-swiper"
+      navigation
+      modules={{ Navigation }}
+      onInit={(swiper) => console.log("Swiper initialized!", swiper)}
+      onSlideChange={(swiper) =>
+        console.log("slide index changed to: ", swiper.activeIndex)
+      }
+      onReachEnd={() => console.log("Swiper end reached")}
       breakpoints={{
         0: {
           slidesPerView: 1,
@@ -97,14 +102,14 @@ function RenderPopularApi() {
           );
         })}
       </SyledCardContainer>
-      ...
-    </Swiper>
+    </StyledSwiper>
   );
 }
 
 export default RenderPopularApi;
 
 // Styled components
-const SyledCardContainer = styled.div`
-  display: flex;
+const SyledCardContainer = styled.div``;
+const StyledSwiper = styled(Swiper)`
+  background-color: ${(props) => props.theme.backgroundColor};
 `;
