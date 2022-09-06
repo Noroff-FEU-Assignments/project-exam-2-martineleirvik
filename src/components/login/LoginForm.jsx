@@ -1,47 +1,73 @@
 import { useContext, useState } from "react";
-import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { baseUrl, tokenPath } from "../../constants/api";
+// components
+import FormError from "../common/FormError";
+// styles
+import styled from "styled-components";
+
+const url = baseUrl + tokenPath;
 
 const schema = yup.object().shape({
   username: yup.string().required("Please enter your username"),
   password: yup.string().required("Please enter your password"),
 });
 
-function LoginForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+export default function LoginForm() {
+  const [submitting, setSubmitting] = useState(false);
+  const [loginError, setLoginError] = useState(null);
+  const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
   });
 
-  function onSubmit(data) {
+  async function onSubmit(data) {
+    setSubmitting(true);
+    setLoginError(null);
     console.log(data);
-  }
 
-  console.log(errors);
+    try {
+      const response = await axios.post(url, {
+        identifier: data.username,
+        password: data.password,
+      });
+      console.log("response", response.data);
+    } catch (error) {
+      console.log("error", error);
+      setLoginError(error.toString());
+    } finally {
+      setSubmitting(false);
+    }
+  }
 
   return (
     <div className="loginContainer">
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <input {...register("username")} placeholder="Usename/email" />
-          {errors && errors.username && <span>{errors.username.message}</span>}
-        </div>
-        <div>
-          <input {...register("password")} placeholder="Password" />
-          {errors && errors.password && <span>{errors.password.message}</span>}
-        </div>
-        <button>Login</button>
+        {loginError && (
+          <FormError>Error: Values not valid for login.</FormError>
+        )}
+        <fieldset disabled={submitting}>
+          <div>
+            <input {...register("username")} placeholder="Usename/email" />
+            {errors && errors.username && (
+              <FormError>{errors.username.message}</FormError>
+            )}
+          </div>
+          <div>
+            <input {...register("password")} placeholder="Password" />
+            {errors && errors.password && (
+              <FormError>{errors.password.message}</FormError>
+            )}
+          </div>
+          <button>{submitting ? "Loggin in..." : "Login"}</button>
+        </fieldset>
       </StyledForm>
     </div>
   );
 }
-
-export default LoginForm;
 
 // styled components
 
@@ -54,8 +80,14 @@ const StyledForm = styled.form`
   border-radius: 15px;
   background-color: white;
   border: 1px solid #eec2b3;
-  input {
-    width: 100%;
-    margin: 7px 0;
+  fieldset {
+    border: none;
+    input {
+      width: 100%;
+      margin: 7px 0;
+    }
+    button {
+      width: 100%;
+    }
   }
 `;

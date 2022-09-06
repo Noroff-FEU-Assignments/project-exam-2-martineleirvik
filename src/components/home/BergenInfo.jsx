@@ -15,7 +15,7 @@ function BergenInfo() {
       {dataBergen.map((data) => {
         const { heading, text, id } = data;
         return (
-          <StyledData>
+          <StyledData key={id}>
             <div className="original-text">
               <h2 id="data-heading">{heading}</h2>
               <p onClick={() => setShow(!show)}>
