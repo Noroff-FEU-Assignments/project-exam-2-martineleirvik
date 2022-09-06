@@ -6,10 +6,13 @@ import Spesific from "./pages/Spesific";
 import Contact from "./pages/Contact";
 import Enquiry from "./pages/Enquiry";
 import Login from "./pages/Login";
-import Navigation from "./components/layout/Nav";
+import Navigation from "./components/layout/nav/Nav";
 import Hotels from "./components/booking/Hotels";
 import BedandBreakfasts from "./components/booking/BedandBreakfasts";
 import GuestHouses from "./components/booking/GuestHouses";
+import NewEstablishment from "./pages/NewEstablishment";
+import ListMessage from "./pages/ListMessages";
+import ListEnquiry from "./pages/ListEnquries";
 import { AuthProvider } from "./components/context/AuthContext";
 // styles
 import GlobalStyle from "./styles/GlobalStyle";
@@ -38,6 +41,13 @@ function App() {
                 element={<BedandBreakfasts />}
               />
               <Route path="/guesthouses" exact element={<GuestHouses />} />
+              <Route path="/listenquiry" exact element={<ListEnquiry />} />
+              <Route path="/listmessage" exact element={<ListMessage />} />
+              <Route
+                path="/newestablishment"
+                exact
+                element={<NewEstablishment />}
+              />
             </Routes>
           </Router>
         </ThemeProvider>
