@@ -7,6 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { baseUrl, tokenPath } from "../../constants/api";
 // components
 import FormError from "../common/FormError";
+import AuthContext from "../context/AuthContext";
 // styles
 import styled from "styled-components";
 
@@ -23,6 +24,9 @@ export default function LoginForm() {
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
   });
+  const navigate = useNavigate();
+
+  const [auth, setAuth] = useContext(AuthContext);
 
   async function onSubmit(data) {
     setSubmitting(true);
@@ -35,6 +39,8 @@ export default function LoginForm() {
         password: data.password,
       });
       console.log("response", response.data);
+      setAuth(response.data);
+      navigate("/");
     } catch (error) {
       console.log("error", error);
       setLoginError(error.toString());
@@ -51,13 +57,15 @@ export default function LoginForm() {
         )}
         <fieldset disabled={submitting}>
           <div>
-            <input {...register("username")} placeholder="Usename/email" />
+            <label>Username/email</label>
+            <input {...register("username")} />
             {errors && errors.username && (
               <FormError>{errors.username.message}</FormError>
             )}
           </div>
           <div>
-            <input {...register("password")} placeholder="Password" />
+            <label>Password</label>
+            <input {...register("password")} />
             {errors && errors.password && (
               <FormError>{errors.password.message}</FormError>
             )}

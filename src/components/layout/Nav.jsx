@@ -1,10 +1,24 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+//components
 import Search from "./search/Search";
+import AuthContext from "../context/AuthContext";
+// styles
+import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-function Nav() {
+function Navigation() {
+  const [auth, setAuth] = useContext(AuthContext);
+  console.log("auth", auth);
+
+  const navigate = useNavigate();
+
+  function logout() {
+    setAuth(null);
+    navigate("/");
+  }
+
   return (
     <StyledNav>
       <h1>
@@ -25,20 +39,28 @@ function Nav() {
         <li>
           <Link to="/contact">Contact us</Link>
         </li>
-        <li>
-          <Link to="/login">Login</Link>
-        </li>
+        {auth ? (
+          <>
+            <button onClick={logout}>Logout</button>
+          </>
+        ) : (
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+        )}
       </ul>
     </StyledNav>
   );
 }
 
-export default Nav;
+export default Navigation;
 
 // Styled Components
 
+const StyledNavBar = styled.nav``;
+
 const StyledNav = styled.nav`
-  background-color: #eec2b3;
+  background-color: ${(props) => props.theme.primaryColor};
   min-height: 8vh;
   display: flex;
   justify-content: space-between;
@@ -56,5 +78,9 @@ const StyledNav = styled.nav`
   }
   li {
     padding-left: 1rem;
+  }
+  button {
+    font-size: 0.8rem;
+    margin-left: 8px;
   }
 `;
