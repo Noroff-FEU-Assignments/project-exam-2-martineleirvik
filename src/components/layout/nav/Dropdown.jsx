@@ -1,27 +1,16 @@
 import React, { useState } from "react";
-import { DropMenuItems } from "./DropMenuItems";
 import { Link } from "react-router-dom";
+import { DropMenuItems } from "./DropMenuItems";
 import styled from "styled-components";
 
 function Dropdown() {
-  const [click, setClick] = useState(false);
-
-  const handleClick = () => setClick(!click);
-
   return (
     <>
-      <StyledDropdown
-        onClick={handleClick}
-        className={click ? "dropdown-menu clicked" : "dropdown-menu"}
-      >
+      <StyledDropdown>
         {DropMenuItems.map((item, index) => {
           return (
             <li key={index}>
-              <Link
-                className={item.cName}
-                to={item.path}
-                onClick={() => setClick(false)}
-              >
+              <Link className={item.className} to={item.path}>
                 {item.title}
               </Link>
             </li>
@@ -47,15 +36,12 @@ const StyledDropdown = styled.ul`
       background-color: ${(props) => props.theme.secondaryColor};
     }
   }
-  .clicked {
-    display: none;
-  }
   .dropdown-link {
     display: block;
     height: 100%;
     width: 100%;
     text-decoration: none;
-    color: #fff;
-    padding: 16px;
+    color: ${(props) => props.theme.white};
+    padding: 15px;
   }
 `;

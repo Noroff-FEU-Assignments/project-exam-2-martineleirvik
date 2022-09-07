@@ -13,7 +13,7 @@ function Navbar() {
   const closeMobileMenu = () => setClick(false);
 
   const onMouseEnter = () => {
-    if (window.innerWidth < 960) {
+    if (window.innerWidth < 800) {
       setDropdown(false);
     } else {
       setDropdown(true);
@@ -21,7 +21,7 @@ function Navbar() {
   };
 
   const onMouseLeave = () => {
-    if (window.innerWidth < 960) {
+    if (window.innerWidth < 800) {
       setDropdown(true);
     } else {
       setDropdown(false);
@@ -144,7 +144,7 @@ const StyledNavBar = styled.nav`
     }
   }
 
-  @media (max-width: 960px) {
+  @media (max-width: 800px) {
     position: relative;
 
     .menu-icon {

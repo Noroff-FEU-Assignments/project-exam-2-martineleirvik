@@ -2,16 +2,16 @@ export const DropMenuItems = [
   {
     title: "Enquries",
     path: "/listenquiry",
-    cName: "dropdown-link",
+    className: "dropdown-link",
   },
   {
     title: "Messages",
     path: "/listmessage",
-    cName: "dropdown-link",
+    className: "dropdown-link",
   },
   {
     title: "New establishment",
     path: "/newestablishment",
-    cName: "dropdown-link",
+    className: "dropdown-link",
   },
 ];
