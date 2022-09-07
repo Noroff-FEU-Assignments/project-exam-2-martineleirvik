@@ -127,6 +127,7 @@ const StyledNavBar = styled.nav`
       cursor: pointer;
       align-items: center;
       height: 2rem;
+      font-size: 0.9rem;
     }
     .nav-item {
       display: flex;
