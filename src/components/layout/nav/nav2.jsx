@@ -115,7 +115,6 @@ const StyledNavBar = styled.nav`
   }
   .nav-menu {
     display: flex;
-
     grid-gap: 6px;
     list-style: none;
     text-align: center;
@@ -178,7 +177,9 @@ const StyledNavBar = styled.nav`
       left: -100%;
       z-index: 2;
       transition: all 0.5s ease;
-
+      .nav-item {
+        width: 100%;
+      }
       .nav-links {
         text-align: center;
         padding: 2rem;
