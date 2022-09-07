@@ -6,7 +6,8 @@ import Spesific from "./pages/Spesific";
 import Contact from "./pages/Contact";
 import Enquiry from "./pages/Enquiry";
 import Login from "./pages/Login";
-import Navigation from "./components/layout/nav/Nav";
+// import Navigation from "./components/layout/nav/Nav";
+import Navbar from "./components/layout/nav/nav2";
 import Hotels from "./components/booking/Hotels";
 import BedandBreakfasts from "./components/booking/BedandBreakfasts";
 import GuestHouses from "./components/booking/GuestHouses";
@@ -26,7 +27,7 @@ function App() {
         <ThemeProvider theme={theme}>
           <GlobalStyle />
           <Router>
-            <Navigation />
+            <Navbar />
             <Routes>
               <Route path="/" exact element={<Homepage />} />
               <Route path="/booking" exact element={<Booking />} />
