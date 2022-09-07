@@ -171,12 +171,6 @@ const StyledNavBar = styled.nav`
       top: 8vh;
       left: -100%;
       transition: all 0.5s ease;
-      .nav-menu.active {
-        background-color: ${(props) => props.theme.primaryColor};
-        left: 0;
-        transition: all 0.5s ease;
-        z-index: 2;
-      }
       .nav-links {
         text-align: center;
         padding: 2rem;
@@ -187,6 +181,12 @@ const StyledNavBar = styled.nav`
           border-radius: 0;
         }
       }
+    }
+    .nav-menu.active {
+      background-color: ${(props) => props.theme.primaryColor};
+      left: 0;
+      transition: all 0.5s ease;
+      z-index: 2;
     }
   }
 `;
