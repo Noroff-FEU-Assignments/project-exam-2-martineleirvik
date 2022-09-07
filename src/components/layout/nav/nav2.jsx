@@ -22,7 +22,7 @@ function Navbar() {
 
   const onMouseLeave = () => {
     if (window.innerWidth < 960) {
-      setDropdown(false);
+      setDropdown(true);
     } else {
       setDropdown(false);
     }
@@ -32,6 +32,7 @@ function Navbar() {
 
   function logout() {
     setAuth(null);
+    closeMobileMenu();
     navigate("/");
   }
 
@@ -66,7 +67,7 @@ function Navbar() {
               onMouseEnter={onMouseEnter}
               onMouseLeave={onMouseLeave}
             >
-              <p className="nav-links" onClick={closeMobileMenu}>
+              <p className="nav-links">
                 Admin <i className="fas fa-caret-down" />
               </p>
               {dropdown && <Dropdown />}
@@ -95,17 +96,17 @@ const StyledNavBar = styled.nav`
   align-items: center;
   font-size: 0.9rem;
   .fa-bars {
-    color: #fff;
+    color: ${(props) => props.theme.white};
   }
   .fa-caret-down {
-    color: #fff;
+    color: ${(props) => props.theme.white};
   }
   .menu-icon {
     display: none;
   }
   .navbar-logo {
     font-family: "Merriweather", serif;
-    color: #fff;
+    color: ${(props) => props.theme.white};
     justify-self: start;
     margin-left: 20px;
     cursor: pointer;
@@ -113,35 +114,39 @@ const StyledNavBar = styled.nav`
     font-size: 1.2rem;
   }
   .nav-menu {
-    display: grid;
-    grid-template-columns: repeat(5, auto);
+    display: flex;
+
     grid-gap: 6px;
     list-style: none;
     text-align: center;
     width: 70vw;
     justify-content: flex-end;
     margin-right: 2rem;
+    align-items: center;
+    button {
+      cursor: pointer;
+      align-items: center;
+      height: 2rem;
+    }
     .nav-item {
       display: flex;
       align-items: center;
-      height: 80px;
+      height: 8vh;
       .nav-links {
-        color: white;
+        color: ${(props) => props.theme.white};
         text-decoration: none;
         padding: 0.5rem;
         :hover {
           background-color: ${(props) => props.theme.secondaryColor};
-          border-radius: 4px;
           transition: all 0.2s ease-out;
         }
       }
     }
-    .nav-links-mobile {
-      display: none;
-    }
   }
 
-  @media screen and (max-width: 960px) {
+  @media (max-width: 960px) {
+    position: relative;
+
     .menu-icon {
       display: block;
       position: absolute;
@@ -152,12 +157,12 @@ const StyledNavBar = styled.nav`
       cursor: pointer;
     }
     .fa-times {
-      color: #fff;
+      color: ${(props) => props.theme.white};
       font-size: 2rem;
     }
     .navbar-logo {
       position: absolute;
-      top: 1.7%;
+      top: 0.8rem;
       left: 0;
       transform: translate(25%, 50%);
     }
@@ -170,7 +175,9 @@ const StyledNavBar = styled.nav`
       position: absolute;
       top: 8vh;
       left: -100%;
+      z-index: 2;
       transition: all 0.5s ease;
+
       .nav-links {
         text-align: center;
         padding: 2rem;
@@ -185,6 +192,7 @@ const StyledNavBar = styled.nav`
     .nav-menu.active {
       background-color: ${(props) => props.theme.primaryColor};
       left: 0;
+      justify-content: flex-start;
       transition: all 0.5s ease;
       z-index: 2;
     }
