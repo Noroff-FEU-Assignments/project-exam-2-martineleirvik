@@ -15,7 +15,7 @@ body {
 }
 h1 {
   font-family: 'Merriweather', serif;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 button {
   background-color: ${(props) => props.theme.secondaryColor};

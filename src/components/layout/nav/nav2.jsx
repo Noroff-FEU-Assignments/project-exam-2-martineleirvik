@@ -63,6 +63,7 @@ function Navbar() {
         {auth ? (
           <>
             <li
+              id="desktop-dropdown"
               className="nav-item"
               onMouseEnter={onMouseEnter}
               onMouseLeave={onMouseLeave}
@@ -72,6 +73,35 @@ function Navbar() {
               </p>
               {dropdown && <Dropdown />}
             </li>
+            <div className="mobile-dropdown">
+              <li className="nav-item">
+                <Link
+                  to="/listenquiry"
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  Enquries
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  to="/listmessage"
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  Messages
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  to="/newestablishment"
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  New establishment
+                </Link>
+              </li>
+            </div>
             <button onClick={logout}>Logout</button>
           </>
         ) : (
@@ -90,13 +120,15 @@ export default Navbar;
 
 const StyledNavBar = styled.nav`
   background-color: ${(props) => props.theme.primaryColor};
-  height: 8vh;
+  min-height: 10vh;
+  height: 10vh;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 0.9rem;
   .fa-bars {
     color: ${(props) => props.theme.white};
+    font-size: 1.5rem;
   }
   .fa-caret-down {
     color: ${(props) => props.theme.white};
@@ -111,7 +143,7 @@ const StyledNavBar = styled.nav`
     margin-left: 20px;
     cursor: pointer;
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   .nav-menu {
     display: flex;
@@ -142,6 +174,9 @@ const StyledNavBar = styled.nav`
         }
       }
     }
+    .mobile-dropdown {
+      display: none;
+    }
   }
 
   @media (max-width: 800px) {
@@ -158,7 +193,7 @@ const StyledNavBar = styled.nav`
     }
     .fa-times {
       color: ${(props) => props.theme.white};
-      font-size: 2rem;
+      font-size: 1.5rem;
     }
     .navbar-logo {
       position: absolute;
@@ -173,10 +208,17 @@ const StyledNavBar = styled.nav`
       width: 100%;
       height: 92vh;
       position: absolute;
-      top: 8vh;
+      top: 10vh;
       left: -100%;
       z-index: 2;
       transition: all 0.5s ease;
+      .mobile-dropdown {
+        display: block;
+        width: 100%;
+      }
+      #desktop-dropdown {
+        display: none;
+      }
       .nav-item {
         width: 100%;
       }
