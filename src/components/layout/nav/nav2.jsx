@@ -121,7 +121,6 @@ export default Navbar;
 const StyledNavBar = styled.nav`
   background-color: ${(props) => props.theme.primaryColor};
   min-height: 10vh;
-  height: 10vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -147,10 +146,9 @@ const StyledNavBar = styled.nav`
   }
   .nav-menu {
     display: flex;
-    grid-gap: 6px;
     list-style: none;
     text-align: center;
-    width: 70vw;
+    width: 80vw;
     justify-content: flex-end;
     margin-right: 2rem;
     align-items: center;
@@ -159,11 +157,12 @@ const StyledNavBar = styled.nav`
       align-items: center;
       height: 2rem;
       font-size: 0.9rem;
+      margin-left: 5px;
     }
     .nav-item {
       display: flex;
       align-items: center;
-      height: 8vh;
+      height: 10vh;
       .nav-links {
         color: ${(props) => props.theme.white};
         text-decoration: none;
@@ -180,8 +179,7 @@ const StyledNavBar = styled.nav`
   }
 
   @media (max-width: 800px) {
-    position: relative;
-
+    min-height: 10vh;
     .menu-icon {
       display: block;
       position: absolute;
@@ -193,11 +191,10 @@ const StyledNavBar = styled.nav`
     }
     .fa-times {
       color: ${(props) => props.theme.white};
-      font-size: 1.5rem;
     }
     .navbar-logo {
       position: absolute;
-      top: 0.8rem;
+      top: 1rem;
       left: 0;
       transform: translate(25%, 50%);
     }
@@ -205,8 +202,9 @@ const StyledNavBar = styled.nav`
       background-color: ${(props) => props.theme.primaryColor};
       display: flex;
       flex-direction: column;
+      justify-content: flex-start;
       width: 100%;
-      height: 92vh;
+      height: 90vh;
       position: absolute;
       top: 10vh;
       left: -100%;
@@ -236,7 +234,6 @@ const StyledNavBar = styled.nav`
     .nav-menu.active {
       background-color: ${(props) => props.theme.primaryColor};
       left: 0;
-      justify-content: flex-start;
       transition: all 0.5s ease;
       z-index: 2;
     }

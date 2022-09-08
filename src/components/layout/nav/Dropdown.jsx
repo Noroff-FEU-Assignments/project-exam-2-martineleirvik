@@ -26,7 +26,7 @@ export default Dropdown;
 const StyledDropdown = styled.ul`
   width: 200px;
   position: absolute;
-  top: 8vh;
+  top: 10vh;
   list-style: none;
   text-align: start;
   li {
