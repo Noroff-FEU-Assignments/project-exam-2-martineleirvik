@@ -18,5 +18,5 @@ function PopularHotels() {
 export default PopularHotels;
 
 const StyledPopularContainer = styled.div`
-  margin: 10px 40px;
+  margin: 10px 40px 40px 40px;
 `;

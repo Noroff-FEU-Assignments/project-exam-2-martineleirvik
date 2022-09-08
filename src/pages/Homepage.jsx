@@ -54,7 +54,7 @@ const StyledContainer = styled.div`
 const StyledVisitBergen = styled.div`
   margin: 50px auto;
   text-align: center;
-  margin: 10px;
+  margin: 0 0 10px 0;
 
   p,
   button {

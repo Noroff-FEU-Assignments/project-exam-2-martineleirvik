@@ -16,10 +16,11 @@ body {
 h1 {
   font-family: 'Merriweather', serif;
   font-size: 1.4rem;
+  margin: 25px 0 10px 0;
 }
 button {
   background-color: ${(props) => props.theme.secondaryColor};
-  border: none;
+  border: 1px solid ${(props) => props.theme.secondaryColor};
   padding: 5px 15px;
   border-radius: 8px;
   color: ${(props) => props.theme.white};
