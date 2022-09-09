@@ -53,18 +53,7 @@ function Spesific() {
     return <div>ERROR: {error}</div>;
   }
 
-  return (
-    <div className="booking-detail">
-      {Object.entries(bookingDetail).map(function (detail) {
-        const { name } = detail.attributes;
-        return (
-          <>
-            <SpesificDetails name={name} />
-          </>
-        );
-      })}
-    </div>
-  );
+  return <div className="booking-detail"></div>;
 }
 
 export default Spesific;

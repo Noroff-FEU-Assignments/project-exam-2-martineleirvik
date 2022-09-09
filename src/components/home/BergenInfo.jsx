@@ -15,7 +15,9 @@ function BergenInfo() {
       <Heading heading="Why Bergen?" />
       {dataBergen.map((data) => {
         const { heading, text, id } = data;
-        return <BergenInfoItem heading={heading} text={text} id={id} />;
+        return (
+          <BergenInfoItem key={id} heading={heading} text={text} id={id} />
+        );
       })}
     </StyledBergenInfo>
   );

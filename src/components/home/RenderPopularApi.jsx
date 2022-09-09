@@ -5,8 +5,6 @@ import PopularBookingInfo from "./PopularBookingInfo";
 // styles
 import Loader from "../layout/Loader";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleRight, faCircleLeft } from "@fortawesome/free-solid-svg-icons";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -112,4 +110,17 @@ export default RenderPopularApi;
 const SyledCardContainer = styled.div``;
 const StyledSwiper = styled(Swiper)`
   background-color: ${(props) => props.theme.backgroundColor};
+
+  .swiper-button-next {
+    color: ${(props) => props.theme.fontColor};
+    background-color: #80808053;
+    padding: 30px;
+    border-radius: 50%;
+  }
+  .swiper-button-prev {
+    color: ${(props) => props.theme.fontColor};
+    background-color: #80808053;
+    padding: 30px;
+    border-radius: 50%;
+  }
 `;
