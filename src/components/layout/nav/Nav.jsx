@@ -1,114 +1,241 @@
-import { useContext, useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-//components
-import Search from "../search/Search";
-import AuthContext from "../../context/AuthContext";
-import { NavButton } from "./NavButton";
 import Dropdown from "./Dropdown";
-// styles
+import AuthContext from "../../context/AuthContext";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-function Navigation() {
+function Navbar() {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
   const [auth, setAuth] = useContext(AuthContext);
-  console.log("auth", auth);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+
+  const onMouseEnter = () => {
+    if (window.innerWidth < 800) {
+      setDropdown(false);
+    } else {
+      setDropdown(true);
+    }
+  };
+
+  const onMouseLeave = () => {
+    if (window.innerWidth < 800) {
+      setDropdown(true);
+    } else {
+      setDropdown(false);
+    }
+  };
 
   const navigate = useNavigate();
 
   function logout() {
     setAuth(null);
+    closeMobileMenu();
     navigate("/");
   }
 
   return (
-    <StyledNav>
-      <h1>
-        <Link to="/" className="navbar-logo">
-          HOLIDAZE
-        </Link>
-      </h1>
+    <StyledNavBar>
+      <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+        HOLIDAZE
+      </Link>
       <div className="menu-icon" onClick={handleClick}>
-        <i className={click ? "fas fa-times" : "fa fa-bars"} />
+        <i className={click ? "fas fa-times" : "fas fa-bars"} />
       </div>
       <ul className={click ? "nav-menu active" : "nav-menu"}>
         <li className="nav-item">
-          <Search />
-        </li>
-        <li className="nav-item">
-          <Link to="/" onClick={closeMobileMenu}>
+          <Link to="/" className="nav-links" onClick={closeMobileMenu}>
             Home
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/booking" onClick={closeMobileMenu}>
+          <Link to="/booking" className="nav-links" onClick={closeMobileMenu}>
             Booking
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/contact" onClick={closeMobileMenu}>
-            Contact us
+          <Link to="/contact" className="nav-links" onClick={closeMobileMenu}>
+            Contact Us
           </Link>
         </li>
         {auth ? (
           <>
-            <li className="nav-item">
-              Admin <i className="fas fa-caret-down"></i>
+            <li
+              id="desktop-dropdown"
+              className="nav-item"
+              onMouseEnter={onMouseEnter}
+              onMouseLeave={onMouseLeave}
+            >
+              <p className="nav-links">
+                Admin <i className="fas fa-caret-down" />
+              </p>
+              {dropdown && <Dropdown />}
             </li>
+            <div className="mobile-dropdown">
+              <li className="nav-item">
+                <Link
+                  to="/listenquiry"
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  Enquries
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  to="/listmessage"
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  Messages
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  to="/newestablishment"
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  New establishment
+                </Link>
+              </li>
+            </div>
             <button onClick={logout}>Logout</button>
           </>
         ) : (
           <li className="nav-item">
-            <Link to="/login">Login</Link>
-            {dropdown && <Dropdown />}
+            <Link to="/login" className="nav-links" onClick={closeMobileMenu}>
+              Login
+            </Link>
           </li>
         )}
       </ul>
-    </StyledNav>
+    </StyledNavBar>
   );
 }
 
-export default Navigation;
+export default Navbar;
 
-// Styled Components
-
-const StyledNavBar = styled.nav``;
-
-const StyledNav = styled.nav`
+const StyledNavBar = styled.nav`
   background-color: ${(props) => props.theme.primaryColor};
-  min-height: 8vh;
+  min-height: 10vh;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 1rem 2rem;
-  margin: auto;
-  a {
-    color: white;
-    text-decoration: none;
-    font-size: 0.8rem;
-  }
-  ul {
-    display: flex;
-    list-style: none;
-  }
-  li {
-    padding-left: 1rem;
-    font-size: 0.8rem;
-  }
-  button {
-    font-size: 0.8rem;
-    margin-left: 8px;
-  }
-  i {
-    color: white;
+  font-size: 0.9rem;
+  .fa-bars {
+    color: ${(props) => props.theme.white};
     font-size: 1.5rem;
   }
-  .nav-item {
+  .fa-caret-down {
+    color: ${(props) => props.theme.white};
+  }
+  .menu-icon {
+    display: none;
+  }
+  .navbar-logo {
+    font-family: "Merriweather", serif;
+    color: ${(props) => props.theme.white};
+    justify-self: start;
+    margin-left: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  .nav-menu {
+    display: flex;
+    list-style: none;
+    text-align: center;
+    width: 80vw;
+    justify-content: flex-end;
+    margin-right: 2rem;
     align-items: center;
+    button {
+      cursor: pointer;
+      align-items: center;
+      height: 2rem;
+      font-size: 0.9rem;
+      margin-left: 5px;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      height: 10vh;
+      .nav-links {
+        color: ${(props) => props.theme.white};
+        text-decoration: none;
+        padding: 0.5rem;
+        :hover {
+          background-color: ${(props) => props.theme.secondaryColor};
+          transition: all 0.2s ease-out;
+        }
+      }
+    }
+    .mobile-dropdown {
+      display: none;
+    }
+  }
+
+  @media (max-width: 800px) {
+    min-height: 10vh;
+    .menu-icon {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(-100%, 60%);
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+    .fa-times {
+      color: ${(props) => props.theme.white};
+    }
+    .navbar-logo {
+      position: absolute;
+      top: 1rem;
+      left: 0;
+      transform: translate(25%, 50%);
+    }
+    .nav-menu {
+      background-color: ${(props) => props.theme.primaryColor};
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      width: 100%;
+      height: 90vh;
+      position: absolute;
+      top: 10vh;
+      left: -100%;
+      z-index: 2;
+      transition: all 0.5s ease;
+      .mobile-dropdown {
+        display: block;
+        width: 100%;
+      }
+      #desktop-dropdown {
+        display: none;
+      }
+      .nav-item {
+        width: 100%;
+      }
+      .nav-links {
+        text-align: center;
+        padding: 2rem;
+        width: 100%;
+        display: table;
+        :hover {
+          background-color: ${(props) => props.theme.secondaryColor};
+          border-radius: 0;
+        }
+      }
+    }
+    .nav-menu.active {
+      background-color: ${(props) => props.theme.primaryColor};
+      left: 0;
+      transition: all 0.5s ease;
+      z-index: 2;
+    }
   }
 `;
