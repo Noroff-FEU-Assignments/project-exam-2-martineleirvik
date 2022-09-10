@@ -9,7 +9,7 @@ import RenderPopularApi from "./RenderPopularApi";
 function PopularHotels() {
   return (
     <StyledPopularContainer>
-      <Heading heading="Popular Hotels" />
+      <Heading heading="Popular accomodations" />
       <RenderPopularApi />
     </StyledPopularContainer>
   );

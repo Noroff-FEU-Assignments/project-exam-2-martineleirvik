@@ -26,7 +26,7 @@ function Homepage() {
             Bergen.
           </p>
           <button>
-            <Link to="/booking">View hotels etc...</Link>
+            <Link to="/booking">View accomodations</Link>
           </button>
         </StyledVisitBergen>
         <PopularHotels />
