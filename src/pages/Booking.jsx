@@ -7,7 +7,7 @@ function Booking() {
   return (
     <>
       <Heading heading="Booking" />
-      <FilterButtons />
+
       <RenderApi />
       <button>Show more</button>
     </>
