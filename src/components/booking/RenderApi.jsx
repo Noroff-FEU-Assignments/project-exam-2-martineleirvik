@@ -18,8 +18,15 @@ function RenderApi() {
 
           if (response.ok) {
             const json = await response.json();
-            console.log(json.data);
-            setBookings(json.data);
+
+            let results;
+
+            if (filterBtn === "bookings?populate=*") {
+              results = json.data;
+            } else {
+              results = json.data.attributes.bookings.data;
+            }
+            setBookings(results);
           } else {
             setError("An error occured");
           }
@@ -43,43 +50,53 @@ function RenderApi() {
 
   return (
     <>
-      <div className="filter-buttons">
+      <StyledFilterBtns>
         <button onClick={() => setFilterBtn("bookings?populate=*")}>All</button>
         <button
           onClick={() =>
-            setFilterBtn("categories/1?fields=name&populate=bookings")
+            setFilterBtn(
+              "categories/1?fields=name&populate[bookings][populate][0]=image"
+            )
           }
         >
           Hotels
         </button>
         <button
           onClick={() =>
-            setFilterBtn("categories/2?fields=name&populate=bookings")
+            setFilterBtn(
+              "categories/2?fields=name&populate[bookings][populate][0]=image"
+            )
           }
         >
           B&B's
         </button>
         <button
           onClick={() =>
-            setFilterBtn("categories/3?fields=name&populate=bookings")
+            setFilterBtn(
+              "categories/3?fields=name&populate[bookings][populate][0]=image"
+            )
           }
         >
           Guesthouses
         </button>
-      </div>
+      </StyledFilterBtns>
       <StyledBookingContainer>
         {bookings.map(function (booking) {
           const { id } = booking;
           const { name, description, price, popular, stars } =
             booking.attributes;
-          const image = booking.attributes.image.data[0].attributes.url;
-          const category = booking.attributes.category.data.attributes.name;
+          let imageUrl = "https://via.placeholder.com/50";
+
+          if (booking.attributes.image) {
+            imageUrl = booking.attributes.image.data[0].attributes.url;
+          }
+
           return (
             <BookingInfo
               key={id}
               id={id}
               name={name}
-              image={image}
+              image={imageUrl}
               description={description}
               price={price}
               popular={popular}
@@ -96,4 +113,17 @@ export default RenderApi;
 
 const StyledBookingContainer = styled.div`
   margin: 0 50px;
+`;
+
+const StyledFilterBtns = styled.div`
+  margin-left: 50px;
+  button {
+    cursor: pointer;
+    margin: 0 2px;
+    :hover {
+      background-color: ${(props) => props.theme.white};
+      border: 1px solid ${(props) => props.theme.secondaryColor};
+      color: ${(props) => props.theme.secondaryColor};
+    }
+  }
 `;
