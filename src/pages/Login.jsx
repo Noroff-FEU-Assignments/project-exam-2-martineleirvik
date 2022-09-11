@@ -1,4 +1,5 @@
 // components
+import Footer from "../components/layout/Footer";
 import Heading from "../components/layout/Heading";
 import LoginForm from "../components/login/LoginForm";
 
@@ -7,6 +8,7 @@ function Login() {
     <>
       <Heading heading="Login" />
       <LoginForm />
+      <Footer />
     </>
   );
 }
