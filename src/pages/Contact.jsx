@@ -1,14 +1,12 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import axios from "axios";
 // components
 import Heading from "../components/layout/Heading";
-import useAxios from "../components/hooks/useAxios";
 import FormError from "../components/common/FormError";
 import { baseUrl } from "../constants/api";
-import axios from "axios";
 // styles
 import styled from "styled-components";
 
@@ -17,16 +15,14 @@ const url = baseUrl + "messages";
 const schema = yup.object().shape({
   name: yup.string().required("Please enter your name"),
   email: yup.string().required("Please enter your email"),
-  message: yup.string().min(20).required("Minimum 20 characters"),
+  message: yup.string().min(2).required("Minimum 20 characters"),
 });
 
 function Contact() {
   const [submitting, setSubmitting] = useState(false);
   const [serverError, setServerError] = useState(null);
 
-  const navigate = useNavigate();
-
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, reset, errors } = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -42,9 +38,14 @@ function Contact() {
           message: data.message,
         },
       });
+      if (response.data) {
+        reset();
+      }
+
       console.log("response", response.data);
     } catch (error) {
       console.log("error", error);
+      setServerError(error.toString());
     } finally {
       setSubmitting(false);
     }
@@ -90,13 +91,13 @@ const StyledForm = styled.form`
   flex-direction: column;
   justify-content: center;
   margin: 10px auto;
+  width: 300px;
   fieldset {
     background-color: ${(props) => props.theme.white};
     padding: 25px 40px;
-    margin: 10px auto;
     border: 1px solid ${(props) => props.theme.primaryColor};
     border-radius: 15px;
-    width: 300px;
+    margin-top: 10px;
     div {
       margin: 5px 0;
       display: flex;

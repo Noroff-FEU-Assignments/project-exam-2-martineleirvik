@@ -6,6 +6,7 @@ const theme = {
   footer: "#A3A3A3",
   white: "#ffffff",
   black: "#000000",
+  error: "#ff0000",
 };
 
 export default theme;
