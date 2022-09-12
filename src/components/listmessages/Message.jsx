@@ -11,7 +11,7 @@ function Message({ id, name, email, message }) {
   return (
     <StyledMessage key={id}>
       <div className="message-container">
-        <li onClick={() => setShow(!show)}>Name: {name}</li>
+        <li onClick={() => setShow(!show)}>{name}</li>
         <p onClick={() => setShow(!show)}>
           <FontAwesomeIcon
             className="icon"
@@ -34,6 +34,7 @@ export default Message;
 
 const StyledMessage = styled.div`
   margin: 20px auto;
+
   .message-container {
     display: flex;
     justify-content: space-between;

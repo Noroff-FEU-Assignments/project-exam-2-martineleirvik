@@ -37,8 +37,10 @@ function ListMessages() {
   return (
     <>
       <Heading heading="List of Messages" />
+
       <StyledContainer>
         <ul className="messages">
+          <p className="name">Name:</p>
           {messages.map((data) => {
             const { id } = data;
             const { name, message, email } = data.attributes;
@@ -63,7 +65,10 @@ export default ListMessages;
 const StyledContainer = styled.div`
   max-width: 400px;
   margin: 20px auto;
+  .name {
+    text-decoration: underline;
+  }
   @media (max-width: 450px) {
-    width: 270px;
+    width: 260px;
   } ;
 `;
