@@ -86,8 +86,8 @@ const StyledForm = styled.form`
   margin: 10px auto;
   padding: 40px;
   border-radius: 15px;
-  background-color: white;
-  border: 1px solid #eec2b3;
+  background-color: ${(props) => props.theme.white};
+  border: 1px solid ${(props) => props.theme.primaryColor};
   fieldset {
     border: none;
     input {

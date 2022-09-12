@@ -58,7 +58,7 @@ export default function NewEstablishment() {
               <FormError>{errors.name.message}</FormError>
             )}
           </div>
-          <button>{submitting ? "Posting..." : "Post"}</button>
+          <button>{submitting ? "Publishing..." : "Publish"}</button>
         </fieldset>
       </form>
     </>
