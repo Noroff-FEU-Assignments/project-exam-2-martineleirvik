@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { baseUrl } from "../constants/api";
 import useAxios from "../components/hooks/useAxios";
+import Loader from "../components/layout/Loader";
 
 const url = baseUrl + "messages";
 
@@ -15,7 +16,8 @@ function ListMessages() {
     async function getMessages() {
       try {
         const response = await http.get(url);
-        console.log("response", response);
+        console.log("response", response.data.data);
+        setMessages(response.data.data);
       } catch (error) {
         console.log("error", error);
       } finally {
@@ -25,7 +27,17 @@ function ListMessages() {
     getMessages();
   }, []);
 
-  return <div>ListMessages</div>;
+  if (loading) return <Loader />;
+
+  if (error) return <div>{error}</div>;
+
+  return (
+    <ul className="messages">
+      {messages.map((message) => {
+        return <li>{message.attributes.name}</li>;
+      })}
+    </ul>
+  );
 }
 
 export default ListMessages;

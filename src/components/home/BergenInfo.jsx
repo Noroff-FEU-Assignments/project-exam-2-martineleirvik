@@ -4,10 +4,6 @@ import { dataBergen } from "../../constants/dataBergen";
 import styled from "styled-components";
 import BergenInfoItem from "./BergenInfoItem";
 
-// styles
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-
 function BergenInfo() {
   const [show, setShow] = useState(false);
   return (
