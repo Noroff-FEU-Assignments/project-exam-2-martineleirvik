@@ -11,7 +11,7 @@ function Message({ id, name, email, message }) {
   return (
     <StyledMessage key={id}>
       <div className="message-container">
-        <li>Name: {name}</li>
+        <li onClick={() => setShow(!show)}>Name: {name}</li>
         <p onClick={() => setShow(!show)}>
           <FontAwesomeIcon
             className="icon"
@@ -39,6 +39,10 @@ const StyledMessage = styled.div`
     justify-content: space-between;
     li {
       font-weight: bold;
+      cursor: pointer;
+    }
+    .icon {
+      cursor: pointer;
     }
   }
   .message-expanded {
