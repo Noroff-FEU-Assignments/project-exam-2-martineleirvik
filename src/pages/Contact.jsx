@@ -20,7 +20,7 @@ const schema = yup.object().shape({
   message: yup.string().min(20).required("Minimum 20 characters"),
 });
 
-export default function Contact() {
+function Contact() {
   const [submitting, setSubmitting] = useState(false);
   const [serverError, setServerError] = useState(null);
 
@@ -36,9 +36,11 @@ export default function Contact() {
     console.log("data", data);
     try {
       const response = await axios.post(url, {
-        name: data.name,
-        email: data.email,
-        message: data.message,
+        data: {
+          name: data.name,
+          email: data.email,
+          message: data.message,
+        },
       });
       console.log("response", response.data);
     } catch (error) {
@@ -80,6 +82,8 @@ export default function Contact() {
     </>
   );
 }
+
+export default Contact;
 
 const StyledForm = styled.form`
   display: flex;
