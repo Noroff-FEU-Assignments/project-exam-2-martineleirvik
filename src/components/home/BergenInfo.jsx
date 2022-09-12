@@ -5,7 +5,6 @@ import styled from "styled-components";
 import BergenInfoItem from "./BergenInfoItem";
 
 function BergenInfo() {
-  const [show, setShow] = useState(false);
   return (
     <StyledBergenInfo>
       <Heading heading="Why Bergen?" />

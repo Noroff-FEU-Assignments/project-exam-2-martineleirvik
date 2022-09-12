@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { baseUrl } from "../constants/api";
 import useAxios from "../components/hooks/useAxios";
 import Loader from "../components/layout/Loader";
+import Heading from "../components/layout/Heading";
+import Message from "../components/listmessages/Message";
+import styled from "styled-components";
 
 const url = baseUrl + "messages";
 
@@ -32,12 +35,35 @@ function ListMessages() {
   if (error) return <div>{error}</div>;
 
   return (
-    <ul className="messages">
-      {messages.map((message) => {
-        return <li>{message.attributes.name}</li>;
-      })}
-    </ul>
+    <>
+      <Heading heading="List of Messages" />
+      <StyledContainer>
+        <ul className="messages">
+          {messages.map((data) => {
+            const { id } = data;
+            const { name, message, email } = data.attributes;
+            return (
+              <Message
+                key={id}
+                id={id}
+                name={name}
+                message={message}
+                email={email}
+              />
+            );
+          })}
+        </ul>
+      </StyledContainer>
+    </>
   );
 }
 
 export default ListMessages;
+
+const StyledContainer = styled.div`
+  max-width: 400px;
+  margin: 20px auto;
+  @media (max-width: 450px) {
+    width: 270px;
+  } ;
+`;
