@@ -94,7 +94,7 @@ const StyledForm = styled.form`
   flex-direction: column;
   justify-content: center;
   margin: 10px auto;
-  width: 300px;
+  max-width: 400px;
   fieldset {
     background-color: ${(props) => props.theme.white};
     padding: 25px 40px;
@@ -107,10 +107,12 @@ const StyledForm = styled.form`
       flex-direction: column;
       input {
         margin: 7px 0;
+        border: 1px solid ${(props) => props.theme.footer};
       }
       textarea {
         margin: 7px 0;
-        height: 70px;
+        height: 100px;
+        border: 1px solid ${(props) => props.theme.footer};
       }
     }
     button {
