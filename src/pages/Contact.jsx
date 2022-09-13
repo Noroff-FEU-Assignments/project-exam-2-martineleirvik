@@ -14,7 +14,10 @@ const url = baseUrl + "messages";
 
 const schema = yup.object().shape({
   name: yup.string().required("Please enter your name"),
-  email: yup.string().required("Please enter your email"),
+  email: yup
+    .string()
+    .email("Invalid email")
+    .required("Please enter your email"),
   message: yup.string().min(2).required("Minimum 20 characters"),
 });
 

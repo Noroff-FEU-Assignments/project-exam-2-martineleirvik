@@ -16,9 +16,16 @@ function BookingInfo({ id, name, price, popular, image }) {
           <IfPopular popular={popular} />
           <p className="price">{price}kr</p>
         </div>
-        <button>
-          <Link to={`/booking/${id}`}>Book now</Link>
-        </button>
+        <div className="buttons">
+          <button>
+            <Link to="/enquiry" key={id}>
+              Book now
+            </Link>
+          </button>
+          <button>
+            <Link to={`/booking/${id}`}>Read more</Link>
+          </button>
+        </div>
       </div>
     </StyledBookingInfo>
   );
@@ -50,11 +57,6 @@ const StyledBookingInfo = styled.div`
     display: flex;
     justify-content: space-between;
 
-    button {
-      margin: 100px 30px 0 0;
-      width: 100px;
-      height: 30px;
-    }
     h3 {
       margin: 10px 0;
     }
@@ -63,6 +65,14 @@ const StyledBookingInfo = styled.div`
     }
     .price {
       margin: 20px 0;
+    }
+    .buttons {
+      display: flex;
+      button {
+        margin: 100px 20px 0 0;
+        width: 100px;
+        height: 30px;
+      }
     }
   }
 `;

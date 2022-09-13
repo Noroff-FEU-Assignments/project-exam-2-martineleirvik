@@ -53,7 +53,7 @@ function Spesific() {
   }
 
   return (
-    <div className="booking-detail">
+    <StyledBookingDetail>
       <h1>{bookingDetail.attributes.name}</h1>
       <p>{bookingDetail.attributes.category.data.attributes.name}</p>
       <img
@@ -65,11 +65,20 @@ function Spesific() {
       <IfPopular popular={bookingDetail.attributes.popular} />
       <p>{bookingDetail.attributes.price}kr</p>
       <p>{bookingDetail.attributes.description}</p>
-      <Link to="/enquiry">
-        <button>Make an enquiry</button>
-      </Link>
-    </div>
+
+      <button>
+        <Link to="/enquiry" key={bookingDetail.id}>
+          Make an enquiry
+        </Link>
+      </button>
+    </StyledBookingDetail>
   );
 }
 
 export default Spesific;
+
+const StyledBookingDetail = styled.div`
+  img {
+    width: 80%;
+  }
+`;
