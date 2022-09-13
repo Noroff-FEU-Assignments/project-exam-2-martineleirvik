@@ -3,11 +3,10 @@ import { baseUrl } from "../constants/api";
 import useAxios from "../components/hooks/useAxios";
 import Loader from "../components/layout/Loader";
 import Heading from "../components/layout/Heading";
-import Message from "../components/listmessages/Message";
+import EnquiryDetail from "../components/listenquiry/EnquiryDetail";
 import styled from "styled-components";
 
 const url = baseUrl + "enquiries";
-console.log(url);
 
 function ListEnquries() {
   const [enquiry, setEnquiry] = useState([]);
@@ -21,7 +20,7 @@ function ListEnquries() {
       try {
         const response = await http.get(url);
         console.log("response", response.data.data);
-        // setEnquiry(response.data.data);
+        setEnquiry(response.data.data);
       } catch (error) {
         console.log("error", error);
       } finally {
@@ -38,6 +37,25 @@ function ListEnquries() {
   return (
     <>
       <Heading heading="List of enquiries" />
+      <ul className="container">
+        {enquiry.map((data) => {
+          const { id } = data;
+          const { accommodationName, name, email, message, dateTo, dateFrom } =
+            data.attributes;
+          return (
+            <EnquiryDetail
+              key={id}
+              id={id}
+              accommodationName={accommodationName}
+              name={name}
+              email={email}
+              message={message}
+              dateTo={dateTo}
+              dateFrom={dateFrom}
+            />
+          );
+        })}
+      </ul>
     </>
   );
 }

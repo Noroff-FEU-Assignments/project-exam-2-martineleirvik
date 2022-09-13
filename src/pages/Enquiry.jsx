@@ -13,7 +13,7 @@ import styled from "styled-components";
 const url = baseUrl + "enquiries";
 
 const schema = yup.object().shape({
-  accommodationname: yup.string().required("Enter the accomodations name"),
+  accommodationName: yup.string().required("Enter the accomodations name"),
   name: yup.string().required("Enter your name"),
   email: yup.string().email("Invalid email").required("Enter your email"),
   message: yup.string(),
@@ -36,7 +36,7 @@ function Enquiry() {
     try {
       const response = await axios.post(url, {
         data: {
-          accommodationname: data.accommodationname,
+          accommodationName: data.accommodationName,
           name: data.name,
           email: data.email,
           message: data.message,
@@ -65,12 +65,9 @@ function Enquiry() {
         <fieldset disabled={submitting}>
           <div>
             <label>Accommodation name:</label>
-            <input
-              type="accommodationname"
-              {...register("accommodationname")}
-            />
-            {errors && errors.accommodationname && (
-              <FormError>{errors.accommodationname.message}</FormError>
+            <input type="text" {...register("accommodationName")} />
+            {errors && errors.accommodationName && (
+              <FormError>{errors.accommodationName.message}</FormError>
             )}
           </div>
           <div>
