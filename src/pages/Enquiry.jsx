@@ -10,7 +10,7 @@ import { baseUrl } from "../constants/api";
 // styles
 import styled from "styled-components";
 
-const url = baseUrl + "enquiry";
+const url = baseUrl + "enquiries";
 
 const schema = yup.object().shape({
   name: yup.string().required("Enter the accomodations name"),
@@ -34,8 +34,8 @@ function Enquiry() {
       const response = await axios.post(url, {
         data: {
           name: data.name,
-          email: data.email,
-          message: data.message,
+          price: data.price,
+          description: data.description,
         },
       });
       if (response.data) {
