@@ -17,9 +17,9 @@ function EnquiryDetail({
 }) {
   const [show, setShow] = useState(false);
   return (
-    <StyledMessage key={id}>
+    <StyledEnquiry key={id}>
       <div className="message-container">
-        <li onClick={() => setShow(!show)}>{name}</li>
+        <li onClick={() => setShow(!show)}>{accommodationName}</li>
         <p onClick={() => setShow(!show)}>
           <FontAwesomeIcon
             className="icon"
@@ -34,13 +34,13 @@ function EnquiryDetail({
           <p>{message}</p>
         </div>
       ) : null}
-    </StyledMessage>
+    </StyledEnquiry>
   );
 }
 
 export default EnquiryDetail;
 
-const StyledMessage = styled.div`
+const StyledEnquiry = styled.div`
   margin: 20px auto;
 
   .message-container {
