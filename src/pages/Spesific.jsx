@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate, Navigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { baseUrl } from "../constants/api";
 //components
-import SpesificDetails from "../components/spesific/SpesificDetails";
 import Loader from "../components/layout/Loader";
 import IfPopular from "../components/booking/IfPopular";
 //styles
@@ -21,7 +20,7 @@ function Spesific() {
     Navigate("/");
   }
 
-  const url = baseUrl + "bookings/" + id;
+  const url = baseUrl + "bookings/" + id + "?populate=*";
 
   useEffect(
     function () {
@@ -53,7 +52,24 @@ function Spesific() {
     return <div>ERROR: {error}</div>;
   }
 
-  return <div className="booking-detail"></div>;
+  return (
+    <div className="booking-detail">
+      <h1>{bookingDetail.attributes.name}</h1>
+      <p>{bookingDetail.attributes.category.data.attributes.name}</p>
+      <img
+        src={
+          bookingDetail.attributes.image.data[0].attributes.formats.medium.url
+        }
+        alt={bookingDetail.attributes.name}
+      />
+      <IfPopular popular={bookingDetail.attributes.popular} />
+      <p>{bookingDetail.attributes.price}kr</p>
+      <p>{bookingDetail.attributes.description}</p>
+      <Link to="/enquiry">
+        <button>Make an enquiry</button>
+      </Link>
+    </div>
+  );
 }
 
 export default Spesific;
