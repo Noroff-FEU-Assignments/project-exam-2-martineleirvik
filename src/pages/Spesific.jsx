@@ -67,7 +67,7 @@ function Spesific() {
       <p>{bookingDetail.attributes.description}</p>
 
       <button>
-        <Link to="/enquiry" key={bookingDetail.id}>
+        <Link to={`/enquiry/${bookingDetail.attributes.name}`}>
           Make an enquiry
         </Link>
       </button>

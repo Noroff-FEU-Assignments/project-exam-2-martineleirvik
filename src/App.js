@@ -29,7 +29,7 @@ function App() {
               <Route path="/booking" exact element={<Booking />} />
               <Route path="/booking/:id" exact element={<Spesific />} />
               <Route path="/contact" exact element={<Contact />} />
-              <Route path="/enquiry" exact element={<Enquiry />} />
+              <Route path="/enquiry/:name" exact element={<Enquiry />} />
               <Route path="/login" exact element={<Login />} />
               <Route path="/listenquiry" exact element={<ListEnquiry />} />
               <Route path="/listmessage" exact element={<ListMessage />} />

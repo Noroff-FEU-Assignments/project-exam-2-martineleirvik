@@ -16,9 +16,7 @@ function PopularBookingInfo({ id, name, shortdescription, image }) {
         <p>{shortdescription}</p>
         <div className="popular-buttons">
           <button>
-            <Link to="/enquiry" key={id}>
-              Book now
-            </Link>
+            <Link to={`/enquiry/${name}`}>Book now</Link>
           </button>
           <Link to={`/booking/${id}`}>Read more</Link>
         </div>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useParams } from "react-router-dom";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
@@ -13,7 +14,7 @@ import styled from "styled-components";
 const url = baseUrl + "enquiries";
 
 const schema = yup.object().shape({
-  accommodationName: yup.string().required("Enter the accomodations name"),
+  accommodationName: yup.string(),
   name: yup.string().required("Enter your name"),
   email: yup.string().email("Invalid email").required("Enter your email"),
   message: yup.string(),
@@ -29,6 +30,8 @@ function Enquiry() {
     resolver: yupResolver(schema),
   });
 
+  const { name } = useParams();
+
   async function onSubmit(data) {
     setSubmitting(true);
     setServerError(null);
@@ -36,8 +39,7 @@ function Enquiry() {
     try {
       const response = await axios.post(url, {
         data: {
-          accommodationName: data.accommodationName,
-          name: data.name,
+          accommodationName: name,
           email: data.email,
           message: data.message,
           dateTo: data.dateTo,
@@ -65,21 +67,26 @@ function Enquiry() {
         <fieldset disabled={submitting}>
           <div>
             <label>Accommodation name:</label>
-            <input type="text" {...register("accommodationName")} />
+            <input
+              type="text"
+              disabled={true}
+              placeholder={name}
+              {...register("accommodationName")}
+            />
             {errors && errors.accommodationName && (
               <FormError>{errors.accommodationName.message}</FormError>
             )}
           </div>
           <div>
             <label>Your name:</label>
-            <input type="name" {...register("name")} />
+            <input type="text" {...register("name")} />
             {errors && errors.name && (
               <FormError>{errors.name.message}</FormError>
             )}
           </div>
           <div>
             <label>Your email:</label>
-            <input type="email" {...register("email")} />
+            <input type="text" {...register("email")} />
             {errors && errors.email && (
               <FormError>{errors.email.message}</FormError>
             )}
@@ -148,6 +155,8 @@ const StyledForm = styled.form`
     }
     .date-container {
       display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
     }
   }
 `;

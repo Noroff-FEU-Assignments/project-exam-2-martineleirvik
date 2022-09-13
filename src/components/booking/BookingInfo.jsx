@@ -18,9 +18,7 @@ function BookingInfo({ id, name, price, popular, image }) {
         </div>
         <div className="buttons">
           <button>
-            <Link to="/enquiry" key={id}>
-              Book now
-            </Link>
+            <Link to={`/enquiry/${name}`}>Book now</Link>
           </button>
           <button>
             <Link to={`/booking/${id}`}>Read more</Link>
