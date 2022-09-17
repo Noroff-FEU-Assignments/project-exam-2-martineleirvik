@@ -21,7 +21,6 @@ const schema = yup.object().shape({
     .string()
     .max(30)
     .required("One line of description that goes in the frontpage"),
-  category: yup.string(),
 });
 
 export default function NewEstablishment() {
@@ -47,13 +46,14 @@ export default function NewEstablishment() {
 
     try {
       const response = await http.post("bookings", {
-        name: data.name,
-        image: data.image,
-        popular: data.popular,
-        price: data.price,
-        description: data.description,
-        shortdescription: data.shortdescription,
-        category: data.category,
+        data: {
+          name: data.name,
+          image: data.image,
+          popular: data.popular,
+          price: data.price,
+          description: data.description,
+          shortdescription: data.shortdescription,
+        },
       });
       console.log("response", response.data);
     } catch (error) {
@@ -116,17 +116,7 @@ export default function NewEstablishment() {
               </ValidationError>
             )}
           </div>
-          <div>
-            <label>Category:</label>
-            <select {...register("category")}>
-              <option value="Hotel"></option>
-              <option value="Bed and Breakfast"></option>
-              <option value="Guesthouse"></option>
-            </select>
-            {errors && errors.category && (
-              <ValidationError>{errors.category.message}</ValidationError>
-            )}
-          </div>
+
           <button>
             {submitting ? "Publishing..." : "Publish establishment"}
           </button>
