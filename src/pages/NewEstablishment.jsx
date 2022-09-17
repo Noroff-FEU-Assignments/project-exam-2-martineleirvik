@@ -1,5 +1,4 @@
 import { useContext, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -8,19 +7,32 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Heading from "../components/layout/Heading";
 import AuthContext from "../components/context/AuthContext";
 import useAxios from "../components/hooks/useAxios";
-import FormError from "../components/common/FormError";
-import { baseUrl } from "../constants/api";
+import FormError, { ValidationError } from "../components/common/FormError";
 //styles
 import styled from "styled-components";
 
 const schema = yup.object().shape({
   name: yup.string().required("Name of accomodation"),
+  image: yup.mixed().required("Place an image"),
+  popular: yup.boolean().oneOf([false, true]),
+  price: yup.number().required("Price of accomodation"),
+  description: yup.string().required("Description of accomodation"),
+  shortdescription: yup
+    .string()
+    .max(30)
+    .required("One line of description that goes in the frontpage"),
+  category: yup.string(),
 });
 
 export default function NewEstablishment() {
   const [submitting, setSubmitting] = useState(false);
   const [serverError, setServerError] = useState(null);
-  const { register, handleSubmit, errors } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -36,6 +48,12 @@ export default function NewEstablishment() {
     try {
       const response = await http.post("bookings", {
         name: data.name,
+        image: data.image,
+        popular: data.popular,
+        price: data.price,
+        description: data.description,
+        shortdescription: data.shortdescription,
+        category: data.category,
       });
       console.log("response", response.data);
     } catch (error) {
@@ -48,19 +66,109 @@ export default function NewEstablishment() {
   return (
     <>
       <Heading heading="New establishment" />
-      <form onSubmit={handleSubmit(submitEstablish)}>
+      <StyledForm onSubmit={handleSubmit(submitEstablish)}>
         {serverError && <FormError>{serverError}</FormError>}
         <fieldset disabled={submitting}>
           <div>
-            <label>Name</label>
-            <input {...register("name")} />
+            <label>Name of accommodation:</label>
+            <input type="name" {...register("name")} />
             {errors && errors.name && (
-              <FormError>{errors.name.message}</FormError>
+              <ValidationError>{errors.name.message}</ValidationError>
             )}
           </div>
-          <button>{submitting ? "Publishing..." : "Publish"}</button>
+          <div>
+            <label>Image:</label>
+            <input type="text" {...register("image")} />
+            {errors && errors.image && (
+              <ValidationError>{errors.image.message}</ValidationError>
+            )}
+          </div>
+          <div>
+            <label>Popular accomodation? (check if popular):</label>
+            <input type="checkbox" {...register("popular")} />
+            {errors && errors.popular && (
+              <ValidationError>{errors.popular.message}</ValidationError>
+            )}
+          </div>
+          <div>
+            <label>Price:</label>
+            <input type="price" {...register("price")} />
+            {errors && errors.price && (
+              <ValidationError>{errors.price.message}</ValidationError>
+            )}
+          </div>
+          <div>
+            <label>Description:</label>
+            <textarea type="description" {...register("description")} />
+            {errors && errors.description && (
+              <ValidationError>{errors.description.message}</ValidationError>
+            )}
+          </div>
+          <div>
+            <label>
+              Wrtite one line of description that sums up the accomodation (max
+              30 characters)
+            </label>
+            <input type="shortdescription" {...register("shortdescription")} />
+            {errors && errors.shortdescription && (
+              <ValidationError>
+                {errors.shortdescription.message}
+              </ValidationError>
+            )}
+          </div>
+          <div>
+            <label>Category:</label>
+            <select {...register("category")}>
+              <option value="Hotel"></option>
+              <option value="Bed and Breakfast"></option>
+              <option value="Guesthouse"></option>
+            </select>
+            {errors && errors.category && (
+              <ValidationError>{errors.category.message}</ValidationError>
+            )}
+          </div>
+          <button>
+            {submitting ? "Publishing..." : "Publish establishment"}
+          </button>
         </fieldset>
-      </form>
+      </StyledForm>
     </>
   );
 }
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px auto;
+  max-width: 500px;
+  fieldset {
+    background-color: ${(props) => props.theme.white};
+    padding: 25px 40px;
+    border: 1px solid ${(props) => props.theme.primaryColor};
+    border-radius: 15px;
+    margin-top: 10px;
+    div {
+      margin: 5px 0;
+      display: flex;
+      flex-direction: column;
+      input {
+        margin: 7px 0 0 0;
+        border: 1px solid ${(props) => props.theme.footer};
+      }
+      textarea {
+        margin: 7px 0 0 0;
+        height: 100px;
+        border: 1px solid ${(props) => props.theme.footer};
+      }
+    }
+    button {
+      width: 100%;
+    }
+    .date-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
+  }
+`;
