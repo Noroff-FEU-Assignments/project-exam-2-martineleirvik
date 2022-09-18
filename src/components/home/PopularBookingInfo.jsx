@@ -18,7 +18,9 @@ function PopularBookingInfo({ id, name, shortdescription, image }) {
           <button>
             <Link to={`/enquiry/${name}`}>Book now</Link>
           </button>
-          <Link to={`/booking/${id}`}>Read more</Link>
+          <Link to={`/booking/${id}`} className="readmore">
+            Read more
+          </Link>
         </div>
       </div>
     </SyledCard>
@@ -50,15 +52,21 @@ const SyledCard = styled.div`
     padding: 15px 10px;
     display: flex;
     flex-direction: column;
+    font-size: 0.9rem;
     h3 {
       margin: 10px 0;
     }
     .popular-buttons {
       margin: 10px 0;
-      align-items: flex-end;
+      justify-content: flex-end;
 
       button {
         margin-right: 15px;
+        font-size: 0.8rem;
+      }
+
+      .readmore {
+        font-size: 0.8rem;
       }
     }
   }

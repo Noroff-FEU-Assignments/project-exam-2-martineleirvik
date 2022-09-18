@@ -13,19 +13,20 @@ import styled from "styled-components";
 
 const schema = yup.object().shape({
   name: yup.string().required("Name of accomodation"),
-  image: yup.mixed().required("Place an image"),
+  image: yup.string().required("Place an image"),
   popular: yup.boolean().oneOf([false, true]),
   price: yup.number().required("Price of accomodation"),
   description: yup.string().required("Description of accomodation"),
   shortdescription: yup
     .string()
-    .max(30)
+    .max(100)
     .required("One line of description that goes in the frontpage"),
 });
 
 export default function NewEstablishment() {
   const [submitting, setSubmitting] = useState(false);
   const [serverError, setServerError] = useState(null);
+  const [auth] = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -35,27 +36,36 @@ export default function NewEstablishment() {
     resolver: yupResolver(schema),
   });
 
-  const navigate = useNavigate();
-  const http = useAxios();
-
   async function submitEstablish(data) {
     setSubmitting(true);
     setServerError(null);
 
     console.log("data", data);
 
+    const formData = new FormData();
+    const bookingData = JSON.stringify({
+      name: data.name,
+      description: data.description,
+      shortdescription: data.shortdescription,
+      popular: data.popular,
+    });
+
+    formData.append("files.image", data.image[0]);
+    formData.append("data", bookingData);
+
+    const options = {
+      method: "POST",
+      body: formData,
+      headers: {
+        Authorization: `Bearer ${auth}`,
+      },
+    };
+
     try {
-      const response = await http.post("bookings", {
-        data: {
-          name: data.name,
-          image: data.image,
-          popular: data.popular,
-          price: data.price,
-          description: data.description,
-          shortdescription: data.shortdescription,
-        },
-      });
-      console.log("response", response.data);
+      const response = await fetch("bookings", options);
+      const json = await response.json();
+      console.log("response", json);
+      setSubmitting(json);
     } catch (error) {
       console.log("error", error);
       setServerError(error.toString());
@@ -71,14 +81,14 @@ export default function NewEstablishment() {
         <fieldset disabled={submitting}>
           <div>
             <label>Name of accommodation:</label>
-            <input type="name" {...register("name")} />
+            <input type="text" {...register("name")} />
             {errors && errors.name && (
               <ValidationError>{errors.name.message}</ValidationError>
             )}
           </div>
           <div>
             <label>Image:</label>
-            <input type="text" {...register("image")} />
+            <input type="file" {...register("image")} />
             {errors && errors.image && (
               <ValidationError>{errors.image.message}</ValidationError>
             )}
@@ -92,24 +102,24 @@ export default function NewEstablishment() {
           </div>
           <div>
             <label>Price:</label>
-            <input type="price" {...register("price")} />
+            <input type="text" {...register("price")} />
             {errors && errors.price && (
               <ValidationError>{errors.price.message}</ValidationError>
             )}
           </div>
           <div>
             <label>Description:</label>
-            <textarea type="description" {...register("description")} />
+            <textarea type="text" {...register("description")} />
             {errors && errors.description && (
               <ValidationError>{errors.description.message}</ValidationError>
             )}
           </div>
           <div>
             <label>
-              Wrtite one line of description that sums up the accomodation (max
-              30 characters)
+              Wrtite one short description that sums up the accomodation (max
+              100 characters)
             </label>
-            <input type="shortdescription" {...register("shortdescription")} />
+            <input type="text" {...register("shortdescription")} />
             {errors && errors.shortdescription && (
               <ValidationError>
                 {errors.shortdescription.message}
