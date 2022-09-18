@@ -33,8 +33,10 @@ function Message({ id, name, email, message }) {
 export default Message;
 
 const StyledMessage = styled.div`
-  margin: 20px auto;
-
+  margin: 4px auto;
+  padding: 4px;
+  background-color: ${(props) => props.theme.white};
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   .message-container {
     display: flex;
     justify-content: space-between;
