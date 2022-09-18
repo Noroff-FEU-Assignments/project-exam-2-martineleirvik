@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams, Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,8 +8,12 @@ import Heading from "../components/layout/Heading";
 import AuthContext from "../components/context/AuthContext";
 import useAxios from "../components/hooks/useAxios";
 import FormError, { ValidationError } from "../components/common/FormError";
+import { baseUrl } from "../constants/api";
 //styles
 import styled from "styled-components";
+import Footer from "../components/layout/Footer";
+
+const url = baseUrl + "bookings";
 
 const schema = yup.object().shape({
   name: yup.string().required("Name of accomodation"),
@@ -57,12 +61,12 @@ export default function NewEstablishment() {
       method: "POST",
       body: formData,
       headers: {
-        Authorization: `Bearer ${auth}`,
+        Authorization: `Bearer ${auth.jwt}`,
       },
     };
 
     try {
-      const response = await fetch("bookings", options);
+      const response = await fetch(url, options);
       const json = await response.json();
       console.log("response", json);
       setSubmitting(json);
@@ -132,6 +136,7 @@ export default function NewEstablishment() {
           </button>
         </fieldset>
       </StyledForm>
+      <Footer />
     </>
   );
 }
@@ -171,4 +176,8 @@ const StyledForm = styled.form`
       justify-content: space-evenly;
     }
   }
+`;
+
+const StyledSuccess = styled.div`
+  background-color: green;
 `;
