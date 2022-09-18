@@ -97,7 +97,7 @@ export default function NewEstablishment() {
               <ValidationError>{errors.image.message}</ValidationError>
             )}
           </div>
-          <div>
+          <div className="popular">
             <label>Popular accomodation? (check if popular):</label>
             <input type="checkbox" {...register("popular")} />
             {errors && errors.popular && (
@@ -121,7 +121,7 @@ export default function NewEstablishment() {
           <div>
             <label>
               Wrtite one short description that sums up the accomodation (max
-              100 characters)
+              100 characters):
             </label>
             <input type="text" {...register("shortdescription")} />
             {errors && errors.shortdescription && (
@@ -153,6 +153,16 @@ const StyledForm = styled.form`
     border: 1px solid ${(props) => props.theme.primaryColor};
     border-radius: 15px;
     margin-top: 10px;
+    .popular {
+      display: flex;
+      flex-direction: row;
+      label {
+        margin-right: 15px;
+      }
+      input {
+        margin-top: 3px;
+      }
+    }
     div {
       margin: 5px 0;
       display: flex;
@@ -169,6 +179,7 @@ const StyledForm = styled.form`
     }
     button {
       width: 100%;
+      margin-top: 30px;
     }
     .date-container {
       display: flex;
@@ -176,8 +187,4 @@ const StyledForm = styled.form`
       justify-content: space-evenly;
     }
   }
-`;
-
-const StyledSuccess = styled.div`
-  background-color: green;
 `;
