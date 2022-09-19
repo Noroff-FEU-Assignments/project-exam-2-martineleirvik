@@ -22,6 +22,7 @@ function Booking() {
 
           if (response.ok) {
             const json = await response.json();
+            console.log(json);
 
             let results;
 

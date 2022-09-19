@@ -120,7 +120,7 @@ export default Navbar;
 
 const StyledNavBar = styled.nav`
   background-color: ${(props) => props.theme.primaryColor};
-  height: 2rem;
+  min-height: 10vh;
   display: flex;
   justify-content: center;
   align-items: center;

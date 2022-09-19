@@ -17,7 +17,7 @@ const url = baseUrl + "bookings?populate=*";
 
 const schema = yup.object().shape({
   name: yup.string().required("Name of accomodation"),
-  image: yup.string().required("Place an image"),
+  image: yup.mixed().required("Place an image"),
   popular: yup.boolean().oneOf([false, true]),
   price: yup.number().required("Price of accomodation"),
   description: yup.string().required("Description of accomodation"),
@@ -32,7 +32,7 @@ export default function NewEstablishment() {
   const [submitting, setSubmitting] = useState(false);
   const [serverError, setServerError] = useState(null);
   const [selectDropdown, setSelectDropdown] = useState();
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState();
   const [auth] = useContext(AuthContext);
   const {
     register,
@@ -97,13 +97,7 @@ export default function NewEstablishment() {
           </div>
           <div>
             <label>Image:</label>
-            <input
-              type="file"
-              name="file"
-              value={selectedFile}
-              onChange={(e) => setSelectedFile(e.target.files[0])}
-              {...register("image")}
-            />
+            <input type="file" name="file" {...register("image")} />
             {errors && errors.image && (
               <ValidationError>{errors.image.message}</ValidationError>
             )}
