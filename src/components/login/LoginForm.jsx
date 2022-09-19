@@ -6,7 +6,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { baseUrl, tokenPath } from "../../constants/api";
 // components
-import FormError from "../common/FormError";
+import FormError, { ValidationError } from "../common/FormError";
 import AuthContext from "../context/AuthContext";
 // styles
 import styled from "styled-components";
@@ -21,7 +21,11 @@ const schema = yup.object().shape({
 export default function LoginForm() {
   const [submitting, setSubmitting] = useState(false);
   const [loginError, setLoginError] = useState(null);
-  const { register, handleSubmit, errors } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(schema),
   });
   const navigate = useNavigate();
@@ -53,21 +57,21 @@ export default function LoginForm() {
     <div className="loginContainer">
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         {loginError && (
-          <FormError>Error: Values not valid for login.</FormError>
+          <ValidationError>Error: Values not valid for login.</ValidationError>
         )}
         <fieldset disabled={submitting}>
           <div>
             <label>Username/email</label>
             <input {...register("username")} />
             {errors && errors.username && (
-              <FormError>{errors.username.message}</FormError>
+              <ValidationError>{errors.username.message}</ValidationError>
             )}
           </div>
           <div>
             <label>Password</label>
             <input {...register("password")} />
             {errors && errors.password && (
-              <FormError>{errors.password.message}</FormError>
+              <ValidationError>{errors.password.message}</ValidationError>
             )}
           </div>
           <button>{submitting ? "Loggin in..." : "Login"}</button>
@@ -96,6 +100,7 @@ const StyledForm = styled.form`
     }
     button {
       width: 100%;
+      margin-top: 15px;
     }
   }
 `;
