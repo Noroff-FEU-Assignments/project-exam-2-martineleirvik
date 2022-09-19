@@ -41,7 +41,11 @@ function EnquiryDetail({
 export default EnquiryDetail;
 
 const StyledEnquiry = styled.div`
-  margin: 20px auto;
+  margin: 4px auto;
+  padding: 4px;
+  border-radius: 5px;
+  background-color: ${(props) => props.theme.white};
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
   .message-container {
     display: flex;

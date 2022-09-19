@@ -37,27 +37,46 @@ function ListEnquries() {
   return (
     <>
       <Heading heading="List of enquiries" />
-      <ul className="container">
-        {enquiry.map((data) => {
-          const { id } = data;
-          const { accommodationName, name, email, message, dateTo, dateFrom } =
-            data.attributes;
-          return (
-            <EnquiryDetail
-              key={id}
-              id={id}
-              accommodationName={accommodationName}
-              name={name}
-              email={email}
-              message={message}
-              dateTo={dateTo}
-              dateFrom={dateFrom}
-            />
-          );
-        })}
-      </ul>
+      <StyledContainer>
+        <ul className="enquiry">
+          {enquiry.map((data) => {
+            const { id } = data;
+            const {
+              accommodationName,
+              name,
+              email,
+              message,
+              dateTo,
+              dateFrom,
+            } = data.attributes;
+            return (
+              <EnquiryDetail
+                key={id}
+                id={id}
+                accommodationName={accommodationName}
+                name={name}
+                email={email}
+                message={message}
+                dateTo={dateTo}
+                dateFrom={dateFrom}
+              />
+            );
+          })}
+        </ul>
+      </StyledContainer>
     </>
   );
 }
 
 export default ListEnquries;
+
+const StyledContainer = styled.ul`
+  max-width: 400px;
+  margin: 20px auto;
+  .name {
+    text-decoration: underline;
+  }
+  @media (max-width: 450px) {
+    width: 260px;
+  } ;
+`;
