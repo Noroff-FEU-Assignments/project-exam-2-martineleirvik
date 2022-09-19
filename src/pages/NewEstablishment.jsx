@@ -13,7 +13,7 @@ import { baseUrl } from "../constants/api";
 import styled from "styled-components";
 import Footer from "../components/layout/Footer";
 
-const url = baseUrl + "bookings";
+const url = baseUrl + "bookings?populate=*";
 
 const schema = yup.object().shape({
   name: yup.string().required("Name of accomodation"),
@@ -31,7 +31,8 @@ const schema = yup.object().shape({
 export default function NewEstablishment() {
   const [submitting, setSubmitting] = useState(false);
   const [serverError, setServerError] = useState(null);
-  const [select, setSelect] = useState();
+  const [selectDropdown, setSelectDropdown] = useState();
+  const [selectedFile, setSelectedFile] = useState(null);
   const [auth] = useContext(AuthContext);
   const {
     register,
@@ -58,7 +59,7 @@ export default function NewEstablishment() {
       category: data.category,
     });
 
-    formData.append("file", data.image[0]);
+    formData.append("files.image", data.image[0]);
     formData.append("data", bookingData);
 
     const options = {
@@ -96,7 +97,13 @@ export default function NewEstablishment() {
           </div>
           <div>
             <label>Image:</label>
-            <input type="file" name="file" {...register("image")} />
+            <input
+              type="file"
+              name="file"
+              value={selectedFile}
+              onChange={(e) => setSelectedFile(e.target.files[0])}
+              {...register("image")}
+            />
             {errors && errors.image && (
               <ValidationError>{errors.image.message}</ValidationError>
             )}
@@ -137,8 +144,8 @@ export default function NewEstablishment() {
           <div>
             <label>Category:</label>
             <select
-              value={select}
-              onChange={(e) => setSelect(e.target.value)}
+              value={selectDropdown}
+              onChange={(e) => setSelectDropdown(e.target.value)}
               {...register("category")}
             >
               <option>Hotel</option>
