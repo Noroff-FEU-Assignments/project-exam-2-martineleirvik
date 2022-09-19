@@ -25,11 +25,13 @@ const schema = yup.object().shape({
     .string()
     .max(100)
     .required("One line of description that goes in the frontpage"),
+  category: yup.string().required("Select one category"),
 });
 
 export default function NewEstablishment() {
   const [submitting, setSubmitting] = useState(false);
   const [serverError, setServerError] = useState(null);
+  const [select, setSelect] = useState();
   const [auth] = useContext(AuthContext);
   const {
     register,
@@ -50,11 +52,13 @@ export default function NewEstablishment() {
     const bookingData = JSON.stringify({
       name: data.name,
       description: data.description,
+      price: data.price,
       shortdescription: data.shortdescription,
       popular: data.popular,
+      category: data.category,
     });
 
-    formData.append("files.image", data.image[0]);
+    formData.append("file", data.image[0]);
     formData.append("data", bookingData);
 
     const options = {
@@ -92,7 +96,7 @@ export default function NewEstablishment() {
           </div>
           <div>
             <label>Image:</label>
-            <input type="file" {...register("image")} />
+            <input type="file" name="file" {...register("image")} />
             {errors && errors.image && (
               <ValidationError>{errors.image.message}</ValidationError>
             )}
@@ -106,7 +110,7 @@ export default function NewEstablishment() {
           </div>
           <div>
             <label>Price:</label>
-            <input type="text" {...register("price")} />
+            <input type="number" {...register("price")} />
             {errors && errors.price && (
               <ValidationError>{errors.price.message}</ValidationError>
             )}
@@ -130,7 +134,21 @@ export default function NewEstablishment() {
               </ValidationError>
             )}
           </div>
-
+          <div>
+            <label>Category:</label>
+            <select
+              value={select}
+              onChange={(e) => setSelect(e.target.value)}
+              {...register("category")}
+            >
+              <option>Hotel</option>
+              <option>Bed and Breakfast</option>
+              <option>Guesthouse</option>
+            </select>
+            {errors && errors.category && (
+              <ValidationError>{errors.category.message}</ValidationError>
+            )}
+          </div>
           <button>
             {submitting ? "Publishing..." : "Publish establishment"}
           </button>
@@ -167,7 +185,8 @@ const StyledForm = styled.form`
       margin: 5px 0;
       display: flex;
       flex-direction: column;
-      input {
+      input,
+      select {
         margin: 7px 0 0 0;
         border: 1px solid ${(props) => props.theme.footer};
       }
