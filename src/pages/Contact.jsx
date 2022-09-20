@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 // components
 import Heading from "../components/layout/Heading";
-import FormError from "../components/common/FormError";
+import FormError, { ValidationError } from "../components/common/FormError";
 import { baseUrl } from "../constants/api";
 // styles
 import styled from "styled-components";
@@ -18,14 +18,19 @@ const schema = yup.object().shape({
     .string()
     .email("Invalid email")
     .required("Please enter your email"),
-  message: yup.string().min(2).required("Minimum 20 characters"),
+  message: yup.string().min(20).required("Minimum 20 characters"),
 });
 
 function Contact() {
   const [submitting, setSubmitting] = useState(false);
   const [serverError, setServerError] = useState(null);
 
-  const { register, handleSubmit, reset, errors } = useForm({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -63,21 +68,21 @@ function Contact() {
             <label>Your name:</label>
             <input type="name" {...register("name")} />
             {errors && errors.name && (
-              <FormError>{errors.name.message}</FormError>
+              <ValidationError>{errors.name.message}</ValidationError>
             )}
           </div>
           <div>
             <label>Your email:</label>
             <input type="email" {...register("email")} />
             {errors && errors.email && (
-              <FormError>{errors.email.message}</FormError>
+              <ValidationError>{errors.email.message}</ValidationError>
             )}
           </div>
           <div>
             <label>Message:</label>
             <textarea type="message" {...register("message")} />
             {errors && errors.message && (
-              <FormError>{errors.message.message}</FormError>
+              <ValidationError>{errors.message.message}</ValidationError>
             )}
           </div>
           <button>{submitting ? "Submitting..." : "Submit"}</button>

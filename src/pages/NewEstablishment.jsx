@@ -56,7 +56,7 @@ export default function NewEstablishment() {
       price: data.price,
       shortdescription: data.shortdescription,
       popular: data.popular,
-      category: data.category,
+      category: Number(data.category),
     });
 
     formData.append("files.image", data.image[0]);
@@ -142,9 +142,9 @@ export default function NewEstablishment() {
               onChange={(e) => setSelectDropdown(e.target.value)}
               {...register("category")}
             >
-              <option>Hotel</option>
-              <option>Bed and Breakfast</option>
-              <option>Guesthouse</option>
+              <option value="1">Hotel</option>
+              <option value="2">Bed and Breakfast</option>
+              <option value="3">Guesthouse</option>
             </select>
             {errors && errors.category && (
               <ValidationError>{errors.category.message}</ValidationError>

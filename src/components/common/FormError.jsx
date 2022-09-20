@@ -10,10 +10,10 @@ export function ValidationError({ children }) {
 
 const StyledFormError = styled.div`
   background-color: ${(props) => props.theme.white};
-
   border: 2px solid ${(props) => props.theme.error};
   padding: 4px 8px;
   color: ${(props) => props.theme.error};
+  margin-bottom: 10px;
 `;
 
 const StyledValidationError = styled.div`

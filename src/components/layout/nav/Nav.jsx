@@ -3,8 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Dropdown from "./Dropdown";
 import AuthContext from "../../context/AuthContext";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import SearchInput from "./SearchInput";
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -48,9 +47,7 @@ function Navbar() {
       </div>
       <ul className={click ? "nav-menu active" : "nav-menu"}>
         <li className="nav-item">
-          <p className="icon">
-            <FontAwesomeIcon icon={faMagnifyingGlass} />
-          </p>
+          <SearchInput />
         </li>
         <li className="nav-item">
           <Link to="/" className="nav-links" onClick={closeMobileMenu}>

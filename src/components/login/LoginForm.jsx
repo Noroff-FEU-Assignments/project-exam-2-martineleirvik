@@ -57,7 +57,7 @@ export default function LoginForm() {
     <div className="loginContainer">
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         {loginError && (
-          <ValidationError>Error: Values not valid for login.</ValidationError>
+          <FormError>Error: Values not valid for login.</FormError>
         )}
         <fieldset disabled={submitting}>
           <div>
