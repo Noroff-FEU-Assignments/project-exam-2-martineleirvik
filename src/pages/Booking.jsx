@@ -13,6 +13,8 @@ function Booking() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [filterBtn, setFilterBtn] = useState("bookings?populate=*");
+  const [color, setColor] = useState("#EB8C6A");
+  const [textColor, setTextColor] = useState("white");
 
   useEffect(
     function () {

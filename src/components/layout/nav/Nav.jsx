@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Dropdown from "./Dropdown";
 import AuthContext from "../../context/AuthContext";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -45,6 +47,11 @@ function Navbar() {
         <i className={click ? "fas fa-times" : "fas fa-bars"} />
       </div>
       <ul className={click ? "nav-menu active" : "nav-menu"}>
+        <li className="nav-item">
+          <p className="icon">
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
+          </p>
+        </li>
         <li className="nav-item">
           <Link to="/" className="nav-links" onClick={closeMobileMenu}>
             Home
@@ -159,6 +166,13 @@ const StyledNavBar = styled.nav`
       font-size: 0.9rem;
       margin-left: 5px;
     }
+    .icon {
+      color: ${(props) => props.theme.white};
+      padding: 0.5rem;
+      :hover {
+        cursor: pointer;
+      }
+    }
     .nav-item {
       display: flex;
       align-items: center;
@@ -219,6 +233,12 @@ const StyledNavBar = styled.nav`
       }
       .nav-item {
         width: 100%;
+      }
+      .icon {
+        text-align: center;
+        padding: 2rem;
+        width: 100%;
+        display: table;
       }
       .nav-links {
         text-align: center;
