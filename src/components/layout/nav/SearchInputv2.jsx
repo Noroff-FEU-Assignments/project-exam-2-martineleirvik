@@ -1,12 +1,14 @@
 import { useState, useRef } from "react";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMagnifyingGlass,
-  faArrowRight,
-} from "@fortawesome/free-solid-svg-icons";
-import styled, { css } from "styled-components";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { ReactSearchAutocomplete } from "react-search-autocomplete";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import styled, { css } from "styled-components";
+import { baseUrl } from "../../../constants/api";
+import axios from "axios";
+
+const url = baseUrl + "bookings?populate=*";
 
 function SearchInputv2() {
   const targetRef = useRef(null);
@@ -26,7 +28,11 @@ function SearchInputv2() {
       onBlur={() => setIsFocused(false)}
       hover={showSearchInput}
     >
-      <StyledInput ref={targetRef} showSearchInput={showSearchInput} />
+      <StyledInput
+        ref={targetRef}
+        showSearchInput={showSearchInput}
+        placeholder="Search accommodation"
+      />
       <FontAwesomeIcon className="glass" icon={faMagnifyingGlass} />
     </Container>
   );
