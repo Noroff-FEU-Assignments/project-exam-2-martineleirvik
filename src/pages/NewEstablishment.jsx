@@ -47,8 +47,6 @@ export default function NewEstablishment() {
     setSubmitting(true);
     setServerError(null);
 
-    console.log("data", data);
-
     const formData = new FormData();
     const bookingData = JSON.stringify({
       name: data.name,

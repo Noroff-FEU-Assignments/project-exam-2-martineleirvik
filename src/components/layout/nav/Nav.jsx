@@ -180,6 +180,7 @@ const StyledNavBar = styled.nav`
         color: ${(props) => props.theme.white};
         text-decoration: none;
         padding: 0.5rem;
+        margin-bottom: 0;
         :hover {
           background-color: ${(props) => props.theme.secondaryColor};
           transition: all 0.2s ease-out;

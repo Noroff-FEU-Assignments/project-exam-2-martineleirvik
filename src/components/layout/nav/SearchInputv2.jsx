@@ -8,17 +8,41 @@ import styled, { css } from "styled-components";
 import { baseUrl } from "../../../constants/api";
 import axios from "axios";
 
-const url = baseUrl + "bookings?populate=*";
-
 function SearchInputv2() {
   const targetRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const [bookings, setBookings] = useState([]);
+  const [text, setText] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
   const showSearchInput = isHovered || isFocused;
 
   useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get(baseUrl + "bookings");
+        const results = response.data.data;
+        setBookings(results);
+        console.log(results);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
     targetRef.current.value = "";
   }, [showSearchInput]);
+
+  const onChangeHandler = (text) => {
+    let matches = [];
+    if (text.length > 0) {
+      matches = bookings.filter((booking) => {
+        const regex = new RegExp(`${text}`, "gi");
+        return booking.attributes.name.match(regex);
+      });
+    }
+    setSuggestions(matches);
+    setText(text);
+  };
 
   return (
     <Container
@@ -31,7 +55,9 @@ function SearchInputv2() {
       <StyledInput
         ref={targetRef}
         showSearchInput={showSearchInput}
-        placeholder="Search accommodation"
+        placeholder="Search"
+        onChange={(e) => onChangeHandler(e.target.value)}
+        value={text}
       />
       <FontAwesomeIcon className="glass" icon={faMagnifyingGlass} />
     </Container>
