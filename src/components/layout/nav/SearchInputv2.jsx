@@ -67,17 +67,18 @@ function SearchInputv2() {
         }}
       />
       <FontAwesomeIcon className="glass" icon={faMagnifyingGlass} />
-
-      {suggestions &&
-        suggestions.map((search) => (
-          <StyledSearchContainer>
-            <Link className="search-dropdown" to={`/booking/${search.id}`}>
-              <div key={search.id} className="search-result-container">
-                {search.attributes.name}
-              </div>
-            </Link>
-          </StyledSearchContainer>
-        ))}
+      <div className="search-result">
+        {suggestions &&
+          suggestions.map((search) => (
+            <StyledSearchContainer>
+              <Link className="search-dropdown" to={`/booking/${search.id}`}>
+                <div key={search.id} className="search-result-container">
+                  {search.attributes.name}
+                </div>
+              </Link>
+            </StyledSearchContainer>
+          ))}
+      </div>
     </Container>
   );
 }
@@ -85,11 +86,7 @@ function SearchInputv2() {
 export default SearchInputv2;
 
 const StyledSearchContainer = styled.div`
-  display: flex;
   .search-result-container {
-    background-color: ${(props) => props.theme.white};
-    justify-content: flex-start;
-    text-decoration: none;
   }
 `;
 
