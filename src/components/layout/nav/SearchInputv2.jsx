@@ -40,6 +40,7 @@ function SearchInputv2() {
         return booking.attributes.name.match(regex);
       });
     }
+    console.log(matches);
     setSuggestions(matches);
     setText(text);
   };
@@ -58,13 +59,39 @@ function SearchInputv2() {
         placeholder="Search"
         onChange={(e) => onChangeHandler(e.target.value)}
         value={text}
+        onBlur={() => {
+          setTimeout(() => {
+            setSuggestions([]);
+            text("");
+          }, 100);
+        }}
       />
       <FontAwesomeIcon className="glass" icon={faMagnifyingGlass} />
+
+      {suggestions &&
+        suggestions.map((search) => (
+          <StyledSearchContainer>
+            <Link className="search-dropdown" to={`/booking/${search.id}`}>
+              <div key={search.id} className="search-result-container">
+                {search.attributes.name}
+              </div>
+            </Link>
+          </StyledSearchContainer>
+        ))}
     </Container>
   );
 }
 
 export default SearchInputv2;
+
+const StyledSearchContainer = styled.div`
+  display: flex;
+  .search-result-container {
+    background-color: ${(props) => props.theme.white};
+    justify-content: flex-start;
+    text-decoration: none;
+  }
+`;
 
 const Container = styled.div`
   position: relative;
