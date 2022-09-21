@@ -78,6 +78,7 @@ function SearchInput() {
 export default SearchInput;
 
 const StyledContainer = styled.div`
+  width: 100%;
   input {
     border: 2px solid ${(props) => props.theme.secondaryColor};
     padding: 2px;
