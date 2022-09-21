@@ -22,11 +22,12 @@ function SearchInputv2() {
     <Container
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onFocus={() => setIsHovered(true)}
-      onBlur={() => setIsHovered(false)}
+      onFocus={() => setIsFocused(true)}
+      onBlur={() => setIsFocused(false)}
       hover={showSearchInput}
     >
       <StyledInput ref={targetRef} showSearchInput={showSearchInput} />
+      <FontAwesomeIcon className="glass" icon={faMagnifyingGlass} />
     </Container>
   );
 }
@@ -36,23 +37,29 @@ export default SearchInputv2;
 const Container = styled.div`
   position: relative;
   box-sizing: border-box;
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   border-radius: 500px;
-  border: 4px solid ${(props) => props.theme.secondaryColor};
-  padding: 5px;
   background: ${(props) => props.theme.primaryColor};
   transition: all 0.5s;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
   ${({ hover }) =>
     hover &&
     css`
       width: 100%;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      border: 2px solid ${(props) => props.theme.secondaryColor};
     `}
+  path {
+    color: ${(props) => props.theme.white};
+    z-index: 10;
+    &:hover {
+      color: ${(props) => props.theme.secondaryColor};
+    }
+  }
 `;
 
 const StyledInput = styled.input`
@@ -60,12 +67,12 @@ const StyledInput = styled.input`
   top: 0;
   left: 0;
   width: 100%;
-  height: 42px;
-  line-height: 30px;
+  height: 30px;
   outline: 0;
   border: 0;
   border-radius: 20px;
   margin: 0;
+  padding-left: 20px;
   appearance: none;
   display: ${(props) => (props.showSearchInput ? "block" : "none")};
 `;

@@ -237,6 +237,9 @@ const StyledNavBar = styled.nav`
       .nav-item {
         width: 100%;
       }
+      .nav-item.search {
+        margin-left: -20%;
+      }
       .icon {
         text-align: center;
         padding: 2rem;
