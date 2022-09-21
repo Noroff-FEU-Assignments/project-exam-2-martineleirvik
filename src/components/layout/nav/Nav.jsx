@@ -4,6 +4,7 @@ import Dropdown from "./Dropdown";
 import AuthContext from "../../context/AuthContext";
 import styled from "styled-components";
 import SearchInput from "./SearchInput";
+import SearchInputv2 from "./SearchInputv2";
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -46,8 +47,9 @@ function Navbar() {
         <i className={click ? "fas fa-times" : "fas fa-bars"} />
       </div>
       <ul className={click ? "nav-menu active" : "nav-menu"}>
-        <li className="nav-item">
-          <SearchInput />
+        <li className="nav-item search">
+          <SearchInputv2 />
+          {/* <SearchInput /> */}
         </li>
         <li className="nav-item">
           <Link to="/" className="nav-links" onClick={closeMobileMenu}>
@@ -183,6 +185,10 @@ const StyledNavBar = styled.nav`
           transition: all 0.2s ease-out;
         }
       }
+    }
+    .nav-item.search {
+      width: 25%;
+      justify-content: end;
     }
     .mobile-dropdown {
       display: none;
