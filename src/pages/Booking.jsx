@@ -13,9 +13,6 @@ function Booking() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [filterBtn, setFilterBtn] = useState("bookings?populate=*");
-  const [background, setBackground] = useState("#EB8C6A");
-  const [text, setText] = useState("#ffffff");
-  const [border, setBorder] = useState("#EB8C6A");
 
   useEffect(
     function () {
@@ -56,27 +53,32 @@ function Booking() {
     return <div>ERROR: {error}</div>;
   }
 
-  const setStyle = (background, text, border) => {
-    setBackground(background);
-    setText(text);
-    setBorder(border);
-  };
-
   return (
     <>
       <Heading heading="Booking" />
       <StyledFilterBtns>
-        <button onClick={() => setFilterBtn("bookings?populate=*")}>All</button>
-        <button
-          onClick={() => {
-            setFilterBtn(
-              "categories/1?fields=name&populate[bookings][populate][0]=image"
-            );
-            setStyle(("#ffffff", "#EB8C6A", "#EB8C6A"));
-          }}
-        >
-          Hotels
-        </button>
+        {activeButton === "all" ? (
+          <StyledActiveBtn onClick={() => setFilterBtn("bookings?populate=*")}>
+            All
+          </StyledActiveBtn>
+        ) : (
+          <StyledNormalBtn>All</StyledNormalBtn>
+        )}
+
+        {activeButton === "hotels" ? (
+          <StyledActiveBtn
+            onClick={() =>
+              setFilterBtn(
+                "categories/1?fields=name&populate[bookings][populate][0]=image"
+              )
+            }
+          >
+            Hotels
+          </StyledActiveBtn>
+        ) : (
+          <StyledNormalBtn>Hotel</StyledNormalBtn>
+        )}
+
         <button
           onClick={() =>
             setFilterBtn(
@@ -147,4 +149,24 @@ const StyledFilterBtns = styled.div`
       color: ${(props) => props.theme.secondaryColor};
     }
   }
+  .active {
+    background-color: ${(props) => props.theme.white};
+    border: 1px solid ${(props) => props.theme.secondaryColor};
+    color: ${(props) => props.theme.secondaryColor};
+  }
+  @media (max-width: 480px) {
+    margin: 10px;
+  }
+`;
+
+const StyledActiveBtn = styled.button`
+  background-color: ${(props) => props.theme.white};
+  border: 1px solid ${(props) => props.theme.secondaryColor};
+  color: ${(props) => props.theme.secondaryColor};
+`;
+
+const StyledNormalBtn = styled.button`
+  background-color: ${(props) => props.theme.secondaryColor};
+  border: 1px solid ${(props) => props.theme.secondaryColor};
+  color: ${(props) => props.theme.white};
 `;
