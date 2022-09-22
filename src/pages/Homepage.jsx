@@ -30,7 +30,7 @@ function Homepage() {
           </button>
         </StyledVisitBergen>
         <PopularHotels />
-        <video src={bergenVideo} autoPlay loop muted />
+        <StyledVideo src={bergenVideo} autoPlay loop muted />
         <BergenInfo />
       </StyledContainer>
       <Footer />
@@ -60,4 +60,10 @@ const StyledVisitBergen = styled.div`
   button {
     margin: 10px 0;
   }
+`;
+
+const StyledVideo = styled.video`
+  max-height: 400px;
+  width: 100%;
+  object-fit: cover;
 `;

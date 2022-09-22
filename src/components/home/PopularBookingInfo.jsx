@@ -12,8 +12,8 @@ function PopularBookingInfo({ id, name, shortdescription, image }) {
     <SyledCard>
       <img src={image} alt={name} />
       <div className="card-text">
-        <h3>{name}</h3>
-        <p>{shortdescription}</p>
+        <h3 className="name">{name}</h3>
+        <p className="desc">{shortdescription}</p>
         <div className="popular-buttons">
           <button>
             <Link to={`/enquiry/${name}`}>Book now</Link>
@@ -40,7 +40,7 @@ const SyledCard = styled.div`
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   min-width: 200px;
   max-width: 300px;
-  height: 380px;
+  height: 360px;
 
   img {
     width: 100%;
@@ -55,16 +55,18 @@ const SyledCard = styled.div`
     font-size: 0.9rem;
     h3 {
       margin: 10px 0;
+      height: 35px;
+    }
+    .desc {
+      height: 100px;
     }
     .popular-buttons {
       margin: 10px 0;
       justify-content: flex-end;
-
       button {
         margin-right: 15px;
-        font-size: 0.8rem;
+        font-size: 0, 0rem;
       }
-
       .readmore {
         font-size: 0.8rem;
       }

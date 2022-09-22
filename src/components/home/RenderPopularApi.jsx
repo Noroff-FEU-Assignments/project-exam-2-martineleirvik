@@ -49,8 +49,8 @@ function RenderPopularApi() {
 
   return (
     <StyledSwiper
-      spaceBetween={40}
-      slidesPerView={3}
+      spaceBetween={5}
+      slidesPerView={6}
       className="popular-swiper"
       navigation
       modules={{ Navigation }}
@@ -74,11 +74,11 @@ function RenderPopularApi() {
         },
         1024: {
           slidesPerView: 4,
-          spaceBetween: 15,
+          spaceBetween: 10,
         },
         1280: {
           slidesPerView: 5,
-          spaceBetween: 30,
+          spaceBetween: 10,
         },
       }}
     >
