@@ -27,7 +27,6 @@ function SearchInputv2() {
       }
     }
     fetchData();
-    targetRef.current.value = "";
   }, [showSearchInput]);
 
   const onChangeHandler = (text) => {
@@ -68,7 +67,7 @@ function SearchInputv2() {
         {suggestions &&
           suggestions.map((search) => (
             <div>
-              <Link to={`/booking/${search.id}`} className="search-dropdown">
+              <Link to={`/booking/${search.id}`}>
                 <div key={search.id}>{search.attributes.name}</div>
               </Link>
             </div>
