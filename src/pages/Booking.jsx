@@ -134,10 +134,10 @@ const StyledBookingContainer = styled.div`
 `;
 
 const StyledFilterBtns = styled.div`
-  margin-left: 50px;
+  margin: 15px 0 15px 50px;
   button {
     cursor: pointer;
-    margin: 0 2px;
+    margin: 5px 2px;
     :hover {
       background-color: ${(props) => props.theme.white};
       border: 1px solid ${(props) => props.theme.secondaryColor};

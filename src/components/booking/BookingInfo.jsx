@@ -43,9 +43,8 @@ const StyledBookingInfo = styled.div`
   .image {
     width: 30%;
     img {
-      max-width: 200px;
+      width: 220px;
       height: 100%;
-      width: auto;
       border-radius: 20px 0 0 20px;
     }
   }
@@ -70,6 +69,59 @@ const StyledBookingInfo = styled.div`
         margin: 100px 20px 0 0;
         width: 100px;
         height: 30px;
+      }
+    }
+  }
+  @media (max-width: 1024px) {
+    .image {
+      img {
+        width: 200px;
+      }
+    }
+    h3 {
+      font-size: 1.1rem;
+    }
+  }
+  @media (max-width: 767px) {
+    height: 125px;
+    .image {
+      img {
+        width: 150px;
+      }
+    }
+    .info-card {
+      margin-left: 50px;
+      h3 {
+        font-size: 0.9rem;
+      }
+      .info {
+        width: 40%;
+      }
+      .popular,
+      .price {
+        font-size: 0.7rem;
+      }
+      .buttons {
+        flex-direction: column;
+        button {
+          width: 75px;
+          height: 25px;
+          font-size: 0.7rem;
+          margin: auto 15px auto 0;
+          padding: 0;
+        }
+      }
+    }
+  }
+  @media (max-width: 480px) {
+    flex-direction: column;
+    height: 350px;
+    .image {
+      width: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 20px 20px 0 0;
       }
     }
   }
