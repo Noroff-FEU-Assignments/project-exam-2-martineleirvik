@@ -33,7 +33,6 @@ export default PopularBookingInfo;
 
 const SyledCard = styled.div`
   background-color: white;
-
   margin: 10px;
   border: 1px solid #eb8c6a;
   border-radius: 15px;

@@ -57,28 +57,16 @@ function Booking() {
     <>
       <Heading heading="Booking" />
       <StyledFilterBtns>
-        {activeButton === "all" ? (
-          <StyledActiveBtn onClick={() => setFilterBtn("bookings?populate=*")}>
-            All
-          </StyledActiveBtn>
-        ) : (
-          <StyledNormalBtn>All</StyledNormalBtn>
-        )}
-
-        {activeButton === "hotels" ? (
-          <StyledActiveBtn
-            onClick={() =>
-              setFilterBtn(
-                "categories/1?fields=name&populate[bookings][populate][0]=image"
-              )
-            }
-          >
-            Hotels
-          </StyledActiveBtn>
-        ) : (
-          <StyledNormalBtn>Hotel</StyledNormalBtn>
-        )}
-
+        <button onClick={() => setFilterBtn("bookings?populate=*")}>All</button>
+        <button
+          onClick={() =>
+            setFilterBtn(
+              "categories/1?fields=name&populate[bookings][populate][0]=image"
+            )
+          }
+        >
+          Hotels
+        </button>
         <button
           onClick={() =>
             setFilterBtn(

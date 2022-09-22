@@ -124,9 +124,10 @@ const StyledBookingInfo = styled.div`
     height: 100%;
     .image {
       width: 100%;
+      height: 200px;
       img {
         width: 100%;
-        height: 100%;
+        object-fit: cover;
         border-radius: 20px 20px 0 0;
       }
     }
