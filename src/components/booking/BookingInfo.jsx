@@ -36,9 +36,10 @@ export default BookingInfo;
 // styled components
 
 const StyledBookingInfo = styled.div`
-  border: 1px solid #eb8c6a;
+  border: 1px solid ${(props) => props.theme.secondaryColor};
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   margin: 10px;
-  background-color: white;
+  background-color: ${(props) => props.theme.white};
   display: flex;
   height: 150px;
   border-radius: 20px;
