@@ -67,28 +67,21 @@ function SearchInputv2() {
         }}
       />
       <FontAwesomeIcon className="glass" icon={faMagnifyingGlass} />
-      <div className="search-result">
+      <StyledSearchResult>
         {suggestions &&
           suggestions.map((search) => (
-            <StyledSearchContainer>
+            <div>
               <Link className="search-dropdown" to={`/booking/${search.id}`}>
-                <div key={search.id} className="search-result-container">
-                  {search.attributes.name}
-                </div>
+                <div key={search.id}>{search.attributes.name}</div>
               </Link>
-            </StyledSearchContainer>
+            </div>
           ))}
-      </div>
+      </StyledSearchResult>
     </Container>
   );
 }
 
 export default SearchInputv2;
-
-const StyledSearchContainer = styled.div`
-  .search-result-container {
-  }
-`;
 
 const Container = styled.div`
   position: relative;
@@ -131,4 +124,19 @@ const StyledInput = styled.input`
   padding-left: 20px;
   appearance: none;
   display: ${(props) => (props.showSearchInput ? "block" : "none")};
+`;
+
+const StyledSearchContainer = styled.div``;
+
+const StyledSearchResult = styled.div`
+  position: absolute;
+  width: 100%;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  background-color: ${(props) => props.theme.white};
+  overflow-y: visible;
+  div {
+    margin: 10px 0;
+  }
 `;
