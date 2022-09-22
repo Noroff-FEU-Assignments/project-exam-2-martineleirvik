@@ -1,7 +1,6 @@
 import { useState, useRef } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import styled, { css } from "styled-components";
@@ -23,7 +22,6 @@ function SearchInputv2() {
         const response = await axios.get(baseUrl + "bookings");
         const results = response.data.data;
         setBookings(results);
-        console.log(results);
       } catch (error) {
         console.log(error);
       }
@@ -40,7 +38,6 @@ function SearchInputv2() {
         return booking.attributes.name.match(regex);
       });
     }
-    console.log(matches);
     setSuggestions(matches);
     setText(text);
   };
@@ -71,7 +68,7 @@ function SearchInputv2() {
         {suggestions &&
           suggestions.map((search) => (
             <div>
-              <Link className="search-dropdown" to={`/booking/${search.id}`}>
+              <Link to={`/booking/${search.id}`} className="search-dropdown">
                 <div key={search.id}>{search.attributes.name}</div>
               </Link>
             </div>
@@ -99,7 +96,6 @@ const Container = styled.div`
     hover &&
     css`
       width: 100%;
-      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
       border: 2px solid ${(props) => props.theme.secondaryColor};
     `}
   path {
@@ -126,17 +122,32 @@ const StyledInput = styled.input`
   display: ${(props) => (props.showSearchInput ? "block" : "none")};
 `;
 
-const StyledSearchContainer = styled.div``;
-
 const StyledSearchResult = styled.div`
   position: absolute;
   width: 100%;
-  top: 20px;
+  max-height: 250px;
+  top: 33px;
   display: flex;
   flex-direction: column;
   background-color: ${(props) => props.theme.white};
-  overflow-y: visible;
+  border: 2px solid ${(props) => props.theme.primaryColor};
+  overflow-y: scroll;
   div {
-    margin: 10px 0;
+    margin: 5px 0;
+    padding-left: 5px;
+    text-align: left;
+    z-index: 1;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #b4b4b4;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #787878;
   }
 `;
