@@ -12,7 +12,9 @@ function BookingInfo({ id, name, price, popular, image }) {
       </div>
       <div className="info-card">
         <div className="info">
-          <h3>{name}</h3>
+          <h3>
+            <Link to={`/booking/${id}`}>{name}</Link>
+          </h3>
           <IfPopular popular={popular} />
           <p className="price">{price}kr</p>
         </div>
@@ -56,6 +58,10 @@ const StyledBookingInfo = styled.div`
 
     h3 {
       margin: 10px 0;
+      a {
+        color: ${(props) => props.theme.fontColor};
+        text-decoration: none;
+      }
     }
     .popular {
       font-style: italic;
@@ -115,13 +121,31 @@ const StyledBookingInfo = styled.div`
   }
   @media (max-width: 480px) {
     flex-direction: column;
-    height: 350px;
+    height: 100%;
     .image {
       width: 100%;
       img {
         width: 100%;
         height: 100%;
         border-radius: 20px 20px 0 0;
+      }
+    }
+    .info-card {
+      display: flex;
+      flex-direction: column;
+      margin: 0 0 20px 0;
+      width: 100%;
+      .info {
+        width: 100%;
+        margin-left: 20px;
+        h3 {
+          flex-wrap: wrap;
+        }
+      }
+      .buttons {
+        display: flex;
+        flex-direction: row;
+        margin: 0 auto;
       }
     }
   }

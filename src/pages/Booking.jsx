@@ -131,6 +131,9 @@ export default Booking;
 
 const StyledBookingContainer = styled.div`
   margin: 0 50px;
+  @media (max-width: 480px) {
+    margin: 0 20px;
+  }
 `;
 
 const StyledFilterBtns = styled.div`
