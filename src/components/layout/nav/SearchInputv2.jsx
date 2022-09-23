@@ -27,7 +27,7 @@ function SearchInputv2() {
       }
     }
     fetchData();
-  }, [showSearchInput]);
+  }, []);
 
   const onChangeHandler = (text) => {
     let matches = [];
@@ -58,7 +58,7 @@ function SearchInputv2() {
         onBlur={() => {
           setTimeout(() => {
             setSuggestions([]);
-            text("");
+            setText("");
           }, 100);
         }}
       />
