@@ -18,7 +18,10 @@ const schema = yup.object().shape({
     .string()
     .email("Invalid email")
     .required("Please enter your email"),
-  message: yup.string().min(20).required("Minimum 20 characters"),
+  message: yup
+    .string()
+    .min(20, "Minimum 20 characters")
+    .required("Minimum 20 characters"),
 });
 
 function Contact() {
@@ -107,21 +110,22 @@ const StyledForm = styled.form`
     border-radius: 15px;
     margin-top: 10px;
     div {
-      margin: 5px 0;
+      margin: 7px 0;
       display: flex;
       flex-direction: column;
       input {
-        margin: 7px 0;
+        margin: 7px 0 0 0;
         border: 1px solid ${(props) => props.theme.footer};
       }
       textarea {
-        margin: 7px 0;
+        margin: 7px 0 0 0;
         height: 100px;
         border: 1px solid ${(props) => props.theme.footer};
       }
     }
     button {
       width: 100%;
+      margin-top: 15px;
     }
   }
 `;

@@ -19,11 +19,14 @@ const schema = yup.object().shape({
   name: yup.string().required("Name of accomodation"),
   image: yup.mixed().required("Place an image"),
   popular: yup.boolean().oneOf([false, true]),
-  price: yup.number().required("Price of accomodation"),
+  price: yup
+    .number()
+    .typeError("Price of accommodation")
+    .required("Price of accomodation"),
   description: yup.string().required("Description of accomodation"),
   shortdescription: yup
     .string()
-    .max(100)
+    .max(100, "Max 100 characters")
     .required("One line of description that goes in the frontpage"),
   category: yup.string().required("Select one category"),
 });
@@ -140,6 +143,7 @@ export default function NewEstablishment() {
               onChange={(e) => setSelectDropdown(e.target.value)}
               {...register("category")}
             >
+              <option></option>
               <option value="1">Hotel</option>
               <option value="2">Bed and Breakfast</option>
               <option value="3">Guesthouse</option>
@@ -181,7 +185,7 @@ const StyledForm = styled.form`
       }
     }
     div {
-      margin: 5px 0;
+      margin: 7px 0;
       display: flex;
       flex-direction: column;
       input,
@@ -197,7 +201,7 @@ const StyledForm = styled.form`
     }
     button {
       width: 100%;
-      margin-top: 30px;
+      margin-top: 15px;
     }
     .date-container {
       display: flex;

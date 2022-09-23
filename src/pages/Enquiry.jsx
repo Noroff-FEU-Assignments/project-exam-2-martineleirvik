@@ -17,9 +17,12 @@ const schema = yup.object().shape({
   accommodationName: yup.string(),
   name: yup.string().required("Enter your name"),
   email: yup.string().email("Invalid email").required("Enter your email"),
-  message: yup.string().min(20).required("Minimum 20 characters"),
-  dateFrom: yup.date().required("Enter a date"),
-  dateTo: yup.date().required("Enter a date"),
+  message: yup
+    .string("Minimum 20 characters")
+    .min(20, "Minimum 20 characters")
+    .required("Minimum 20"),
+  dateFrom: yup.date().typeError("Enter a date").required(),
+  dateTo: yup.date().typeError("Enter a date").required(),
 });
 
 function Enquiry() {
@@ -152,13 +155,14 @@ const StyledForm = styled.form`
         border: 1px solid ${(props) => props.theme.footer};
       }
       textarea {
-        margin: 7px 0;
+        margin: 7px 0 0 0;
         height: 100px;
         border: 1px solid ${(props) => props.theme.footer};
       }
     }
     button {
       width: 100%;
+      margin-top: 10px;
     }
     .date-container {
       display: flex;
