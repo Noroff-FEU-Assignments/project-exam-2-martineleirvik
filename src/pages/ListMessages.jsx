@@ -41,9 +41,10 @@ function ListMessages() {
       <StyledContainer>
         <ul className="messages">
           <p className="name">Name:</p>
+          <p></p>
           {messages.map((data) => {
             const { id } = data;
-            const { name, message, email } = data.attributes;
+            const { name, message, email, createdAt } = data.attributes;
             return (
               <Message
                 key={id}
@@ -51,6 +52,7 @@ function ListMessages() {
                 name={name}
                 message={message}
                 email={email}
+                createdAt={createdAt}
               />
             );
           })}

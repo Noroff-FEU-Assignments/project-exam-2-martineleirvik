@@ -5,25 +5,22 @@ import {
   faChevronDown,
   faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
+import moment from "moment";
 
-function Message({ id, name, email, message }) {
+function Message({ id, name, email, message, createdAt }) {
   const [show, setShow] = useState(false);
   return (
     <StyledMessage key={id}>
       <div className="message-container">
         <li onClick={() => setShow(!show)}>{name}</li>
-        <p onClick={() => setShow(!show)}>
-          <FontAwesomeIcon
-            className="icon"
-            icon={show ? faChevronLeft : faChevronDown}
-          />
-        </p>
+        <p onClick={() => setShow(!show)}>{moment(createdAt).calendar()}</p>
       </div>
 
       {show ? (
         <div className="message-expanded">
           <p id="data">Email: {email}</p>
           <p>{message}</p>
+          <p></p>
         </div>
       ) : null}
     </StyledMessage>
