@@ -6,7 +6,7 @@ import bergenVideo from "../images/bergen.mp4";
 import Heading from "../components/layout/Heading";
 import PopularHotels from "../components/home/PopularHotels";
 import BergenInfo from "../components/home/BergenInfo";
-import Footer from "../components/layout/Footer";
+import Footer from "../components/layout/footer/Footer";
 // styles
 import styled from "styled-components";
 

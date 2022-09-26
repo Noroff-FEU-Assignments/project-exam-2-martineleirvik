@@ -5,6 +5,7 @@ import Loader from "../components/layout/loader/Loader";
 import Heading from "../components/layout/Heading";
 import EnquiryDetail from "../components/listenquiry/EnquiryDetail";
 import styled from "styled-components";
+import Footer from "../components/layout/footer/Footer";
 
 const url = baseUrl + "enquiries";
 
@@ -64,6 +65,7 @@ function ListEnquries() {
           })}
         </ul>
       </StyledContainer>
+      <Footer />
     </>
   );
 }

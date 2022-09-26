@@ -127,7 +127,8 @@ export default Navbar;
 
 const StyledNavBar = styled.nav`
   background-color: ${(props) => props.theme.primaryColor};
-  min-height: 10vh;
+  min-height: 80px;
+  height: 10vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -198,7 +199,6 @@ const StyledNavBar = styled.nav`
   }
 
   @media (max-width: 800px) {
-    min-height: 10vh;
     .menu-icon {
       display: block;
       position: absolute;

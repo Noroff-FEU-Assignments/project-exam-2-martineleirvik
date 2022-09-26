@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { baseUrl } from "../constants/api";
 // components
 import Heading from "../components/layout/Heading";
-import Footer from "../components/layout/Footer";
+import Footer from "../components/layout/footer/Footer";
 import Loader from "../components/layout/loader/Loader";
 import BookingInfo from "../components/booking/BookingInfo";
 //styles

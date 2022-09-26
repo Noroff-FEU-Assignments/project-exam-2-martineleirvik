@@ -11,7 +11,7 @@ import FormError, { ValidationError } from "../components/common/FormError";
 import { baseUrl } from "../constants/api";
 //styles
 import styled from "styled-components";
-import Footer from "../components/layout/Footer";
+import Footer from "../components/layout/footer/Footer";
 
 const url = baseUrl + "bookings?populate=*";
 
