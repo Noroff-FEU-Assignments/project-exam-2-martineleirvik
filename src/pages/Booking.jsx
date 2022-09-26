@@ -8,6 +8,7 @@ import BookingInfo from "../components/booking/BookingInfo";
 //styles
 import styled from "styled-components";
 import CatchError from "../components/common/CatchError";
+import { StyledContainer } from "../components/layout/StyledBody.styled";
 
 function Booking() {
   const [bookings, setBookings] = useState([]);
@@ -56,7 +57,7 @@ function Booking() {
   }
 
   return (
-    <>
+    <StyledContainer>
       <Heading heading="Booking" />
       <StyledFilterBtnsContainer>
         <StyledFilterBtn
@@ -127,9 +128,9 @@ function Booking() {
           );
         })}
       </StyledBookingContainer>
-      <button>Show more</button>
+      <StyledShowMoreButton>Show more</StyledShowMoreButton>
       <Footer />
-    </>
+    </StyledContainer>
   );
 }
 
@@ -169,14 +170,7 @@ const StyledFilterBtn = styled.button`
   }
 `;
 
-const StyledActiveBtn = styled.button`
-  background-color: ${(props) => props.theme.white};
-  border: 1px solid ${(props) => props.theme.secondaryColor};
-  color: ${(props) => props.theme.secondaryColor};
-`;
-
-const StyledNormalBtn = styled.button`
-  background-color: ${(props) => props.theme.secondaryColor};
-  border: 1px solid ${(props) => props.theme.secondaryColor};
-  color: ${(props) => props.theme.white};
+const StyledShowMoreButton = styled.button`
+  width: 100px;
+  margin: 20px auto;
 `;

@@ -15,6 +15,8 @@ import { baseUrl } from "../constants/api";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import Footer from "../components/layout/footer/Footer";
+import { StyledContainer } from "../components/layout/StyledBody.styled";
 
 const url = baseUrl + "messages";
 
@@ -69,7 +71,7 @@ function Contact() {
     }
   }
   return (
-    <>
+    <StyledContainer>
       <Heading heading="Contact us" />
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         {serverError && <FormError>{serverError}</FormError>}
@@ -103,7 +105,8 @@ function Contact() {
           <button>{submitting ? "Submitting..." : "Submit"}</button>
         </fieldset>
       </StyledForm>
-    </>
+      <Footer />
+    </StyledContainer>
   );
 }
 
@@ -114,7 +117,7 @@ const StyledForm = styled.form`
   flex-direction: column;
   justify-content: center;
   margin: 10px auto;
-  max-width: 400px;
+  width: 400px;
   fieldset {
     background-color: ${(props) => props.theme.white};
     padding: 25px 40px;
@@ -139,5 +142,9 @@ const StyledForm = styled.form`
       width: 100%;
       margin-top: 15px;
     }
+  }
+  @media (max-width: 450px) {
+    width: 280px;
+    margin: 10px auto;
   }
 `;

@@ -7,6 +7,7 @@ import Message from "../components/listmessages/Message";
 import styled from "styled-components";
 import CatchError from "../components/common/CatchError";
 import Footer from "../components/layout/footer/Footer";
+import { StyledContainer } from "../components/layout/StyledBody.styled";
 
 const url = baseUrl + "messages?sort=createdAt:desc";
 
@@ -38,10 +39,9 @@ function ListMessages() {
   if (error) return <CatchError>ERROR: {error}</CatchError>;
 
   return (
-    <>
+    <StyledContainer>
       <Heading heading="List of Messages" />
-
-      <StyledContainer>
+      <StyledUl>
         <ul className="messages">
           <div className="top-info">
             <p className="from">From:</p>
@@ -62,17 +62,17 @@ function ListMessages() {
             );
           })}
         </ul>
-      </StyledContainer>
+      </StyledUl>
       <Footer />
-    </>
+    </StyledContainer>
   );
 }
 
 export default ListMessages;
 
-const StyledContainer = styled.div`
-  max-width: 500px;
-  margin: 20px auto;
+const StyledUl = styled.div`
+  width: 500px;
+  margin: 20px auto 50px auto;
   .top-info {
     display: flex;
     margin-bottom: 10px;

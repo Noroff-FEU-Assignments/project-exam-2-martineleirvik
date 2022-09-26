@@ -9,16 +9,17 @@ import BergenInfo from "../components/home/BergenInfo";
 import Footer from "../components/layout/footer/Footer";
 // styles
 import styled from "styled-components";
+import { StyledContainer } from "../components/layout/StyledBody.styled";
 
 function Homepage() {
   return (
-    <>
+    <StyledContainer>
       <StyledImage
         id="homepage-image"
         src={frontpageImage}
         alt="View over the pier in Bergen"
       />
-      <StyledContainer>
+      <StyledHomepage>
         <StyledVisitBergen>
           <Heading heading="Visit Bergen" />
           <p>
@@ -32,9 +33,9 @@ function Homepage() {
         <PopularHotels />
         <StyledVideo src={bergenVideo} autoPlay loop muted />
         <BergenInfo />
-      </StyledContainer>
+      </StyledHomepage>
       <Footer />
-    </>
+    </StyledContainer>
   );
 }
 
@@ -48,7 +49,7 @@ const StyledImage = styled.img`
   object-fit: cover;
 `;
 
-const StyledContainer = styled.div`
+const StyledHomepage = styled.div`
   display: flex;
   flex-direction: column;
 `;

@@ -12,10 +12,12 @@ import {
   FormSuccess,
 } from "../components/common/FormMessages";
 import { baseUrl } from "../constants/api";
+import Footer from "../components/layout/footer/Footer";
 // styles
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { StyledContainer } from "../components/layout/StyledBody.styled";
 
 const url = baseUrl + "enquiries";
 
@@ -75,7 +77,7 @@ function Enquiry() {
   }
 
   return (
-    <>
+    <StyledContainer>
       <Heading heading="Make an enquiry" />
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         {serverError && <FormError>{serverError}</FormError>}
@@ -140,7 +142,8 @@ function Enquiry() {
           <button>{submitting ? "Submitting..." : "Submit"}</button>
         </fieldset>
       </StyledForm>
-    </>
+      <Footer />
+    </StyledContainer>
   );
 }
 
@@ -151,7 +154,7 @@ const StyledForm = styled.form`
   flex-direction: column;
   justify-content: center;
   margin: 10px auto;
-  max-width: 500px;
+  width: 500px;
   fieldset {
     background-color: ${(props) => props.theme.white};
     padding: 25px 40px;
@@ -187,5 +190,17 @@ const StyledForm = styled.form`
         }
       }
     }
+  }
+  @media (max-width: 600px) {
+    width: 400px;
+    margin: 10px auto;
+  }
+  @media (max-width: 500px) {
+    width: 350px;
+    margin: 10px auto;
+  }
+  @media (max-width: 400px) {
+    width: 280px;
+    margin: 10px auto;
   }
 `;

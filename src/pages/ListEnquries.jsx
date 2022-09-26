@@ -7,6 +7,7 @@ import EnquiryDetail from "../components/listenquiry/EnquiryDetail";
 import styled from "styled-components";
 import Footer from "../components/layout/footer/Footer";
 import CatchError from "../components/common/CatchError";
+import { StyledContainer } from "../components/layout/StyledBody.styled";
 
 const url = baseUrl + "enquiries?sort=createdAt:desc";
 console.log(url);
@@ -39,9 +40,9 @@ function ListEnquries() {
   if (error) return <CatchError>ERROR: {error}</CatchError>;
 
   return (
-    <>
+    <StyledContainer>
       <Heading heading="List of enquiries" />
-      <StyledContainer>
+      <StyledUl>
         <ul className="enquiry">
           <div className="top-info">
             <p className="accommodation">Accommodation:</p>
@@ -73,17 +74,17 @@ function ListEnquries() {
             );
           })}
         </ul>
-      </StyledContainer>
+      </StyledUl>
       <Footer />
-    </>
+    </StyledContainer>
   );
 }
 
 export default ListEnquries;
 
-const StyledContainer = styled.ul`
-  max-width: 500px;
-  margin: 20px auto;
+const StyledUl = styled.ul`
+  width: 500px;
+  margin: 20px auto 50px auto;
   .top-info {
     display: flex;
     margin-bottom: 10px;

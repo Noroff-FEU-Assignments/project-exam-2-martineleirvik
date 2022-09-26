@@ -7,6 +7,8 @@ import IfPopular from "../components/booking/IfPopular";
 //styles
 import styled from "styled-components";
 import CatchError from "../components/common/CatchError";
+import Footer from "../components/layout/footer/Footer";
+import { StyledContainer } from "../components/layout/StyledBody.styled";
 
 function Spesific() {
   const [bookingDetail, setBookingDetail] = useState(null);
@@ -54,25 +56,28 @@ function Spesific() {
   }
 
   return (
-    <StyledBookingDetail>
-      <h1>{bookingDetail.attributes.name}</h1>
-      <p>{bookingDetail.attributes.category.data.attributes.name}</p>
-      <img
-        src={
-          bookingDetail.attributes.image.data[0].attributes.formats.medium.url
-        }
-        alt={bookingDetail.attributes.name}
-      />
-      <IfPopular popular={bookingDetail.attributes.popular} />
-      <p>{bookingDetail.attributes.price}kr</p>
-      <p>{bookingDetail.attributes.description}</p>
+    <StyledContainer>
+      <StyledBookingDetail>
+        <h1>{bookingDetail.attributes.name}</h1>
+        <p>{bookingDetail.attributes.category.data.attributes.name}</p>
+        <img
+          src={
+            bookingDetail.attributes.image.data[0].attributes.formats.medium.url
+          }
+          alt={bookingDetail.attributes.name}
+        />
+        <IfPopular popular={bookingDetail.attributes.popular} />
+        <p>{bookingDetail.attributes.price}kr</p>
+        <p>{bookingDetail.attributes.description}</p>
 
-      <button>
-        <Link to={`/enquiry/${bookingDetail.attributes.name}`}>
-          Make an enquiry
-        </Link>
-      </button>
-    </StyledBookingDetail>
+        <button>
+          <Link to={`/enquiry/${bookingDetail.attributes.name}`}>
+            Make an enquiry
+          </Link>
+        </button>
+      </StyledBookingDetail>
+      <Footer />
+    </StyledContainer>
   );
 }
 

@@ -2,14 +2,15 @@
 import Footer from "../components/layout/footer/Footer";
 import Heading from "../components/layout/Heading";
 import LoginForm from "../components/login/LoginForm";
+import { StyledContainer } from "../components/layout/StyledBody.styled";
 
 function Login() {
   return (
-    <div className="container">
+    <StyledContainer>
       <Heading heading="Login" />
       <LoginForm />
       <Footer />
-    </div>
+    </StyledContainer>
   );
 }
 

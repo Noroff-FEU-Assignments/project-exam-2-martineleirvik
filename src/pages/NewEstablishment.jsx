@@ -19,6 +19,7 @@ import Footer from "../components/layout/footer/Footer";
 import getUsername from "../components/utils/storage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { StyledContainer } from "../components/layout/StyledBody.styled";
 
 const url = baseUrl + "bookings?populate=*";
 
@@ -94,7 +95,7 @@ export default function NewEstablishment() {
     }
   }
   return (
-    <>
+    <StyledContainer>
       <Heading heading="New establishment" />
       <StyledForm onSubmit={handleSubmit(submitEstablish)}>
         {serverError && <FormError>{serverError}</FormError>}
@@ -173,16 +174,13 @@ export default function NewEstablishment() {
         </fieldset>
       </StyledForm>
       <Footer />
-    </>
+    </StyledContainer>
   );
 }
 
 const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 10px auto;
-  max-width: 500px;
+  margin: 10px auto 50px auto;
+  width: 500px;
   fieldset {
     background-color: ${(props) => props.theme.white};
     padding: 25px 40px;
@@ -210,7 +208,7 @@ const StyledForm = styled.form`
       }
       textarea {
         margin: 7px 0 0 0;
-        height: 100px;
+        height: 120px;
         border: 1px solid ${(props) => props.theme.footer};
       }
     }
@@ -218,10 +216,15 @@ const StyledForm = styled.form`
       width: 100%;
       margin-top: 15px;
     }
-    .date-container {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-evenly;
+  }
+
+  @media (max-width: 600px) {
+    width: 400px;
+  }
+  @media (max-width: 450px) {
+    width: 280px;
+    fieldset {
+      padding: 20px 15px;
     }
   }
 `;
