@@ -12,3 +12,13 @@ export const StyledValidationError = styled.div`
   color: ${(props) => props.theme.error};
   font-size: 0.7rem;
 `;
+
+export const StyledSucces = styled.div`
+  text-align: center;
+  svg {
+    font-size: 2rem;
+  }
+  path {
+    color: #1e8d1e;
+  }
+`;

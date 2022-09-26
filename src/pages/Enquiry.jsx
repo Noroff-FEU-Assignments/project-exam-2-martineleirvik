@@ -6,10 +6,16 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 // components
 import Heading from "../components/layout/Heading";
-import FormError, { ValidationError } from "../components/common/FormError";
+import {
+  ValidationError,
+  FormError,
+  FormSuccess,
+} from "../components/common/FormMessages";
 import { baseUrl } from "../constants/api";
 // styles
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
 const url = baseUrl + "enquiries";
 
@@ -28,6 +34,7 @@ const schema = yup.object().shape({
 function Enquiry() {
   const [submitting, setSubmitting] = useState(false);
   const [serverError, setServerError] = useState(null);
+  const [success, setsuccess] = useState(false);
 
   const {
     register,
@@ -57,7 +64,7 @@ function Enquiry() {
       if (response.data) {
         reset();
       }
-
+      setsuccess(true);
       console.log("response", response.data);
     } catch (error) {
       console.log("error", error);
@@ -73,6 +80,11 @@ function Enquiry() {
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         {serverError && <FormError>{serverError}</FormError>}
         <fieldset disabled={submitting}>
+          {success && (
+            <FormSuccess>
+              <FontAwesomeIcon icon={faCircleCheck} />
+            </FormSuccess>
+          )}
           <div>
             <label>Accommodation name:</label>
             <input

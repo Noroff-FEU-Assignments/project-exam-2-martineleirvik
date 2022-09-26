@@ -6,7 +6,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { baseUrl, tokenPath } from "../../constants/api";
 // components
-import FormError, { ValidationError } from "../common/FormError";
+import { ValidationError, FormError } from "../common/FormMessages";
 import AuthContext from "../context/AuthContext";
 // styles
 import styled from "styled-components";

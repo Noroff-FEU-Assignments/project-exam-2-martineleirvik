@@ -7,11 +7,18 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Heading from "../components/layout/Heading";
 import AuthContext from "../components/context/AuthContext";
 import useAxios from "../components/hooks/useAxios";
-import FormError, { ValidationError } from "../components/common/FormError";
+import {
+  ValidationError,
+  FormError,
+  FormSuccess,
+} from "../components/common/FormMessages.jsx";
 import { baseUrl } from "../constants/api";
 //styles
 import styled from "styled-components";
 import Footer from "../components/layout/footer/Footer";
+import getUsername from "../components/utils/storage";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
 const url = baseUrl + "bookings?populate=*";
 
@@ -36,6 +43,7 @@ export default function NewEstablishment() {
   const [serverError, setServerError] = useState(null);
   const [selectDropdown, setSelectDropdown] = useState();
   const [selectedFile, setSelectedFile] = useState();
+  const [success, setsuccess] = useState(false);
   const [auth] = useContext(AuthContext);
   const {
     register,
@@ -77,6 +85,7 @@ export default function NewEstablishment() {
       console.log("response", json);
       reset();
       setSubmitting(json);
+      setsuccess(true);
     } catch (error) {
       console.log("error", error);
       setServerError(error.toString());
@@ -90,6 +99,11 @@ export default function NewEstablishment() {
       <StyledForm onSubmit={handleSubmit(submitEstablish)}>
         {serverError && <FormError>{serverError}</FormError>}
         <fieldset disabled={submitting}>
+          {success && (
+            <FormSuccess>
+              <FontAwesomeIcon icon={faCircleCheck} />
+            </FormSuccess>
+          )}
           <div>
             <label>Name of accommodation:</label>
             <input type="text" {...register("name")} />

@@ -5,10 +5,16 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 // components
 import Heading from "../components/layout/Heading";
-import FormError, { ValidationError } from "../components/common/FormError";
+import {
+  ValidationError,
+  FormError,
+  FormSuccess,
+} from "../components/common/FormMessages";
 import { baseUrl } from "../constants/api";
 // styles
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
 const url = baseUrl + "messages";
 
@@ -27,6 +33,7 @@ const schema = yup.object().shape({
 function Contact() {
   const [submitting, setSubmitting] = useState(false);
   const [serverError, setServerError] = useState(null);
+  const [success, setsuccess] = useState(false);
 
   const {
     register,
@@ -52,8 +59,8 @@ function Contact() {
       if (response.data) {
         reset();
       }
-
       console.log("response", response.data);
+      setsuccess(true);
     } catch (error) {
       console.log("error", error);
       setServerError(error.toString());
@@ -67,6 +74,11 @@ function Contact() {
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         {serverError && <FormError>{serverError}</FormError>}
         <fieldset disabled={submitting}>
+          {success && (
+            <FormSuccess>
+              <FontAwesomeIcon icon={faCircleCheck} />
+            </FormSuccess>
+          )}
           <div>
             <label>Your name:</label>
             <input type="name" {...register("name")} />
@@ -82,7 +94,7 @@ function Contact() {
             )}
           </div>
           <div>
-            <label>Message:</label>
+            <label>Message (minimum 20 characters):</label>
             <textarea type="message" {...register("message")} />
             {errors && errors.message && (
               <ValidationError>{errors.message.message}</ValidationError>
