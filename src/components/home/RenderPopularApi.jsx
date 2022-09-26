@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 // components
 import { baseUrl } from "../../constants/api";
 import PopularBookingInfo from "./PopularBookingInfo";
+import CatchError from "../common/CatchError";
 // styles
 import Loader from "../layout/loader/Loader";
 import styled from "styled-components";
@@ -44,7 +45,7 @@ function RenderPopularApi() {
     return <Loader />;
   }
   if (error) {
-    return <div>ERROR: {error}</div>;
+    return <CatchError>ERROR: {error}</CatchError>;
   }
 
   return (

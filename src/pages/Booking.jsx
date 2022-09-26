@@ -7,6 +7,7 @@ import Loader from "../components/layout/loader/Loader";
 import BookingInfo from "../components/booking/BookingInfo";
 //styles
 import styled from "styled-components";
+import CatchError from "../components/common/CatchError";
 
 function Booking() {
   const [bookings, setBookings] = useState([]);
@@ -51,7 +52,7 @@ function Booking() {
     return <Loader />;
   }
   if (error) {
-    return <div>ERROR: {error}</div>;
+    return <CatchError>ERROR: {error}</CatchError>;
   }
 
   return (

@@ -6,6 +6,7 @@ import Heading from "../components/layout/Heading";
 import EnquiryDetail from "../components/listenquiry/EnquiryDetail";
 import styled from "styled-components";
 import Footer from "../components/layout/footer/Footer";
+import CatchError from "../components/common/CatchError";
 
 const url = baseUrl + "enquiries";
 
@@ -24,6 +25,7 @@ function ListEnquries() {
         setEnquiry(response.data.data);
       } catch (error) {
         console.log("error", error);
+        setError(error.toString());
       } finally {
         setLoading(false);
       }
@@ -33,7 +35,7 @@ function ListEnquries() {
 
   if (loading) return <Loader />;
 
-  if (error) return <div>{error}</div>;
+  if (error) return <CatchError>ERROR: {error}</CatchError>;
 
   return (
     <>

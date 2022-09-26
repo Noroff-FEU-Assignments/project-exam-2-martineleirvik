@@ -5,6 +5,7 @@ import Loader from "../components/layout/loader/Loader";
 import Heading from "../components/layout/Heading";
 import Message from "../components/listmessages/Message";
 import styled from "styled-components";
+import CatchError from "../components/common/CatchError";
 
 const url = baseUrl + "messages";
 
@@ -23,6 +24,7 @@ function ListMessages() {
         setMessages(response.data.data);
       } catch (error) {
         console.log("error", error);
+        setError(error.toString());
       } finally {
         setLoading(false);
       }
@@ -32,7 +34,7 @@ function ListMessages() {
 
   if (loading) return <Loader />;
 
-  if (error) return <div>{error}</div>;
+  if (error) return <CatchError>ERROR: {error}</CatchError>;
 
   return (
     <>
