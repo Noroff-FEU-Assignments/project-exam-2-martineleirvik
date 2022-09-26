@@ -75,6 +75,7 @@ export default function NewEstablishment() {
       const response = await fetch(url, options);
       const json = await response.json();
       console.log("response", json);
+      reset();
       setSubmitting(json);
     } catch (error) {
       console.log("error", error);
