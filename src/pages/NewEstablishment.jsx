@@ -17,7 +17,7 @@ const url = baseUrl + "bookings?populate=*";
 
 const schema = yup.object().shape({
   name: yup.string().required("Name of accomodation"),
-  image: yup.mixed().required("Place an image"),
+  image: yup.mixed().required("Add an image"),
   popular: yup.boolean().oneOf([false, true]),
   price: yup
     .number()

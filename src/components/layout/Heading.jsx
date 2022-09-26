@@ -1,13 +1,7 @@
-import styled from "styled-components";
+import { StyledHeading } from "./Heading.styled";
 
 function Heading({ heading }) {
   return <StyledHeading>{heading}</StyledHeading>;
 }
 
 export default Heading;
-
-// Styled components
-
-const StyledHeading = styled.h1`
-  text-align: center;
-`;

@@ -6,6 +6,7 @@ import Heading from "../components/layout/Heading";
 import Message from "../components/listmessages/Message";
 import styled from "styled-components";
 import CatchError from "../components/common/CatchError";
+import Footer from "../components/layout/footer/Footer";
 
 const url = baseUrl + "messages";
 
@@ -60,6 +61,7 @@ function ListMessages() {
           })}
         </ul>
       </StyledContainer>
+      <Footer />
     </>
   );
 }

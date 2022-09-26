@@ -44,7 +44,7 @@ export default Homepage;
 
 const StyledImage = styled.img`
   width: 100%;
-  height: 450px;
+  max-height: 460px;
   object-fit: cover;
 `;
 
