@@ -69,6 +69,7 @@ const StyledEnquiryContainer = styled.div`
   li {
     font-weight: bold;
     width: 50%;
+    list-style-type: circle;
   }
   .createdAt {
     width: 45%;
