@@ -11,11 +11,9 @@ export default function BergenInfoItem({ heading, text, id }) {
 
   return (
     <StyledData key={id}>
-      <div className="original-text">
-        <h2 id="data-heading" onClick={() => setShow(!show)}>
-          {heading}
-        </h2>
-        <p onClick={() => setShow(!show)}>
+      <div className="original-text" onClick={() => setShow(!show)}>
+        <h2>{heading}</h2>
+        <p>
           <FontAwesomeIcon
             className="icon"
             icon={show ? faChevronLeft : faChevronDown}
@@ -34,14 +32,11 @@ const StyledData = styled.div`
   .original-text {
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
     h2 {
       font-size: 1.2rem;
       font-weight: normal;
       margin: 10px 0;
-      cursor: pointer;
-    }
-    .icon {
-      cursor: pointer;
     }
   }
   #data {
