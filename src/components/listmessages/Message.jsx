@@ -11,17 +11,26 @@ function Message({ id, name, email, message, createdAt }) {
   const [show, setShow] = useState(false);
   return (
     <StyledMessage key={id}>
-      <div className="message-container">
-        <li onClick={() => setShow(!show)}>{name}</li>
-        <p onClick={() => setShow(!show)}>{moment(createdAt).calendar()}</p>
-      </div>
+      <StyledMessageContainer onClick={() => setShow(!show)}>
+        <li>{name}</li>
+        <p className="createdAt">{moment(createdAt).calendar()}</p>
+        <p className="arrow-down">
+          <FontAwesomeIcon
+            className="icon"
+            icon={show ? faChevronLeft : faChevronDown}
+          />
+        </p>
+      </StyledMessageContainer>
 
       {show ? (
-        <div className="message-expanded">
-          <p id="data">Email: {email}</p>
-          <p>{message}</p>
-          <p></p>
-        </div>
+        <StyledMessageExpanded>
+          <p id="data">
+            <span>Email:</span> {email}
+          </p>
+          <p>
+            <span>Message:</span> {message}
+          </p>
+        </StyledMessageExpanded>
       ) : null}
     </StyledMessage>
   );
@@ -35,20 +44,35 @@ const StyledMessage = styled.div`
   border-radius: 5px;
   background-color: ${(props) => props.theme.white};
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  .message-container {
-    display: flex;
-    justify-content: space-between;
-    li {
+`;
+
+const StyledMessageContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  li {
+    font-weight: bold;
+    width: 50%;
+  }
+  .createdAt {
+    width: 45%;
+  }
+  .arrow-down {
+    width: 5%;
+  }
+  @media (max-width: 550px) {
+    font-size: 0.8rem;
+  } ;
+`;
+
+const StyledMessageExpanded = styled.div`
+  p {
+    margin: 10px 0;
+    span {
       font-weight: bold;
-      cursor: pointer;
-    }
-    .icon {
-      cursor: pointer;
     }
   }
-  .message-expanded {
-    p {
-      margin: 10px 0;
-    }
-  }
+  @media (max-width: 550px) {
+    font-size: 0.8rem;
+  } ;
 `;

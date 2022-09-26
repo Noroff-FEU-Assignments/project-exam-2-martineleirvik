@@ -8,7 +8,7 @@ import styled from "styled-components";
 import CatchError from "../components/common/CatchError";
 import Footer from "../components/layout/footer/Footer";
 
-const url = baseUrl + "messages";
+const url = baseUrl + "messages?sort=createdAt:desc";
 
 function ListMessages() {
   const [messages, setMessages] = useState([]);
@@ -43,8 +43,10 @@ function ListMessages() {
 
       <StyledContainer>
         <ul className="messages">
-          <p className="name">Name:</p>
-          <p></p>
+          <div className="top-info">
+            <p className="from">From:</p>
+            <p className="recieved">Recieved:</p>
+          </div>
           {messages.map((data) => {
             const { id } = data;
             const { name, message, email, createdAt } = data.attributes;
@@ -69,12 +71,24 @@ function ListMessages() {
 export default ListMessages;
 
 const StyledContainer = styled.div`
-  max-width: 400px;
+  max-width: 500px;
   margin: 20px auto;
-  .name {
-    text-decoration: underline;
+  .top-info {
+    display: flex;
+    margin-bottom: 10px;
   }
-  @media (max-width: 450px) {
-    width: 260px;
+  .from,
+  .recieved {
+    text-decoration: underline;
+    width: 50%;
+  }
+  @media (max-width: 550px) {
+    width: 350px;
+    .top-info {
+      font-size: 0.8rem;
+    }
+  }
+  @media (max-width: 400px) {
+    width: 270px;
   } ;
 `;

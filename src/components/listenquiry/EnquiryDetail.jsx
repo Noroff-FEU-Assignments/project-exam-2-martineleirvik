@@ -5,6 +5,7 @@ import {
   faChevronDown,
   faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
+import moment from "moment";
 
 function EnquiryDetail({
   id,
@@ -14,25 +15,38 @@ function EnquiryDetail({
   message,
   dateTo,
   dateFrom,
+  createdAt,
 }) {
   const [show, setShow] = useState(false);
   return (
     <StyledEnquiry key={id}>
-      <div className="message-container">
-        <li onClick={() => setShow(!show)}>{accommodationName}</li>
-        <p onClick={() => setShow(!show)}>
+      <StyledEnquiryContainer onClick={() => setShow(!show)}>
+        <li>{accommodationName}</li>
+        <p className="createdAt">{moment(createdAt).calendar()}</p>
+        <p className="arrow-down">
           <FontAwesomeIcon
             className="icon"
             icon={show ? faChevronLeft : faChevronDown}
           />
         </p>
-      </div>
+      </StyledEnquiryContainer>
 
       {show ? (
-        <div className="message-expanded">
-          <p id="data">Email: {email}</p>
-          <p>{message}</p>
-        </div>
+        <StyledEnquiryExpanded>
+          <p>
+            <span>Name:</span> {name}
+          </p>
+          <span>Email:</span> {email}
+          <p>
+            <span>Message:</span> {message}
+          </p>
+          <p>
+            <span>Date from:</span> {dateFrom}
+          </p>
+          <p>
+            <span>Date to:</span> {dateTo}
+          </p>
+        </StyledEnquiryExpanded>
       ) : null}
     </StyledEnquiry>
   );
@@ -46,21 +60,35 @@ const StyledEnquiry = styled.div`
   border-radius: 5px;
   background-color: ${(props) => props.theme.white};
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+`;
 
-  .message-container {
-    display: flex;
-    justify-content: space-between;
-    li {
+const StyledEnquiryContainer = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  cursor: pointer;
+  li {
+    font-weight: bold;
+    width: 50%;
+  }
+  .createdAt {
+    width: 45%;
+  }
+  .arrow-down {
+    width: 5%;
+  }
+  @media (max-width: 550px) {
+    font-size: 0.8rem;
+  } ;
+`;
+
+const StyledEnquiryExpanded = styled.div`
+  p {
+    margin: 10px 0;
+    span {
       font-weight: bold;
-      cursor: pointer;
-    }
-    .icon {
-      cursor: pointer;
     }
   }
-  .message-expanded {
-    p {
-      margin: 10px 0;
-    }
-  }
+  @media (max-width: 550px) {
+    font-size: 0.8rem;
+  } ;
 `;
