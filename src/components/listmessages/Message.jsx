@@ -39,7 +39,7 @@ function Message({ id, name, email, message, createdAt }) {
 export default Message;
 
 const StyledMessage = styled.div`
-  margin: 4px auto;
+  margin: 7px auto;
   padding: 4px;
   border-radius: 5px;
   background-color: ${(props) => props.theme.white};

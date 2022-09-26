@@ -36,16 +36,20 @@ function EnquiryDetail({
           <p>
             <span>Name:</span> {name}
           </p>
-          <span>Email:</span> {email}
+          <p>
+            <span>Email:</span> {email}
+          </p>
           <p>
             <span>Message:</span> {message}
           </p>
-          <p>
-            <span>Date from:</span> {dateFrom}
-          </p>
-          <p>
-            <span>Date to:</span> {dateTo}
-          </p>
+          <div className="date">
+            <p>
+              <span>Date from:</span> {dateFrom}
+            </p>
+            <p id="last">
+              <span>Date to:</span> {dateTo}
+            </p>
+          </div>
         </StyledEnquiryExpanded>
       ) : null}
     </StyledEnquiry>
@@ -55,7 +59,7 @@ function EnquiryDetail({
 export default EnquiryDetail;
 
 const StyledEnquiry = styled.div`
-  margin: 4px auto;
+  margin: 7px auto;
   padding: 4px;
   border-radius: 5px;
   background-color: ${(props) => props.theme.white};
@@ -89,7 +93,21 @@ const StyledEnquiryExpanded = styled.div`
       font-weight: bold;
     }
   }
+  .date {
+    display: flex;
+    #last {
+      margin-left: 20px;
+    }
+  }
   @media (max-width: 550px) {
     font-size: 0.8rem;
+  }
+  @media (max-width: 400px) {
+    .date {
+      flex-direction: column;
+      #last {
+        margin: 0;
+      }
+    }
   } ;
 `;
