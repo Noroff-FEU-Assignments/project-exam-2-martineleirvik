@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { baseUrl } from "../constants/api";
 //components
-import Loader from "../components/layout/Loader";
+import Loader from "../components/layout/loader/Loader";
 import IfPopular from "../components/booking/IfPopular";
 //styles
 import styled from "styled-components";

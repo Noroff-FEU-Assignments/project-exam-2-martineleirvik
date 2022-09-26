@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { baseUrl } from "../constants/api";
 import useAxios from "../components/hooks/useAxios";
-import Loader from "../components/layout/Loader";
+import Loader from "../components/layout/loader/Loader";
 import Heading from "../components/layout/Heading";
 import EnquiryDetail from "../components/listenquiry/EnquiryDetail";
 import styled from "styled-components";

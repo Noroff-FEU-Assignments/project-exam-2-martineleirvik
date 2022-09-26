@@ -3,7 +3,7 @@ import { baseUrl } from "../constants/api";
 // components
 import Heading from "../components/layout/Heading";
 import Footer from "../components/layout/Footer";
-import Loader from "../components/layout/Loader";
+import Loader from "../components/layout/loader/Loader";
 import BookingInfo from "../components/booking/BookingInfo";
 //styles
 import styled from "styled-components";

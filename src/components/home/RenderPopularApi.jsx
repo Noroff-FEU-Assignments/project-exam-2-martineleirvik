@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { baseUrl } from "../../constants/api";
 import PopularBookingInfo from "./PopularBookingInfo";
 // styles
-import Loader from "../layout/Loader";
+import Loader from "../layout/loader/Loader";
 import styled from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
