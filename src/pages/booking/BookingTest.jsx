@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import { baseUrl } from "../constants/api";
+import { baseUrl } from "../../constants/api";
 // components
-import Heading from "../components/layout/Heading";
-import Footer from "../components/layout/footer/Footer";
-import Loader from "../components/layout/loader/Loader";
-import BookingInfo from "../components/booking/BookingInfo";
+import Heading from "../../components/layout/Heading";
+import Footer from "../../components/layout/footer/Footer";
+import Loader from "../../components/layout/loader/Loader";
+import BookingInfo from "../../components/booking/BookingInfo";
 //styles
 import styled from "styled-components";
-import CatchError from "../components/common/CatchError";
-import { StyledContainer } from "../components/layout/StyledBody.styled";
-import Pagination from "./Pagination";
+import CatchError from "../../components/common/CatchError";
+import { StyledContainer } from "../../components/layout/StyledBody.styled";
+import Pagination from "../Pagination";
 
 function Booking() {
   const [bookings, setBookings] = useState([]);

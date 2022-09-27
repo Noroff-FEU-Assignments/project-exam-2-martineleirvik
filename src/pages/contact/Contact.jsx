@@ -4,19 +4,19 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 // components
-import Heading from "../components/layout/Heading";
+import Heading from "../../components/layout/Heading";
 import {
   ValidationError,
   FormError,
   FormSuccess,
-} from "../components/common/FormMessages";
-import { baseUrl } from "../constants/api";
+} from "../../components/common/FormMessages";
+import { baseUrl } from "../../constants/api";
 // styles
-import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
-import Footer from "../components/layout/footer/Footer";
-import { StyledContainer } from "../components/layout/StyledBody.styled";
+import Footer from "../../components/layout/footer/Footer";
+import { StyledContainer } from "../../components/layout/StyledBody.styled";
+import { StyledForm } from "./Contact.styled";
 
 const url = baseUrl + "messages";
 
@@ -111,40 +111,3 @@ function Contact() {
 }
 
 export default Contact;
-
-const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 10px auto;
-  width: 400px;
-  fieldset {
-    background-color: ${(props) => props.theme.white};
-    padding: 25px 40px;
-    border: 1px solid ${(props) => props.theme.primaryColor};
-    border-radius: 15px;
-    margin-top: 10px;
-    div {
-      margin: 7px 0;
-      display: flex;
-      flex-direction: column;
-      input {
-        margin: 7px 0 0 0;
-        border: 1px solid ${(props) => props.theme.footer};
-      }
-      textarea {
-        margin: 7px 0 0 0;
-        height: 100px;
-        border: 1px solid ${(props) => props.theme.footer};
-      }
-    }
-    button {
-      width: 100%;
-      margin-top: 15px;
-    }
-  }
-  @media (max-width: 450px) {
-    width: 280px;
-    margin: 10px auto;
-  }
-`;

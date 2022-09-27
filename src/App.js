@@ -1,15 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // components
-import Homepage from "./pages/Homepage";
-import Booking from "./pages/Booking";
-import Spesific from "./pages/Spesific";
-import Contact from "./pages/Contact";
-import Enquiry from "./pages/Enquiry";
-import Login from "./pages/Login";
+import Homepage from "./pages/homepage/Homepage";
+import Booking from "./pages/booking/Booking";
+import Spesific from "./pages/spesific/Spesific";
+import Contact from "./pages/contact/Contact";
+import Enquiry from "./pages/enquiry/Enquiry";
+import Login from "./pages/login/Login";
 import Navbar from "./components/layout/nav/Nav";
-import NewEstablishment from "./pages/NewEstablishment";
-import ListMessage from "./pages/ListMessages";
-import ListEnquiry from "./pages/ListEnquries";
+import NewEstablishment from "./pages/newestablishment/NewEstablishment";
+import ListMessage from "./pages/listmessages/ListMessages";
+import ListEnquiry from "./pages/listenquries/ListEnquries";
 import { AuthProvider } from "./components/context/AuthContext";
 // styles
 import GlobalStyle from "./styles/GlobalStyle";

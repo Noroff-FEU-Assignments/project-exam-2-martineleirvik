@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import { baseUrl } from "../constants/api";
+import { baseUrl } from "../../constants/api";
 // components
-import useAxios from "../components/hooks/useAxios";
-import Loader from "../components/layout/loader/Loader";
-import Heading from "../components/layout/Heading";
-import Message from "../components/listmessages/Message";
-import CatchError from "../components/common/CatchError";
-import Footer from "../components/layout/footer/Footer";
+import useAxios from "../../components/hooks/useAxios";
+import Loader from "../../components/layout/loader/Loader";
+import Heading from "../../components/layout/Heading";
+import Message from "../../components/listmessages/Message";
+import CatchError from "../../components/common/CatchError";
+import Footer from "../../components/layout/footer/Footer";
 // styles
-import styled from "styled-components";
-import { StyledContainer } from "../components/layout/StyledBody.styled";
+import { StyledContainer } from "../../components/layout/StyledBody.styled";
+import { StyledUl } from "./ListMessages.styled";
 
 const url = baseUrl + "messages?sort=createdAt:desc";
 
@@ -71,26 +71,3 @@ function ListMessages() {
 }
 
 export default ListMessages;
-
-const StyledUl = styled.div`
-  width: 500px;
-  margin: 20px auto 50px auto;
-  .top-info {
-    display: flex;
-    margin-bottom: 10px;
-  }
-  .from,
-  .recieved {
-    text-decoration: underline;
-    width: 50%;
-  }
-  @media (max-width: 550px) {
-    width: 350px;
-    .top-info {
-      font-size: 0.8rem;
-    }
-  }
-  @media (max-width: 400px) {
-    width: 270px;
-  } ;
-`;

@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { baseUrl } from "../constants/api";
+import { baseUrl } from "../../constants/api";
 // components
-import Heading from "../components/layout/Heading";
-import Footer from "../components/layout/footer/Footer";
-import Loader from "../components/layout/loader/Loader";
-import BookingInfo from "../components/booking/BookingInfo";
+import Heading from "../../components/layout/Heading";
+import Footer from "../../components/layout/footer/Footer";
+import Loader from "../../components/layout/loader/Loader";
+import BookingInfo from "../../components/booking/BookingInfo";
 //styles
-import styled from "styled-components";
-import CatchError from "../components/common/CatchError";
-import { StyledContainer } from "../components/layout/StyledBody.styled";
+import CatchError from "../../components/common/CatchError";
+import { StyledContainer } from "../../components/layout/StyledBody.styled";
+import * as S from "./Booking.styled";
 
 function Booking() {
   const [bookings, setBookings] = useState([]);
@@ -59,8 +59,8 @@ function Booking() {
   return (
     <StyledContainer>
       <Heading heading="Booking" />
-      <StyledFilterBtnsContainer>
-        <StyledFilterBtn
+      <S.StyledFilterBtnsContainer>
+        <S.StyledFilterBtn
           isActive={currentActiveBtn === "all"}
           onClick={() => {
             setFilterBtn("bookings?populate=*");
@@ -68,8 +68,8 @@ function Booking() {
           }}
         >
           All
-        </StyledFilterBtn>
-        <StyledFilterBtn
+        </S.StyledFilterBtn>
+        <S.StyledFilterBtn
           isActive={currentActiveBtn === "hotels"}
           onClick={() => {
             setFilterBtn(
@@ -79,8 +79,8 @@ function Booking() {
           }}
         >
           Hotels
-        </StyledFilterBtn>
-        <StyledFilterBtn
+        </S.StyledFilterBtn>
+        <S.StyledFilterBtn
           isActive={currentActiveBtn === "bnb"}
           onClick={() => {
             setFilterBtn(
@@ -90,8 +90,8 @@ function Booking() {
           }}
         >
           B&B's
-        </StyledFilterBtn>
-        <StyledFilterBtn
+        </S.StyledFilterBtn>
+        <S.StyledFilterBtn
           isActive={currentActiveBtn === "guesthouses"}
           onClick={() => {
             setFilterBtn(
@@ -101,9 +101,9 @@ function Booking() {
           }}
         >
           Guesthouses
-        </StyledFilterBtn>
-      </StyledFilterBtnsContainer>
-      <StyledBookingContainer>
+        </S.StyledFilterBtn>
+      </S.StyledFilterBtnsContainer>
+      <S.StyledBookingContainer>
         {bookings.map(function (booking) {
           const { id } = booking;
           const { name, description, price, popular, stars } =
@@ -127,50 +127,11 @@ function Booking() {
             />
           );
         })}
-      </StyledBookingContainer>
-      <StyledShowMoreButton>Show more</StyledShowMoreButton>
+      </S.StyledBookingContainer>
+      <S.StyledShowMoreButton>Show more</S.StyledShowMoreButton>
       <Footer />
     </StyledContainer>
   );
 }
 
 export default Booking;
-
-const StyledBookingContainer = styled.div`
-  margin: 0 50px;
-  @media (max-width: 480px) {
-    margin: 0 20px;
-  }
-`;
-
-const StyledFilterBtnsContainer = styled.div`
-  margin: 15px 0 15px 50px;
-
-  @media (max-width: 480px) {
-    margin: 10px;
-  }
-`;
-
-const StyledFilterBtn = styled.button`
-  cursor: pointer;
-  margin: 5px 2px;
-  background-color: ${(props) =>
-    props.isActive ? props.theme.white : props.theme.secondaryColor};
-  color: ${(props) =>
-    props.isActive ? props.theme.secondaryColor : props.theme.white};
-  :hover {
-    background-color: ${(props) => props.theme.white};
-    border: 1px solid ${(props) => props.theme.secondaryColor};
-    color: ${(props) => props.theme.secondaryColor};
-  }
-  .active {
-    background-color: ${(props) => props.theme.white};
-    border: 1px solid ${(props) => props.theme.secondaryColor};
-    color: ${(props) => props.theme.secondaryColor};
-  }
-`;
-
-const StyledShowMoreButton = styled.button`
-  width: 100px;
-  margin: 20px auto;
-`;

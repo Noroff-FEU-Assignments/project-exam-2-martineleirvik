@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { baseUrl } from "../constants/api";
-import useAxios from "../components/hooks/useAxios";
-import Loader from "../components/layout/loader/Loader";
-import Heading from "../components/layout/Heading";
-import EnquiryDetail from "../components/listenquiry/EnquiryDetail";
-import styled from "styled-components";
-import Footer from "../components/layout/footer/Footer";
-import CatchError from "../components/common/CatchError";
-import { StyledContainer } from "../components/layout/StyledBody.styled";
+import { baseUrl } from "../../constants/api";
+import useAxios from "../../components/hooks/useAxios";
+import Loader from "../../components/layout/loader/Loader";
+import Heading from "../../components/layout/Heading";
+import EnquiryDetail from "../../components/listenquiry/EnquiryDetail";
+import Footer from "../../components/layout/footer/Footer";
+import CatchError from "../../components/common/CatchError";
+import { StyledContainer } from "../../components/layout/StyledBody.styled";
+import { StyledUl } from "./ListEnquries.styled";
 
 const url = baseUrl + "enquiries?sort=createdAt:desc";
 
@@ -80,27 +80,3 @@ function ListEnquries() {
 }
 
 export default ListEnquries;
-
-const StyledUl = styled.ul`
-  width: 500px;
-  margin: 20px auto 50px auto;
-  .top-info {
-    display: flex;
-    margin-bottom: 10px;
-  }
-  .accommodation,
-  .recieved {
-    text-decoration: underline;
-    width: 50%;
-  }
-
-  @media (max-width: 550px) {
-    width: 350px;
-    .top-info {
-      font-size: 0.8rem;
-    }
-  }
-  @media (max-width: 400px) {
-    width: 270px;
-  } ;
-`;

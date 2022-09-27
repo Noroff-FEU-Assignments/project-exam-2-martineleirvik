@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { baseUrl } from "../constants/api";
+import { baseUrl } from "../../constants/api";
 //components
-import Loader from "../components/layout/loader/Loader";
-import IfPopular from "../components/booking/IfPopular";
+import Loader from "../../components/layout/loader/Loader";
+import IfPopular from "../../components/booking/IfPopular";
 //styles
-import styled from "styled-components";
-import CatchError from "../components/common/CatchError";
-import Footer from "../components/layout/footer/Footer";
-import { StyledContainer } from "../components/layout/StyledBody.styled";
+import CatchError from "../../components/common/CatchError";
+import Footer from "../../components/layout/footer/Footer";
+import { StyledContainer } from "../../components/layout/StyledBody.styled";
+import * as S from "./Spesific.styled";
 
 function Spesific() {
   const [bookingDetail, setBookingDetail] = useState(null);
@@ -57,7 +57,7 @@ function Spesific() {
 
   return (
     <StyledContainer>
-      <StyledBookingDetail>
+      <S.StyledBookingDetail>
         <h1>{bookingDetail.attributes.name}</h1>
         <p>{bookingDetail.attributes.category.data.attributes.name}</p>
         <img
@@ -75,16 +75,10 @@ function Spesific() {
             Make an enquiry
           </Link>
         </button>
-      </StyledBookingDetail>
+      </S.StyledBookingDetail>
       <Footer />
     </StyledContainer>
   );
 }
 
 export default Spesific;
-
-const StyledBookingDetail = styled.div`
-  img {
-    width: 80%;
-  }
-`;
