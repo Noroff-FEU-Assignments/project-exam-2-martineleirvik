@@ -46,6 +46,7 @@ function SearchInput() {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onFocus={() => setIsFocused(true)}
+      onBlur={() => setIsFocused(false)}
       hover={showSearchInput}
     >
       <S.StyledInput
@@ -54,6 +55,12 @@ function SearchInput() {
         placeholder="Search"
         onChange={(e) => onChangeHandler(e.target.value.toLocaleLowerCase())}
         value={text}
+        onBlur={() => {
+          setTimeout(() => {
+            setSuggestions([]);
+            setText("");
+          }, 100);
+        }}
       />
       <FontAwesomeIcon className="glass" icon={faMagnifyingGlass} />
       <S.StyledSearchResult>
