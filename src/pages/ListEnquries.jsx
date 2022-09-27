@@ -10,7 +10,6 @@ import CatchError from "../components/common/CatchError";
 import { StyledContainer } from "../components/layout/StyledBody.styled";
 
 const url = baseUrl + "enquiries?sort=createdAt:desc";
-console.log(url);
 
 function ListEnquries() {
   const [enquiry, setEnquiry] = useState([]);

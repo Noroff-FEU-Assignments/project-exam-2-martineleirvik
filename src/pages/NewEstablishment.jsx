@@ -1,12 +1,10 @@
 import { useContext, useState } from "react";
-import { useNavigate, useParams, Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 //components
 import Heading from "../components/layout/Heading";
 import AuthContext from "../components/context/AuthContext";
-import useAxios from "../components/hooks/useAxios";
 import {
   ValidationError,
   FormError,
@@ -16,7 +14,6 @@ import { baseUrl } from "../constants/api";
 //styles
 import styled from "styled-components";
 import Footer from "../components/layout/footer/Footer";
-import getUsername from "../components/utils/storage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { StyledContainer } from "../components/layout/StyledBody.styled";

@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { baseUrl } from "../constants/api";
+// components
 import useAxios from "../components/hooks/useAxios";
 import Loader from "../components/layout/loader/Loader";
 import Heading from "../components/layout/Heading";
 import Message from "../components/listmessages/Message";
-import styled from "styled-components";
 import CatchError from "../components/common/CatchError";
 import Footer from "../components/layout/footer/Footer";
+// styles
+import styled from "styled-components";
 import { StyledContainer } from "../components/layout/StyledBody.styled";
 
 const url = baseUrl + "messages?sort=createdAt:desc";

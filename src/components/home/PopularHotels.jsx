@@ -1,10 +1,6 @@
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-
-//components
 import Heading from "../layout/Heading";
 import RenderPopularApi from "./RenderPopularApi";
-//styles
+import { StyledPopularContainer } from "./PopularHotel.styled";
 
 function PopularHotels() {
   return (
@@ -16,7 +12,3 @@ function PopularHotels() {
 }
 
 export default PopularHotels;
-
-const StyledPopularContainer = styled.div`
-  margin: 10px 40px 40px 40px;
-`;

@@ -5,11 +5,11 @@ import PopularBookingInfo from "./PopularBookingInfo";
 import CatchError from "../common/CatchError";
 // styles
 import Loader from "../layout/loader/Loader";
-import styled from "styled-components";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import SwiperCore, { Navigation } from "swiper";
+import { StyledSwiper } from "./RenderPopularApi.styled";
 
 SwiperCore.use([Navigation]);
 
@@ -83,7 +83,7 @@ function RenderPopularApi() {
         },
       }}
     >
-      <SyledCardContainer>
+      <div>
         {bookings.map(function (booking) {
           const { id } = booking;
           const { name, shortdescription } = booking.attributes;
@@ -100,37 +100,9 @@ function RenderPopularApi() {
             </SwiperSlide>
           );
         })}
-      </SyledCardContainer>
+      </div>
     </StyledSwiper>
   );
 }
 
 export default RenderPopularApi;
-
-// Styled components
-const SyledCardContainer = styled.div``;
-
-const StyledSwiper = styled(Swiper)`
-  background-color: ${(props) => props.theme.backgroundColor};
-
-  .swiper-button-next {
-    color: ${(props) => props.theme.fontColor};
-    background-color: #80808053;
-    padding: 25px;
-    border-radius: 50%;
-    margin-right: -10px;
-    ::after {
-      font-size: 2rem;
-    }
-  }
-  .swiper-button-prev {
-    color: ${(props) => props.theme.fontColor};
-    background-color: #80808053;
-    padding: 25px;
-    border-radius: 50%;
-    margin-left: -10px;
-    ::after {
-      font-size: 2rem;
-    }
-  }
-`;

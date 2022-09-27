@@ -1,11 +1,11 @@
 import { useState } from "react";
-import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronDown,
   faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import moment from "moment";
+import * as S from "./EnquiryDetail.styled";
 
 function EnquiryDetail({
   id,
@@ -19,8 +19,8 @@ function EnquiryDetail({
 }) {
   const [show, setShow] = useState(false);
   return (
-    <StyledEnquiry key={id}>
-      <StyledEnquiryContainer onClick={() => setShow(!show)}>
+    <S.StyledEnquiry key={id}>
+      <S.StyledEnquiryContainer onClick={() => setShow(!show)}>
         <li>{accommodationName}</li>
         <p className="createdAt">{moment(createdAt).calendar()}</p>
         <p className="arrow-down">
@@ -29,10 +29,10 @@ function EnquiryDetail({
             icon={show ? faChevronLeft : faChevronDown}
           />
         </p>
-      </StyledEnquiryContainer>
+      </S.StyledEnquiryContainer>
 
       {show ? (
-        <StyledEnquiryExpanded>
+        <S.StyledEnquiryExpanded>
           <p>
             <span>Name:</span> {name}
           </p>
@@ -50,64 +50,10 @@ function EnquiryDetail({
               <span>Date to:</span> {dateTo}
             </p>
           </div>
-        </StyledEnquiryExpanded>
+        </S.StyledEnquiryExpanded>
       ) : null}
-    </StyledEnquiry>
+    </S.StyledEnquiry>
   );
 }
 
 export default EnquiryDetail;
-
-const StyledEnquiry = styled.div`
-  margin: 7px auto;
-  padding: 4px;
-  border-radius: 5px;
-  background-color: ${(props) => props.theme.white};
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-`;
-
-const StyledEnquiryContainer = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  cursor: pointer;
-  li {
-    font-weight: bold;
-    width: 50%;
-    list-style-type: circle;
-  }
-  .createdAt {
-    width: 45%;
-  }
-  .arrow-down {
-    width: 5%;
-  }
-  @media (max-width: 550px) {
-    font-size: 0.8rem;
-  } ;
-`;
-
-const StyledEnquiryExpanded = styled.div`
-  p {
-    margin: 10px 0;
-    span {
-      font-weight: bold;
-    }
-  }
-  .date {
-    display: flex;
-    #last {
-      margin-left: 20px;
-    }
-  }
-  @media (max-width: 550px) {
-    font-size: 0.8rem;
-  }
-  @media (max-width: 400px) {
-    .date {
-      flex-direction: column;
-      #last {
-        margin: 0;
-      }
-    }
-  } ;
-`;

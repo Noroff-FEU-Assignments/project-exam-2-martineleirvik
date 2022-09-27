@@ -1,8 +1,7 @@
-import { useState } from "react";
 import Heading from "../layout/Heading";
 import { dataBergen } from "../../constants/dataBergen";
-import styled from "styled-components";
 import BergenInfoItem from "./BergenInfoItem";
+import { StyledBergenInfo } from "./BergenInfo.styled";
 
 function BergenInfo() {
   return (
@@ -17,8 +16,4 @@ function BergenInfo() {
     </StyledBergenInfo>
   );
 }
-
 export default BergenInfo;
-const StyledBergenInfo = styled.div`
-  margin: 30px 50px;
-`;
