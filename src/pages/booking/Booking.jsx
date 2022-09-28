@@ -106,8 +106,7 @@ function Booking() {
       <S.StyledBookingContainer>
         {bookings.map(function (booking) {
           const { id } = booking;
-          const { name, description, price, popular, stars } =
-            booking.attributes;
+          const { name, description, price, popular } = booking.attributes;
           let imageUrl = "https://via.placeholder.com/50";
 
           if (booking.attributes.image) {
@@ -123,7 +122,6 @@ function Booking() {
               description={description}
               price={price}
               popular={popular}
-              stars={stars}
             />
           );
         })}

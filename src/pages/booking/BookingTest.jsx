@@ -9,7 +9,7 @@ import BookingInfo from "../../components/booking/BookingInfo";
 import styled from "styled-components";
 import CatchError from "../../components/common/CatchError";
 import { StyledContainer } from "../../components/layout/StyledBody.styled";
-import Pagination from "../Pagination";
+import Pagination from "./Pagination";
 
 function Booking() {
   const [bookings, setBookings] = useState([]);
@@ -96,7 +96,7 @@ function Booking() {
               "categories/2?fields=name&populate[bookings][populate][0]=image"
             );
             setCurrentActiveBtn("bnb");
-            currentPage(1);
+            setCurrentPage(1);
           }}
         >
           B&B's
@@ -143,7 +143,6 @@ function Booking() {
         totalPosts={bookings.length}
         paginate={paginate}
       />
-      <StyledShowMoreButton>Show more</StyledShowMoreButton>
       <Footer />
     </StyledContainer>
   );

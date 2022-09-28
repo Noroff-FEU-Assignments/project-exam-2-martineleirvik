@@ -23,6 +23,7 @@ function Pagination({ postsPerPage, totalPosts, paginate }) {
 export default Pagination;
 
 const StyledPagination = styled.ul`
+  margin-bottom: 50px;
   display: flex;
   justify-content: center;
   list-style: none;
