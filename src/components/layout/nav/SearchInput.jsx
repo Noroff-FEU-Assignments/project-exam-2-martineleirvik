@@ -46,7 +46,9 @@ function SearchInput() {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onFocus={() => setIsFocused(true)}
-      onBlur={() => setIsFocused(false)}
+      onBlur={() => {
+        setIsFocused(false);
+      }}
       hover={showSearchInput}
     >
       <S.StyledInput
@@ -66,7 +68,17 @@ function SearchInput() {
           suggestions.map((search) => (
             <div>
               <Link to={`/booking/${search.id}`}>
-                <div key={search.id}>{search.attributes.name}</div>
+                <div
+                  key={search.id}
+                  onClick={() => {
+                    setSuggestions([]);
+                    setText("");
+                    setIsFocused(false);
+                    setIsHovered(false);
+                  }}
+                >
+                  {search.attributes.name}
+                </div>
               </Link>
             </div>
           ))}

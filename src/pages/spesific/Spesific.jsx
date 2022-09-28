@@ -58,23 +58,33 @@ function Spesific() {
   return (
     <StyledContainer>
       <S.StyledBookingDetail>
-        <h1>{bookingDetail.attributes.name}</h1>
-        <p>{bookingDetail.attributes.category.data.attributes.name}</p>
-        <img
-          src={
-            bookingDetail.attributes.image.data[0].attributes.formats.medium.url
-          }
-          alt={bookingDetail.attributes.name}
-        />
-        <IfPopular popular={bookingDetail.attributes.popular} />
-        <p>{bookingDetail.attributes.price}kr</p>
-        <p>{bookingDetail.attributes.description}</p>
-
-        <button>
-          <Link to={`/enquiry/${bookingDetail.attributes.name}`}>
-            Make an enquiry
-          </Link>
-        </button>
+        <S.StyledRow>
+          <S.StyledImage>
+            <img
+              src={
+                bookingDetail.attributes.image.data[0].attributes.formats.medium
+                  .url
+              }
+              alt={bookingDetail.attributes.name}
+            />
+          </S.StyledImage>
+          <S.StyledInfo>
+            <h1>{bookingDetail.attributes.name}</h1>
+            <p className="category">
+              {bookingDetail.attributes.category.data.attributes.name}
+            </p>
+            <IfPopular popular={bookingDetail.attributes.popular} />
+            <p>{bookingDetail.attributes.price}kr</p>
+            <button>
+              <Link to={`/enquiry/${bookingDetail.attributes.name}`}>
+                Make an enquiry
+              </Link>
+            </button>
+          </S.StyledInfo>
+        </S.StyledRow>
+        <S.StyledDesc>
+          <p>{bookingDetail.attributes.description}</p>
+        </S.StyledDesc>
       </S.StyledBookingDetail>
       <Footer />
     </StyledContainer>
