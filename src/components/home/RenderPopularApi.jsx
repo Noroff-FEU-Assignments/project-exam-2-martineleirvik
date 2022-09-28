@@ -89,9 +89,8 @@ function RenderPopularApi() {
           const { name, shortdescription } = booking.attributes;
           const image = booking.attributes.image.data[0].attributes.url;
           return (
-            <SwiperSlide>
+            <SwiperSlide key={id}>
               <PopularBookingInfo
-                key={id}
                 id={id}
                 name={name}
                 shortdescription={shortdescription}
