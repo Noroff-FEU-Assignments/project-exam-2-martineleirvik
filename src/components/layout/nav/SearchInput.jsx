@@ -55,13 +55,15 @@ function SearchInput() {
         placeholder="Search"
         onChange={(e) => onChangeHandler(e.target.value.toLocaleLowerCase())}
         value={text}
-        onMouseDown={() => {
-          setSuggestions([]);
-          setText("");
+        onBlur={() => {
+          setTimeout(() => {
+            setSuggestions([]);
+            setText("");
+          }, 500);
         }}
       />
       <FontAwesomeIcon className="glass" icon={faMagnifyingGlass} />
-      <S.StyledSearchResult>
+      <S.StyledSearchResult showSearchInput={showSearchInput}>
         {suggestions &&
           suggestions.map((search) => (
             <div key={search.id}>
