@@ -4,7 +4,7 @@ export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 10px auto;
+  margin: 10px auto 50px auto;
   width: 400px;
   fieldset {
     background-color: ${(props) => props.theme.white};

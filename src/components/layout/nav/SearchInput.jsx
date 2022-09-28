@@ -55,11 +55,9 @@ function SearchInput() {
         placeholder="Search"
         onChange={(e) => onChangeHandler(e.target.value.toLocaleLowerCase())}
         value={text}
-        onBlur={() => {
-          setTimeout(() => {
-            setSuggestions([]);
-            setText("");
-          }, 100);
+        onMouseDown={() => {
+          setSuggestions([]);
+          setText("");
         }}
       />
       <FontAwesomeIcon className="glass" icon={faMagnifyingGlass} />
