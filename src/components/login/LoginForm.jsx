@@ -62,14 +62,14 @@ export default function LoginForm() {
         <fieldset disabled={submitting}>
           <div>
             <label>Username/email</label>
-            <input {...register("username")} />
+            <input type="text" {...register("username")} />
             {errors && errors.username && (
               <ValidationError>{errors.username.message}</ValidationError>
             )}
           </div>
           <div>
             <label>Password</label>
-            <input {...register("password")} />
+            <input type="password" {...register("password")} />
             {errors && errors.password && (
               <ValidationError>{errors.password.message}</ValidationError>
             )}

@@ -83,6 +83,7 @@ function Spesific() {
           </S.StyledInfo>
         </S.StyledRow>
         <S.StyledDesc>
+          <p>{bookingDetail.attributes.shortdescription}</p>
           <p>{bookingDetail.attributes.description}</p>
         </S.StyledDesc>
       </S.StyledBookingDetail>
