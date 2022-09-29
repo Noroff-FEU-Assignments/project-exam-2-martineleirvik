@@ -24,12 +24,8 @@ const schema = yup.object().shape({
   name: yup.string().required("Name of accomodation"),
   image: yup
     .mixed()
-    .required("Image of accommodation")
     .test("file", "You need to add an image", (value) => {
-      if (value.length > 0) {
-        return true;
-      }
-      return false;
+      return value.length > 0;
     })
     .test("fileSize", "The file is too large", (value) => {
       return value && value[0].size <= 200000;
