@@ -28,10 +28,12 @@ const schema = yup.object().shape({
       return value.length > 0;
     })
     .test("fileSize", "The file is too large", (value) => {
-      return value && value[0].size <= 200000;
+      return value.length > 0 && value[0].size <= 200000;
     })
     .test("type", "Only supporting jpeg & jpg", (value) => {
-      return value && value[0].type === "image/jpeg" && "image.jpg";
+      return (
+        value.length > 0 && ["image/jpeg", "image/jpg"].includes(value[0].type)
+      );
     }),
   popular: yup.boolean().oneOf([false, true]),
   price: yup
