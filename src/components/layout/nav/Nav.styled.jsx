@@ -21,7 +21,6 @@ export const StyledNavBar = styled.nav`
   .navbar-logo {
     font-family: "Merriweather", serif;
     color: ${(props) => props.theme.white};
-    justify-self: start;
     margin-left: 20px;
     cursor: pointer;
     text-decoration: none;
@@ -30,7 +29,6 @@ export const StyledNavBar = styled.nav`
   .nav-menu {
     display: flex;
     list-style: none;
-    text-align: center;
     width: 80vw;
     justify-content: flex-end;
     margin-right: 2rem;
@@ -42,13 +40,7 @@ export const StyledNavBar = styled.nav`
       font-size: 0.9rem;
       margin-left: 5px;
     }
-    .icon {
-      color: ${(props) => props.theme.white};
-      padding: 0.5rem;
-      :hover {
-        cursor: pointer;
-      }
-    }
+
     .nav-item {
       display: flex;
       align-items: center;
@@ -77,9 +69,9 @@ export const StyledNavBar = styled.nav`
     .menu-icon {
       display: block;
       position: absolute;
-      top: 0;
+      margin: auto 30px;
       right: 0;
-      transform: translate(-100%, 60%);
+
       font-size: 1.8rem;
       cursor: pointer;
     }
@@ -88,9 +80,8 @@ export const StyledNavBar = styled.nav`
     }
     .navbar-logo {
       position: absolute;
-      top: 1rem;
+      margin-top: auto;
       left: 0;
-      transform: translate(25%, 50%);
     }
     .nav-menu {
       background-color: ${(props) => props.theme.primaryColor};
@@ -117,17 +108,11 @@ export const StyledNavBar = styled.nav`
       .nav-item.search {
         margin-left: -20%;
       }
-      .icon {
-        text-align: center;
-        padding: 2rem;
-        width: 100%;
-        display: table;
-      }
+
       .nav-links {
         text-align: center;
         padding: 2rem;
         width: 100%;
-        display: table;
         :hover {
           background-color: ${(props) => props.theme.secondaryColor};
           border-radius: 0;

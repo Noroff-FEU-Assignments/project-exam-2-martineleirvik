@@ -57,6 +57,7 @@ function Enquiry() {
       const response = await axios.post(url, {
         data: {
           accommodationName: name,
+          name: data.name,
           email: data.email,
           message: data.message,
           dateTo: data.dateTo,
