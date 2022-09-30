@@ -9,35 +9,40 @@ export const StyledCard = styled.div`
   min-width: 200px;
   max-width: 300px;
   height: 360px;
-
   img {
     width: 100%;
     height: 130px;
     object-fit: cover;
     border-radius: 15px 15px 0 0;
   }
-  .card-text {
-    padding: 15px 10px;
-    display: flex;
-    flex-direction: column;
-    font-size: 0.9rem;
-    h3 {
-      margin: 10px 0;
-      height: 35px;
-    }
-    .desc {
-      height: 100px;
-    }
-    .popular-buttons {
-      margin: 10px 0;
-      justify-content: flex-end;
-      button {
-        margin-right: 15px;
-        font-size: 0, 0rem;
-      }
-      .readmore {
-        font-size: 0.8rem;
-      }
+`;
+
+export const StyledCardText = styled.div`
+  padding: 15px 10px;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  h3 {
+    margin: 10px 0;
+    height: 35px;
+  }
+  .desc {
+    height: 100px;
+  }
+`;
+
+export const StyledButtons = styled.div`
+  margin: 10px 0;
+  justify-content: flex-end;
+  button {
+    margin-right: 15px;
+    font-size: 0, 0rem;
+  }
+  .readmore {
+    font-size: 0.8rem;
+    text-decoration: none;
+    :hover {
+      text-decoration: underline;
     }
   }
 `;
