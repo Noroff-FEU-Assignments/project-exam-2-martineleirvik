@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 // imagery
-import frontpageImage from "../../images/bergen-homepage-image.jpeg";
+import homepage from "../../images/bergen-homepage-img.jpeg";
 import bergenVideo from "../../images/bergen.mp4";
 // components
 import Heading from "../../components/layout/Heading";
@@ -16,7 +16,7 @@ function Homepage() {
     <StyledContainer>
       <S.StyledImage
         id="homepage-image"
-        src={frontpageImage}
+        src={homepage}
         alt="View over the pier in Bergen"
       />
       <S.StyledHomepage>
