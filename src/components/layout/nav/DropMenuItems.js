@@ -1,6 +1,6 @@
 export const DropMenuItems = [
   {
-    title: "Enquries",
+    title: "Enquiries",
     path: "/listenquiry",
     className: "dropdown-link",
   },

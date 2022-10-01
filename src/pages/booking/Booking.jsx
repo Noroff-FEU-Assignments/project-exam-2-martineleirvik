@@ -126,7 +126,6 @@ function Booking() {
           );
         })}
       </S.StyledBookingContainer>
-      <S.StyledShowMoreButton>Show more</S.StyledShowMoreButton>
       <Footer />
     </StyledContainer>
   );

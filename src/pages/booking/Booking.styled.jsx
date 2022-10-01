@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledBookingContainer = styled.div`
-  margin: 0 50px;
+  margin: 0 50px 50px 50px;
   @media (max-width: 480px) {
     margin: 0 20px;
   }
@@ -32,9 +32,4 @@ export const StyledFilterBtn = styled.button`
     border: 1px solid ${(props) => props.theme.secondaryColor};
     color: ${(props) => props.theme.secondaryColor};
   }
-`;
-
-export const StyledShowMoreButton = styled.button`
-  width: 100px;
-  margin: 20px auto;
 `;

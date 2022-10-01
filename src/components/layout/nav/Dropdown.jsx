@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { DropMenuItems } from "./DropMenuItems";
 import { StyledDropdown } from "./Dropdown.styled";

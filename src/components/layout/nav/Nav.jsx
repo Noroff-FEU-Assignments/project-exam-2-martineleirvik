@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Dropdown from "./Dropdown";
 import AuthContext from "../../context/AuthContext";
@@ -84,7 +84,7 @@ function Navbar() {
                   className="nav-links"
                   onClick={closeMobileMenu}
                 >
-                  Enquries
+                  Enquiries
                 </Link>
               </li>
               <li className="nav-item">
