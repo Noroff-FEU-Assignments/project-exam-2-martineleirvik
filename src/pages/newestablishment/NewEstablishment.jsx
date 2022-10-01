@@ -24,7 +24,7 @@ const schema = yup.object().shape({
   name: yup.string().required("Name of accomodation"),
   image: yup
     .mixed()
-    .test("file", "You need to add an image", (value) => {
+    .test("file", "You need to add three images", (value) => {
       return value.length > 0;
     })
     .test("fileSize", "The file is too large", (value) => {
@@ -52,7 +52,6 @@ export default function NewEstablishment() {
   const [submitting, setSubmitting] = useState(false);
   const [serverError, setServerError] = useState(null);
   const [selectDropdown, setSelectDropdown] = useState();
-  const [selectedFile, setSelectedFile] = useState();
   const [success, setsuccess] = useState(false);
   const [auth] = useContext(AuthContext);
   const {
@@ -78,8 +77,11 @@ export default function NewEstablishment() {
       category: Number(data.category),
     });
 
-    formData.append("files.image", data.image[0]);
     formData.append("data", bookingData);
+    for (let i = 0; i < 3; i++) {
+      const file = data.image[i];
+      formData.append("files.image", file, file.name);
+    }
 
     const options = {
       method: "POST",
@@ -122,8 +124,8 @@ export default function NewEstablishment() {
             )}
           </div>
           <div>
-            <label>Image:</label>
-            <input type="file" name="file" {...register("image")} />
+            <label>Add 3 images:</label>
+            <input type="file" name="file" multiple {...register("image")} />
             {errors && errors.image && (
               <ValidationError>{errors.image.message}</ValidationError>
             )}
