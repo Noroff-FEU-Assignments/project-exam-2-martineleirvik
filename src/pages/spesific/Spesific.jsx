@@ -38,7 +38,7 @@ function Spesific() {
             setError("An error occured");
           }
         } catch (error) {
-          console.log(error);
+          setError(error.toString());
         } finally {
           setLoading(false);
         }
