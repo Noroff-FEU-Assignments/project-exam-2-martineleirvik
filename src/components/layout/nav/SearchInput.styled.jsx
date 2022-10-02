@@ -2,7 +2,6 @@ import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   position: relative;
-  box-sizing: border-box;
   width: 35px;
   height: 35px;
   border-radius: 500px;
@@ -52,6 +51,7 @@ export const StyledSearchResult = styled.div`
   background-color: ${(props) => props.theme.white};
   border: 2px solid ${(props) => props.theme.primaryColor};
   overflow-y: scroll;
+  z-index: 10;
   div {
     margin: 5px 0;
     padding-left: 5px;

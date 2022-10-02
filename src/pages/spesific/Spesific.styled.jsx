@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Thumbs } from "swiper";
+import { Swiper } from "swiper/react";
 
 export const StyledBookingDetail = styled.div`
   display: flex;

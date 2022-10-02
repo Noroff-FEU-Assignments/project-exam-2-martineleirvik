@@ -9,7 +9,7 @@ import CatchError from "../../components/common/CatchError";
 import Footer from "../../components/layout/footer/Footer";
 import { StyledContainer } from "../../components/layout/StyledBody.styled";
 import * as S from "./Spesific.styled";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
@@ -84,7 +84,7 @@ function Spesific() {
 
                 return (
                   <SwiperSlide key={index}>
-                    <img src={Images} />
+                    <img src={Images} alt={bookingDetail.attributes.name} />
                   </SwiperSlide>
                 );
               })}
@@ -102,7 +102,7 @@ function Spesific() {
                 return (
                   <SwiperSlide key={index}>
                     <div className="wrapper">
-                      <img src={Images} />
+                      <img src={Images} alt={bookingDetail.attributes.name} />
                     </div>
                   </SwiperSlide>
                 );

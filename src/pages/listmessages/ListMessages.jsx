@@ -9,7 +9,7 @@ import CatchError from "../../components/common/CatchError";
 import Footer from "../../components/layout/footer/Footer";
 // styles
 import { StyledContainer } from "../../components/layout/StyledBody.styled";
-import { StyledUl } from "./ListMessages.styled";
+import * as S from "./ListMessages.styled";
 
 const url = baseUrl + "messages?sort=createdAt:desc";
 
@@ -43,12 +43,12 @@ function ListMessages() {
   return (
     <StyledContainer>
       <Heading heading="List of Messages" />
-      <StyledUl>
-        <ul className="messages">
-          <div className="top-info">
+      <S.StyledUl>
+        <ul>
+          <S.StyledInfo>
             <p className="from">From:</p>
             <p className="recieved">Recieved:</p>
-          </div>
+          </S.StyledInfo>
           {messages.map((data) => {
             const { id } = data;
             const { name, message, email, createdAt } = data.attributes;
@@ -64,7 +64,7 @@ function ListMessages() {
             );
           })}
         </ul>
-      </StyledUl>
+      </S.StyledUl>
       <Footer />
     </StyledContainer>
   );

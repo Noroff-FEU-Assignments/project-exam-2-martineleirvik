@@ -7,7 +7,7 @@ import EnquiryDetail from "../../components/listenquiry/EnquiryDetail";
 import Footer from "../../components/layout/footer/Footer";
 import CatchError from "../../components/common/CatchError";
 import { StyledContainer } from "../../components/layout/StyledBody.styled";
-import { StyledUl } from "./ListEnquries.styled";
+import * as S from "./ListEnquries.styled";
 
 const url = baseUrl + "enquiries?sort=createdAt:desc";
 
@@ -41,12 +41,12 @@ function ListEnquries() {
   return (
     <StyledContainer>
       <Heading heading="List of enquiries" />
-      <StyledUl>
+      <S.StyledUl>
         <ul className="enquiry">
-          <div className="top-info">
+          <S.StyledInfo>
             <p className="accommodation">Accommodation:</p>
             <p className="recieved">Recieved:</p>
-          </div>
+          </S.StyledInfo>
           {enquiry.map((data) => {
             const { id } = data;
             const {
@@ -73,7 +73,7 @@ function ListEnquries() {
             );
           })}
         </ul>
-      </StyledUl>
+      </S.StyledUl>
       <Footer />
     </StyledContainer>
   );
