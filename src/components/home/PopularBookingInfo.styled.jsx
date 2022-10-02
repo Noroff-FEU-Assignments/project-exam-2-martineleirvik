@@ -35,14 +35,17 @@ export const StyledButtons = styled.div`
   margin: 10px 0;
   justify-content: flex-end;
   button {
-    margin-right: 15px;
-    font-size: 0, 0rem;
+    margin-right: 12px;
+    font-size: 0.8rem;
   }
   .readmore {
     font-size: 0.8rem;
     text-decoration: none;
     :hover {
       text-decoration: underline;
+    }
+    svg {
+      font-size: 0.7rem;
     }
   }
 `;

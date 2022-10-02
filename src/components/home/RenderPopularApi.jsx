@@ -69,7 +69,7 @@ function RenderPopularApi() {
           slidesPerView: 2,
           spaceBetween: 10,
         },
-        768: {
+        786: {
           slidesPerView: 3,
           spaceBetween: 15,
         },
