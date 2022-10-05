@@ -1,7 +1,7 @@
 EMAIL/USERNAME: leirvikmartine@gmail.com
 PASSWORD: Exam2Noroff
 
-# Getting Started with Create React App
+# Project Exam 2: Holidaze Hotel Booking
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
