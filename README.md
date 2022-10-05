@@ -2,72 +2,84 @@
 
 ![image](https://user-images.githubusercontent.com/71706563/194009715-b4a3fd5f-4c29-4f56-a7d2-fe4601c4eb83.png)
 
-Project Exam 2 is a booking site where you can search for hotels, bed and breakfasts and guesthouses. Holidaze is a local booking agency in Bergen for visitors to find an accommodation and for the accommodation owners to recieve enquiries. When the admin in logged in, he/she can see the list of messages and enquiries, and also create a new establishment. 
+Project Exam 2 is a booking site where you can search for hotels, bed and breakfasts and guesthouses. Holidaze is a local booking agency in Bergen for visitors to find an accommodation, and for the accommodation owners to recieve enquiries and create new establishments.
 
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+The website consists of a visitor side and an admin side. Visitors can search accommodations and make enquiries to a spesific one, as well as contact the Holidaze agency itself. Administration can see messages to Holidaze, a list of enquiries and create new establishements. 
 
-### `npm start`
+The data to the website is stored in an API made with Strapi as a Headless CMS. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Visitor side
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Searchbar with dropdown of matching hotels, bed and breakfasts and guesthouses
+- Homepage: carousel with popular hotels
+- Results page with all accommodations
+- Details page with all information about the hotel/b&b/guesthouse, and a button to the enquiry page
+- Contact page where the visitor can send a message to Holidaze
 
-### `npm test`
+### Admin side
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Login page
+- Create new establishment
+- List of messages from the contact form
+- List of enquiries from the enquiry form
 
-### `npm run build`
+## Login details to admin side
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+username: leirvikmartine@gmail.com
+password: Exam2Noroff
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Built With
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+You can list a the tech stack that you've used over here
 
-### `npm run eject`
+- [React.js](https://reactjs.org/)
+- [Styled Components](https://styled-components.com/)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Getting Started
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Installing
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Clone the repo:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+git clone git@github.com:NoroffFEU/portfolio-1-example.git
+```
 
-## Learn More
+2. Install the dependencies:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+npm install
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Running
 
-### Code Splitting
+Here is where you detail how to run the app. It typically involves the commands you'd need to run to start the project e.g.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+To run the app, run the following commands:
 
-### Analyzing the Bundle Size
+```bash
+npm run start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Contributing
 
-### Making a Progressive Web App
+Here you can detail any information you want to provide regarding contributing to the project. For big projects you will usually have a separate `CONTRIBUTING.md` and link to it, but for smaller projects you can simply include instructions here. These instructions can simply detail the process you want a person to take, such as to make sure to open a pull request so code can be reviewed.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Contact
 
-### Advanced Configuration
+This is where you can leave your social links for people to contact you, such as a LinkedIn profile or Twitter link e.g.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+[My Twitter page](www.twitter.com)
 
-### Deployment
+[My LinkedIn page](www.linkedin.com)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## License
 
-### `npm run build` fails to minify
+You can link to your license file here if you're using one, or mention what license the codebase falls under. If you're unsure then you can simply delete this section.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Acknowledgments
+
+This is where you can add any acknowledgements if you'd like, such as to people who have helped you or any code snippets you'd like to mention. You can delete this section if you don't have any acknowledgements to make.
