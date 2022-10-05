@@ -2,6 +2,8 @@
 
 ![image](https://user-images.githubusercontent.com/71706563/194009715-b4a3fd5f-4c29-4f56-a7d2-fe4601c4eb83.png)
 
+Project Exam 2 is a booking site where you can search for hotels, bed and breakfasts and guesthouses. Holidaze is a local booking agency in Bergen for visitors to find an accommodation and for the accommodation owners to recieve enquiries. When the admin in logged in, he/she can see the list of messages and enquiries, and also create a new establishment. 
+
 
 ## Available Scripts
 
