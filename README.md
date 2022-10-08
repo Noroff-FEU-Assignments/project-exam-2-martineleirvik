@@ -33,8 +33,6 @@ password: Exam2Noroff
 
 ## Built With
 
-You can list a the tech stack that you've used over here
-
 - [React.js](https://reactjs.org/)
 - [Styled Components](https://styled-components.com/)
 
