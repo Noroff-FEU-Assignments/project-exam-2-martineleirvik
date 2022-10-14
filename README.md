@@ -59,3 +59,7 @@ To run the app, run the following commands:
 ```bash
 npm start
 ```
+
+## Contact
+
+[My LinkedIn profile](https://www.linkedin.com/in/martine-leirvik-b632561b5/)
